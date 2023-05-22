@@ -5,8 +5,8 @@
     <title><?php echo $templateParams["titolo"]; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="icon" type="image/png" sizes="32x32" href="../upload/Images/NetGamers_Icon.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../upload/Images/NetGamers_Icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="upload/logos/NetGamers_Icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="upload/logos/NetGamers_Icon.png">
 
     <meta name="theme-color" content="white">
     <!-- Theme mode-->
@@ -122,7 +122,7 @@
       })();
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" id="google-font">
-    <link rel="stylesheet" media="screen" href="../css/theme.min.css">
+    <link rel="stylesheet" media="screen" href="css/theme.min.css">
   </head>
   <body>
     <div class="page-loading active">
@@ -135,21 +135,21 @@
       <!-- Page content-->
       <div class="d-flex flex-column position-relative h-100 pt-5">
         <!-- Home button-->
-        <a class="text-nav btn btn-icon bg-light border rounded-circle position-absolute top-0 end-0 zindex-2 p-0 mt-3 me-3 mt-sm-4 me-sm-4" 
-          href="index-2.html" data-bs-toggle="tooltip" data-bs-placement="left" title="Back to home">
-          <i class="ai-home"></i>
-        </a>
-        <div class="container mt-auto">
+        <div class="container">
           <div class="row align-items-center">
-            
+            <?php
+            if(isset($templateParams["nome"])){
+                require($templateParams["nome"]);
+            }
+            ?>
           </div>
         </div>
       </div>
     </main>
     <!-- Vendor scripts: js libraries and plugins-->
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="../js/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
     <!-- Main theme script-->
-    <script src="../js/theme.min.js"></script>
+    <script src="js/theme.min.js"></script>
   </body>
 </html>
