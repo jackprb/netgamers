@@ -5,9 +5,8 @@
     <title><?php echo $templateParams["titolo"]; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Favicon and Touch Icons-->
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../upload/Images/NetGamers_Icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../upload/Images/NetGamers_Icon.png">
 
     <meta name="theme-color" content="white">
     <!-- Theme mode-->
@@ -123,7 +122,7 @@
       })();
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" id="google-font">
-    <link rel="stylesheet" media="screen" href="css/theme.min.css">
+    <link rel="stylesheet" media="screen" href="../css/theme.min.css">
   </head>
   <body>
     <div class="page-loading active">
@@ -148,8 +147,9 @@
       </div>
     </main>
     <!-- Vendor scripts: js libraries and plugins-->
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
     <!-- Main theme script-->
-    <script src="js/theme.min.js"></script>
+    <script src="../js/theme.min.js"></script>
   </body>
 </html>
