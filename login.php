@@ -9,6 +9,7 @@ if(isset($_POST["username"]) && isset($_POST["password"])){
     }
     else{
         registerLoggedUser($login_result[0]);
+        setcookie("loggedin", "", time()+ (3600 * 6)); //cookie expires in 6 hours
     }
 }
 
