@@ -1,4 +1,7 @@
 <!-- Sign in form-->
+<div class="d-flex justify-content-center align-items-center">
+    <img id="logoBig" src="" style="height: 150px;" alt="" />
+</div>
 <div class="col-md-6 mb-5 mb-md-0">
   <div class="card dark-mode border-0 bg-primary py-md-3 py-lg-4 px-lg-4 px-xl-5">
     <div class="card-body">

@@ -13,12 +13,12 @@
     <script>
       let mode = window.localStorage.getItem('mode'),
           root = document.getElementsByTagName('html')[0];
-      if (mode === 'dark'){
+      /*if (mode === 'dark'){
         document.getElementById("logoImg").src = "upload/logos/NetGamers_Logo_White.png";
       }
       if (mode !== 'dark'){
         document.getElementById("logoImg").src = "upload/logos/NetGamers_Logo.png";        
-      }
+      }*/
       if (mode !== undefined && mode === 'dark') {
         root.classList.add('dark-mode');
       } else {
@@ -141,10 +141,10 @@
     <header class="navbar navbar-expand-lg fixed-top">
         <div class="container">
           <a class="navbar-brand pe-sm-3" href="index.php"><span class="text-primary flex-shrink-0 me-2">
-              <img id="logoIcon" src="upload/logos/NetGamers_Icon.png" style="height: 50px;" alt="" />
+              <img id="logoImg" src="upload/logos/NetGamers_Icon.png" style="height: 50px;" alt="" />
           </a>
           <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
-            <input class="form-check-input" type="checkbox" id="theme-mode">
+            <input class="form-check-input" type="checkbox" id="theme-mode" onclick="changeTheme()">
             <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
             <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
           </div>
@@ -169,5 +169,7 @@
     <script src="js/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
     <!-- Main theme script-->
     <script src="js/theme.min.js"></script>
+    <!-- theme changer script -->
+    <script src="js/themeChange.js"></script>
   </body>
 </html>
