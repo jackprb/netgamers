@@ -1,5 +1,5 @@
 <!-- Sign in form-->
-<div class="d-flex justify-content-center align-items-center">
+<div class="d-flex justify-content-center align-items-center mb-4">
     <img id="logoBig" src="" style="height: 150px;" alt="" />
 </div>
 <div class="col-md-6 mb-5 mb-md-0">
