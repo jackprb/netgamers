@@ -19,8 +19,7 @@ if(isUserLoggedIn()){
     if(isset($_GET["formmsg"])){
         $templateParams["formmsg"] = $_GET["formmsg"];
     }
-}
-else{
+} else {
     $templateParams["titolo"] = "NetGamers - Login";
     $templateParams["nome"] = "login-form.php";
 }

@@ -59,7 +59,7 @@
           <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
         </label>
       </div>
-      <button class="btn btn-lg btn-info w-100 mb-4" type="submit">Sign up</button>
+      <button class="btn btn-lg btn-primary w-100 mb-4" type="submit">Sign up</button>
     </form>
   </div>
 </div>
