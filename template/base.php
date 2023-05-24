@@ -132,6 +132,111 @@
         </div>
 
         <main class="page-wrapper">
+            <div class="offcanvas offcanvas-end" id="offcanvasPost" tabindex="-1">
+                <div class="offcanvas-header border-bottom">
+                    <h5 class="offcanvas-title">New posts</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                        <div class="toast-header bg-primary text-white">
+                            <i class="ai-bell fs-lg me-2"></i>
+                            <span class="fw-medium me-auto">New post!</span>
+                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
+                          </div>
+                          <div class="toast-body">'User' posted something new!</div>
+                    </div>
+
+                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                        <div class="toast-header bg-primary text-white">
+                            <i class="ai-bell fs-lg me-2"></i>
+                            <span class="fw-medium me-auto">New post!</span>
+                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
+                          </div>
+                          <div class="toast-body">'User' posted something new!</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offcanvas offcanvas-end" id="offcanvasLike" tabindex="-1">
+                <div class="offcanvas-header border-bottom">
+                    <h5 class="offcanvas-title">Likes</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                        <div class="toast-header text-white" style="background-color: #e23152;">
+                            <i class="ai-bell fs-lg me-2"></i>
+                            <span class="fw-medium me-auto">New like!</span>
+                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
+                          </div>
+                        <div class="toast-body">'User' liked your post!</div>
+                    </div>
+
+                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                        <div class="toast-header text-white" style="background-color: #e23152;">
+                            <i class="ai-bell fs-lg me-2"></i>
+                            <span class="fw-medium me-auto">New like!</span>
+                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
+                          </div>
+                        <div class="toast-body">'User' liked your comment!</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offcanvas offcanvas-end" id="offcanvasFollow" tabindex="-1">
+                <div class="offcanvas-header border-bottom">
+                    <h5 class="offcanvas-title">New followers</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                        <div class="toast-header bg-dark text-white">
+                            <i class="ai-bell fs-lg me-2"></i>
+                            <span class="fw-medium me-auto">New follower!</span>
+                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
+                          </div>
+                        <div class="toast-body">'User' started following you!</div>
+                    </div>
+
+                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                        <div class="toast-header bg-dark text-white" >
+                            <i class="ai-bell fs-lg me-2"></i>
+                            <span class="fw-medium me-auto">New follower!</span>
+                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
+                          </div>
+                        <div class="toast-body">'User' started following you!</div>
+                        </div>
+                </div>
+            </div>
+
+            <div class="offcanvas offcanvas-end" id="offcanvasComment" tabindex="-1">
+                <div class="offcanvas-header border-bottom">
+                    <h5 class="offcanvas-title">New comments</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                        <div class="toast-header bg-success text-white">
+                            <i class="ai-bell fs-lg me-2"></i>
+                            <span class="fw-medium me-auto">New comment!</span>
+                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
+                          </div>
+                        <div class="toast-body">'User' commented on your post!</div>
+                    </div>
+
+                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                        <div class="toast-header bg-success text-white">
+                            <i class="ai-bell fs-lg me-2"></i>
+                            <span class="fw-medium me-auto">New comment!</span>
+                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
+                          </div>
+                        <div class="toast-body">'User' commented on your post!</div>
+                    </div>
+                </div>
+            </div>
+
+
             <header class="navbar navbar-expand-lg fixed-top">
                 <div class="container">
                     <a class="navbar-brand pe-sm-3" href="index.php"><span class="text-primary flex-shrink-0 me-2">
@@ -142,9 +247,9 @@
                         <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
                         <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
                     </div>
-                    <?php if(isset($_SESSION["username"])){
+                    <?php //if(isset($_SESSION["username"])){
                         require("loggedin-menu.php");
-                    } 
+                    //} 
                     ?>
                 </div>
             </header>
