@@ -253,8 +253,8 @@
                     <li class="nav-item mt-3">
                         <div class="dropdown-menu show">
                             <h6 class="dropdown-header fs-xs fw-medium text-muted text-uppercase pb-1">Account</h6>
-                            <a class="dropdown-item" href="account.php"><i class="ai-user-check fs-lg opacity-70 me-2"></i>Account settings</a>
-                            <a class="dropdown-item" href="profile.php"><i class="ai-settings fs-lg opacity-70 me-2"></i>View personal page</a>
+                            <a class="dropdown-item" href="account.php"><i class="ai-settings fs-lg opacity-70 me-2"></i>Account settings</a>
+                            <a class="dropdown-item" href="profile.php"><i class="ai-user-check fs-lg opacity-70 me-2"></i>View personal page</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="logout.php"><i class="ai-logout fs-lg opacity-70 me-2"></i>Sign out</a>
                         </div>

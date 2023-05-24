@@ -78,7 +78,7 @@
                             <div class="col-sm-6">
                                 <label class="form-label" for="currPsw">Current password</label>
                                 <div class="password-toggle">
-                                    <input class="form-control" type="password" value="hidden@password" id="currPsw" name="currPsw" />
+                                    <input class="form-control" type="password" placeholder="Current password" id="currPsw" name="currPsw" />
                                     <label class="password-toggle-btn" aria-label="Show/hide password">
                                         <input class="password-toggle-check" type="checkbox" />
                                         <span class="password-toggle-indicator"></span>
@@ -89,7 +89,7 @@
                             <div class="col-sm-6">
                                 <label class="form-label" for="newPsw">New password</label>
                                 <div class="password-toggle">
-                                    <input class="form-control" type="password" id="newPsw" name="newPsw" />
+                                    <input class="form-control" type="password" placeholder="New password" id="newPsw" name="newPsw" />
                                     <label class="password-toggle-btn" aria-label="Show/hide password">
                                         <input class="password-toggle-check" type="checkbox">
                                         <span class="password-toggle-indicator"></span>
@@ -99,7 +99,7 @@
                             <div class="col-sm-6">
                                 <label class="form-label" for="confirmPsw">Confirm new password</label>
                                 <div class="password-toggle">
-                                    <input class="form-control" type="password" id="confirmPsw" />
+                                    <input class="form-control" type="password" placeholder="Confirm new password" id="confirmPsw" />
                                     <label class="password-toggle-btn" aria-label="Show/hide password">
                                         <input class="password-toggle-check" type="checkbox" />
                                         <span class="password-toggle-indicator"></span>
