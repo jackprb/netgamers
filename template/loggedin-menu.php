@@ -1,5 +1,5 @@
 <!-- User signed in state. Account dropdown on screens > 576px-->
-<div class="d-flex align-items-center order-lg-2 ms-auto">
+<div class="d-flex align-items-center order-lg-2">
 	<a class="nav-link position-relative fs-4 p-2 mx-sm-1" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasPost">
 		<i class="ai-image"></i>
 		<span class="badge bg-primary fs-xs position-absolute end-0 top-0 me-n1" style="padding: 0.2rem 0.36rem;">3</span>
@@ -16,8 +16,12 @@
 		<i class="ai-message"></i>
 		<span class="badge bg-primary fs-xs position-absolute end-0 top-0 me-n1" style="padding: 0.2rem 0.36rem;">3</span>
 	</a>
+	<a class="nav-link position-relative fs-4 p-2 mx-sm-1" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAccount">
+		<i class="ai-settings"></i>
+	</a>
 </div>
 
+<!-- 
 <div class="dropdown nav d-none d-sm-block order-lg-3">
 	<div class="nav align-items-center order-lg-2 ms-auto">
 		<a class="nav-link d-flex align-items-center p-0 mx-sm-4" href="#" data-bs-toggle="dropdown" aria-expanded="false">
@@ -37,7 +41,8 @@
 	</div>
 </div>
 
-<button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+<button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="margin-left: 2%;">
+	<span class="navbar-toggler-icon"></span></button>
 <nav class="collapse navbar-collapse" id="navbarNav">
 	<ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
 		<li class="nav-item">
@@ -50,8 +55,8 @@
 				<li><a class="dropdown-item" href="#"><i class="ai-settings fs-lg opacity-70 me-2"></i>View personal page</a></li>
 			</ul>
 		</li>
-		
-		<!-- User signed in state. Account dropdown on screens > 576px-->
+	-->
+		<!-- User signed in state. Account dropdown on screens > 576px
 		<li class="nav-item dropdown d-sm-none border-top mt-2 pt-2"><a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false">
 			<img class="border rounded-circle" src="" width="48" alt="User image">
 			<div class="ps-2">
@@ -67,4 +72,4 @@
 			</div>
 		</li>
 	</ul>
-</nav>
+</nav>-->

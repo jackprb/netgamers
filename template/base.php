@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="it">
-    <head>
-        <meta charset="utf-8">
-        <title><?php echo $templateParams["titolo"]; ?></title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-        <link rel="icon" type="image/png" sizes="32x32" href="upload/logos/NetGamers_Icon.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="upload/logos/NetGamers_Icon.png">
-
-        <meta name="theme-color" content="white">
-        <!-- Theme mode-->
-        <script>
+<head>
+    <meta charset="utf-8">
+    <title><?php echo $templateParams["titolo"]; ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="upload/logos/NetGamers_Icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="upload/logos/NetGamers_Icon.png">
+    
+    <meta name="theme-color" content="white">
+    <!-- Theme mode-->
+    <script>
         let mode = window.localStorage.getItem('mode'),
-            root = document.getElementsByTagName('html')[0];
+        root = document.getElementsByTagName('html')[0];
         if (mode !== undefined && mode === 'dark') {
             root.classList.add('dark-mode');
         } else {
             root.classList.remove('dark-mode');
         }
-        </script>
-
-        <!-- Page loading styles-->
-        <style>
+    </script>
+    
+    <!-- Page loading styles-->
+    <style>
         .page-loading {
             position: fixed;
             top: 0;
@@ -87,168 +87,194 @@
         }
         @-webkit-keyframes spinner {
             0% {
-            -webkit-transform: scale(0);
-            transform: scale(0);
+                -webkit-transform: scale(0);
+                transform: scale(0);
             }
             50% {
-            opacity: 1;
-            -webkit-transform: none;
-            transform: none;
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none;
             }
         }
         @keyframes spinner {
             0% {
-            -webkit-transform: scale(0);
-            transform: scale(0);
+                -webkit-transform: scale(0);
+                transform: scale(0);
             }
             50% {
-            opacity: 1;
-            -webkit-transform: none;
-            transform: none;
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none;
             }
         }
         
-        </style>
-        <!-- Page loading scripts-->
-        <script>
+    </style>
+    <!-- Page loading scripts-->
+    <script>
         (function () {
             window.onload = function () {
-            const preloader = document.querySelector('.page-loading');
-            preloader.classList.remove('active');
-            setTimeout(function () {
-                preloader.remove();
-            }, 1500);
+                const preloader = document.querySelector('.page-loading');
+                preloader.classList.remove('active');
+                setTimeout(function () {
+                    preloader.remove();
+                }, 1500);
             };
         })();
-        </script>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" id="google-font">
-        <link rel="stylesheet" media="screen" href="css/theme.min.css">
-    </head>
-    <body>
-        <div class="page-loading active">
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" id="google-font">
+    <link rel="stylesheet" media="screen" href="css/theme.min.css">
+</head>
+<body>
+    <div class="page-loading active">
         <div class="page-loading-inner">
             <div class="page-spinner"></div><span>Loading...</span>
         </div>
+    </div>
+    
+    <main class="page-wrapper">
+        <div class="offcanvas offcanvas-end" id="offcanvasPost" tabindex="-1">
+            <div class="offcanvas-header border-bottom">
+                <h5 class="offcanvas-title">New posts</h5>
+                <button class="btn-close" type="button" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                    <div class="toast-header bg-primary text-white">
+                        <i class="ai-bell fs-lg me-2"></i>
+                        <span class="fw-medium me-auto">New post!</span>
+                        <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">'User' posted something new!</div>
+                </div>
+                
+                <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                    <div class="toast-header bg-primary text-white">
+                        <i class="ai-bell fs-lg me-2"></i>
+                        <span class="fw-medium me-auto">New post!</span>
+                        <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">'User' posted something new!</div>
+                </div>
+            </div>
         </div>
-
-        <main class="page-wrapper">
-            <div class="offcanvas offcanvas-end" id="offcanvasPost" tabindex="-1">
-                <div class="offcanvas-header border-bottom">
-                    <h5 class="offcanvas-title">New posts</h5>
-                    <button class="btn-close" type="button" data-bs-dismiss="offcanvas"></button>
+        
+        <div class="offcanvas offcanvas-end" id="offcanvasLike" tabindex="-1">
+            <div class="offcanvas-header border-bottom">
+                <h5 class="offcanvas-title">Likes</h5>
+                <button class="btn-close" type="button" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                    <div class="toast-header text-white" style="background-color: #e23152;">
+                        <i class="ai-bell fs-lg me-2"></i>
+                        <span class="fw-medium me-auto">New like!</span>
+                        <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">'User' liked your post!</div>
                 </div>
-                <div class="offcanvas-body">
-                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                        <div class="toast-header bg-primary text-white">
-                            <i class="ai-bell fs-lg me-2"></i>
-                            <span class="fw-medium me-auto">New post!</span>
-                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
-                          </div>
-                          <div class="toast-body">'User' posted something new!</div>
+                
+                <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                    <div class="toast-header text-white" style="background-color: #e23152;">
+                        <i class="ai-bell fs-lg me-2"></i>
+                        <span class="fw-medium me-auto">New like!</span>
+                        <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-
-                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                        <div class="toast-header bg-primary text-white">
-                            <i class="ai-bell fs-lg me-2"></i>
-                            <span class="fw-medium me-auto">New post!</span>
-                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
-                          </div>
-                          <div class="toast-body">'User' posted something new!</div>
-                    </div>
+                    <div class="toast-body">'User' liked your comment!</div>
                 </div>
             </div>
-
-            <div class="offcanvas offcanvas-end" id="offcanvasLike" tabindex="-1">
-                <div class="offcanvas-header border-bottom">
-                    <h5 class="offcanvas-title">Likes</h5>
-                    <button class="btn-close" type="button" data-bs-dismiss="offcanvas"></button>
+        </div>
+        
+        <div class="offcanvas offcanvas-end" id="offcanvasFollow" tabindex="-1">
+            <div class="offcanvas-header border-bottom">
+                <h5 class="offcanvas-title">New followers</h5>
+                <button class="btn-close" type="button" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                    <div class="toast-header bg-dark text-white">
+                        <i class="ai-bell fs-lg me-2"></i>
+                        <span class="fw-medium me-auto">New follower!</span>
+                        <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">'User' started following you!</div>
                 </div>
-                <div class="offcanvas-body">
-                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                        <div class="toast-header text-white" style="background-color: #e23152;">
-                            <i class="ai-bell fs-lg me-2"></i>
-                            <span class="fw-medium me-auto">New like!</span>
-                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
-                          </div>
-                        <div class="toast-body">'User' liked your post!</div>
+                
+                <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                    <div class="toast-header bg-dark text-white" >
+                        <i class="ai-bell fs-lg me-2"></i>
+                        <span class="fw-medium me-auto">New follower!</span>
+                        <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-
-                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                        <div class="toast-header text-white" style="background-color: #e23152;">
-                            <i class="ai-bell fs-lg me-2"></i>
-                            <span class="fw-medium me-auto">New like!</span>
-                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
-                          </div>
-                        <div class="toast-body">'User' liked your comment!</div>
-                    </div>
+                    <div class="toast-body">'User' started following you!</div>
                 </div>
             </div>
-
-            <div class="offcanvas offcanvas-end" id="offcanvasFollow" tabindex="-1">
-                <div class="offcanvas-header border-bottom">
-                    <h5 class="offcanvas-title">New followers</h5>
-                    <button class="btn-close" type="button" data-bs-dismiss="offcanvas"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                        <div class="toast-header bg-dark text-white">
-                            <i class="ai-bell fs-lg me-2"></i>
-                            <span class="fw-medium me-auto">New follower!</span>
-                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
-                          </div>
-                        <div class="toast-body">'User' started following you!</div>
+        </div>
+        
+        <div class="offcanvas offcanvas-end" id="offcanvasComment" tabindex="-1">
+            <div class="offcanvas-header border-bottom">
+                <h5 class="offcanvas-title">New comments</h5>
+                <button class="btn-close" type="button" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                    <div class="toast-header bg-success text-white">
+                        <i class="ai-bell fs-lg me-2"></i>
+                        <span class="fw-medium me-auto">New comment!</span>
+                        <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-
-                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                        <div class="toast-header bg-dark text-white" >
-                            <i class="ai-bell fs-lg me-2"></i>
-                            <span class="fw-medium me-auto">New follower!</span>
-                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
-                          </div>
-                        <div class="toast-body">'User' started following you!</div>
+                    <div class="toast-body">'User' commented on your post!</div>
+                </div>
+                
+                <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+                    <div class="toast-header bg-success text-white">
+                        <i class="ai-bell fs-lg me-2"></i>
+                        <span class="fw-medium me-auto">New comment!</span>
+                        <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">'User' commented on your post!</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="offcanvas offcanvas-end" id="offcanvasAccount" tabindex="-1">
+            <div class="offcanvas-header border-bottom">
+                <h5 class="offcanvas-title">My account</h5>
+                <button class="btn-close" type="button" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="pb-2 pb-lg-0 mb-2 d-flex justify-content-center align-items-center">
+                    <img class="d-block rounded-circle mb-2" id="userImg" src="upload/userImages/default.png" width="80" alt="User image">
+                </div>
+                <div class="text-center">
+                    <h3 class="h5 mb-1">User</h3>
+                    <p class="fs-sm text-muted mb-0">email@example.com</p>
+                </div>
+                <ul class="navbar-nav p-0">
+                    <li class="nav-item mt-3">
+                        <div class="dropdown-menu show">
+                            <h6 class="dropdown-header fs-xs fw-medium text-muted text-uppercase pb-1">Account</h6>
+                            <a class="dropdown-item" href="account.php"><i class="ai-user-check fs-lg opacity-70 me-2"></i>Account settings</a>
+                            <a class="dropdown-item" href="profile.php"><i class="ai-settings fs-lg opacity-70 me-2"></i>View personal page</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="logout.php"><i class="ai-logout fs-lg opacity-70 me-2"></i>Sign out</a>
                         </div>
-                </div>
+                    </li>
+                </ul>
             </div>
-
-            <div class="offcanvas offcanvas-end" id="offcanvasComment" tabindex="-1">
-                <div class="offcanvas-header border-bottom">
-                    <h5 class="offcanvas-title">New comments</h5>
-                    <button class="btn-close" type="button" data-bs-dismiss="offcanvas"></button>
+        </div>
+        
+        <header class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                <a class="navbar-brand pe-sm-3" href="index.php" style="margin-left: 1%;"><span class="text-primary flex-shrink-0 me-2">
+                    <img id="logoImg" src="upload/logos/NetGamers_Icon.png" style="height: 70px;" alt="" />
+                </a>
+                <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
+                    <input class="form-check-input" type="checkbox" id="theme-mode" onclick="changeTheme()">
+                    <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
+                    <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
                 </div>
-                <div class="offcanvas-body">
-                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                        <div class="toast-header bg-success text-white">
-                            <i class="ai-bell fs-lg me-2"></i>
-                            <span class="fw-medium me-auto">New comment!</span>
-                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
-                          </div>
-                        <div class="toast-body">'User' commented on your post!</div>
-                    </div>
-
-                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                        <div class="toast-header bg-success text-white">
-                            <i class="ai-bell fs-lg me-2"></i>
-                            <span class="fw-medium me-auto">New comment!</span>
-                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
-                          </div>
-                        <div class="toast-body">'User' commented on your post!</div>
-                    </div>
-                </div>
-            </div>
-
-
-            <header class="navbar navbar-expand-lg fixed-top">
-                <div class="container">
-                    <a class="navbar-brand pe-sm-3" href="index.php"><span class="text-primary flex-shrink-0 me-2">
-                        <img id="logoImg" src="upload/logos/NetGamers_Icon.png" style="height: 50px;" alt="" />
-                    </a>
-                    <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
-                        <input class="form-check-input" type="checkbox" id="theme-mode" onclick="changeTheme()">
-                        <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
-                        <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
-                    </div>
-                    <?php //if(isset($_SESSION["username"])){
-                        require("loggedin-menu.php");
+                <?php //if(isset($_SESSION["username"])){
+                    require("loggedin-menu.php");
                     //} 
                     ?>
                 </div>
@@ -274,4 +300,4 @@
         <!-- show login toast -->
         <script src="js/displayToast.js"></script>
     </body>
-</html>
+    </html>
