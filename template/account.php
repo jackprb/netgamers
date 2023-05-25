@@ -8,7 +8,7 @@
                         <div class="dropdown">
                             <a class="d-flex flex-column justify-content-end position-relative overflow-hidden rounded-circle bg-size-cover bg-position-center flex-shrink-0" 
                             href="#" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100px; height: 100px;">
-                                <img src="" class="rounded-circle" alt="User image" />
+                                <img src="upload/userImages/default.png" class="userImg rounded-circle img-fluid" alt="User image" />
                                 <span class="d-block text-light text-center lh-1 pb-1" style="background-color: rgba(0,0,0,.5)">
                                     <i class="ai-camera"></i>
                                 </span>

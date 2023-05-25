@@ -8,7 +8,7 @@
                     </div>
                     <div class="row d-flex align-items-center text-nowrap">
                         <div class="col-2">
-                            <img src="" class="rounded-circle" alt="User image" style="width: 100px; height: 100px;" />
+                            <img src="upload/userImages/default.png" class="userImg rounded-circle" alt="User image" style="width: 100px; height: 100px;" />
                         </div>
                         <div class="col-10">
                             <h3 class="h5 mb-2">User</h3>

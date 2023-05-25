@@ -123,6 +123,7 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" id="google-font">
     <link rel="stylesheet" media="screen" href="css/theme.min.css">
+    <link rel="stylesheet" media="screen" href="css/custom.css">
 </head>
 <body>
     <div class="page-loading active">
@@ -243,7 +244,7 @@
             </div>
             <div class="offcanvas-body">
                 <div class="pb-2 pb-lg-0 mb-2 d-flex justify-content-center align-items-center">
-                    <img class="d-block rounded-circle mb-2" id="userImg" src="upload/userImages/default.png" width="80" alt="User image">
+                    <img class="userImg d-block rounded-circle mb-2 img-fluid" src="upload/userImages/default.png" width="80" alt="User image">
                 </div>
                 <div class="text-center">
                     <h3 class="h5 mb-1">User</h3>
@@ -266,7 +267,7 @@
         <header class="navbar navbar-expand-lg fixed-top">
             <div class="container">
                 <a class="navbar-brand pe-sm-3" href="index.php" style="margin-left: 1%;"><span class="text-primary flex-shrink-0 me-2">
-                    <img id="logoImg" src="upload/logos/NetGamers_Icon.png" style="height: 70px;" alt="" />
+                    <img class="logoImg img-fluid" src="upload/logos/NetGamers_Icon.png" style="height: 70px;" alt="" />
                 </a>
                 <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
                     <input class="form-check-input" type="checkbox" id="theme-mode" onclick="changeTheme()">

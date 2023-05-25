@@ -25,7 +25,7 @@
 <div class="dropdown nav d-none d-sm-block order-lg-3">
 	<div class="nav align-items-center order-lg-2 ms-auto">
 		<a class="nav-link d-flex align-items-center p-0 mx-sm-4" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-			<img class="border rounded-circle" src="" width="48" alt="User image">
+			<img class="border rounded-circle img-fluid" src="" width="48" alt="User image">
 			<div class="ps-2">
 				<div class="fs-xs lh-1 opacity-60">Hello,</div>
 				<div class="fs-sm dropdown-toggle"><?php getLoggedInUsername(); ?></div>
@@ -58,7 +58,7 @@
 	-->
 		<!-- User signed in state. Account dropdown on screens > 576px
 		<li class="nav-item dropdown d-sm-none border-top mt-2 pt-2"><a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-			<img class="border rounded-circle" src="" width="48" alt="User image">
+			<img class="border rounded-circle img-fluid" src="" width="48" alt="User image">
 			<div class="ps-2">
 				<div class="fs-xs lh-1 opacity-60">Hello,</div>
 				<div class="fs-sm dropdown-toggle"><?php getLoggedInUsername(); ?></div>
