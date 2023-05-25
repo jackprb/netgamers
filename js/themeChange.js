@@ -5,22 +5,34 @@ let userImg;
 
 window.addEventListener("load", function(){
     themeCheck = document.getElementById('theme-mode');
-    logoImg = document.getElementById('logoImg');
-    logoBig = document.getElementById('logoBig');
-    userImg = document.getElementById('userImg');
+    logoImg = document.querySelectorAll('.logoImg');
+    logoBig = document.querySelectorAll('.logoBig');
+    userImg = document.querySelectorAll('.userImg');
     changeTheme();
 });
 
 function changeTheme(){
     if (mode !== undefined && mode === 'dark'){
-        //logoImg.src = "upload/logos/NetGamers_Logo_White.png";
-        logoBig.src = "upload/logos/NetGamers_Logo_White.png";
-        userImg.src = "upload/userImages/default_white.png";
+        /*logoImg.forEach(element => {
+            element.src = "upload/logos/NetGamers_Logo_White.png";
+        });*/
+        logoBig.forEach(element => {
+            element.src = "upload/logos/NetGamers_Logo_White.png";
+        });
+        userImg.forEach(element => {
+            element.src = "upload/userImages/default_white.png";
+        });
         mode = 'light';
     } else {
-        //logoImg.src = "upload/logos/NetGamers_Logo.png";
-        logoBig.src = "upload/logos/NetGamers_Logo.png";
-        userImg.src = "upload/userImages/default.png";
+        /*logoImg.forEach(element => {
+            element.src ="upload/logos/NetGamers_Logo.png";
+        });*/
+        logoBig.forEach(element => {
+            element.src ="upload/logos/NetGamers_Logo.png";
+        });
+        userImg.forEach(element => {
+            element.src = "upload/userImages/default.png";
+        }); 
         mode = 'dark';
     }
 }
