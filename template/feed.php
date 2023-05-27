@@ -11,6 +11,7 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    <p class="text-center text-muted">Published on 27-5-2023 11.00</p>
                     <p class="card-text">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean faucibus placerat sagittis. 
                         Pellentesque dictum ante nisi, vel lacinia lacus ultricies eget. Sed quis lorem eget turpis imperdiet maximus. 
@@ -92,6 +93,7 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    <p class="text-center text-muted">Published on 27-5-2023 11.00</p>
                     <img class="img-fluid" src="upload/logos/NetGamers_Icon.png" alt="Alt description"
                     data-bs-toggle="modal" data-bs-target="#modalImg"/>                        
                 </div>
