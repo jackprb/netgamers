@@ -7,19 +7,58 @@
                         </a>
                     </div>
                     <div class="row d-flex align-items-center text-nowrap">
-                        <div class="col-2">
-                            <img src="upload/userImages/default.png" class="userImg rounded-circle" alt="User image" style="width: 100px; height: 100px;" />
+                        <div class="col-5 col-sm-5 col-md-3 col-lg-4 ms-4">
+                            <img src="upload/userImages/default.png" class="userImg rounded-circle img-fluid" alt="User image" />
                         </div>
-                        <div class="col-10">
+                        <div class="col-5 col-sm-5 col-md-6 col-lg-7">
                             <h3 class="h5 mb-2">User</h3>
                             <p class="fs-sm">
                                 Followers: 
-                                <a data-bs-toggle="modal" data-bs-target="#modalFollowers" href="#">100</a>
+                                <a data-bs-toggle="modal" data-bs-target="#modalFollowers" href="#">5</a>
                                 Followed: 
-                                <a data-bs-toggle="modal" data-bs-target="#modalFollowed" href="#">1</a>
+                                <a data-bs-toggle="modal" data-bs-target="#modalFollowed" href="#">5</a>
                             </p>
                             <p class="fs-sm"><i class="ai-mail me-1"></i>email@example.com</p>
                             <i class="ai-map-pin me-1"></i>USA
+                        </div>
+                    </div>
+                    <div class="card mt-5">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -27,14 +66,86 @@
         </section>
         
         <div class="modal fade" id="modalFollowers" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Followers</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p> lista followers</p>
+                        <p>Total followers: 5</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="card border-0 overflow-hidden">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
+                                            <img src="upload/logos/NetGamers_Icon.png" class="img-fluid" alt="User image" />
+                                        </div>
+                                        <div class="col-8 col-sm-8 ">
+                                            <div class="card-body">
+                                                <p class="card-text">User</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="card border-0 overflow-hidden">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
+                                            <img src="upload/logos/NetGamers_Icon.png" class="img-fluid" alt="User image" />
+                                        </div>
+                                        <div class="col-8 col-sm-8 ">
+                                            <div class="card-body">
+                                                <p class="card-text">User</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="card border-0 overflow-hidden">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
+                                            <img src="upload/logos/NetGamers_Icon.png" class="img-fluid" alt="User image" />
+                                        </div>
+                                        <div class="col-8 col-sm-8 ">
+                                            <div class="card-body">
+                                                <p class="card-text">User</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="card border-0 overflow-hidden">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
+                                            <img src="upload/logos/NetGamers_Icon.png" class="img-fluid" alt="User image" />
+                                        </div>
+                                        <div class="col-8 col-sm-8 ">
+                                            <div class="card-body">
+                                                <p class="card-text">User</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="card border-0 overflow-hidden">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
+                                            <img src="upload/logos/NetGamers_Icon.png" class="img-fluid" alt="User image" />
+                                        </div>
+                                        <div class="col-8 col-sm-8 ">
+                                            <div class="card-body">
+                                                <p class="card-text">User</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                     <div class="modal-footer flex-column flex-sm-row">
                         <button type="button" class="btn btn-secondary w-100 w-sm-auto mb-3 mb-sm-0" data-bs-dismiss="modal">Close</button>
@@ -44,14 +155,86 @@
         </div>
         
         <div class="modal fade" id="modalFollowed" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Followed</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p> lista followed</p>
+                        <p>Total followed: 5</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="card border-0 overflow-hidden">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
+                                            <img src="upload/logos/NetGamers_Icon.png" class="img-fluid" alt="User image" />
+                                        </div>
+                                        <div class="col-8 col-sm-8 ">
+                                            <div class="card-body">
+                                                <p class="card-text">User</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="card border-0 overflow-hidden">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
+                                            <img src="upload/logos/NetGamers_Icon.png" class="img-fluid" alt="User image" />
+                                        </div>
+                                        <div class="col-8 col-sm-8 ">
+                                            <div class="card-body">
+                                                <p class="card-text">User</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="card border-0 overflow-hidden">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
+                                            <img src="upload/logos/NetGamers_Icon.png" class="img-fluid" alt="User image" />
+                                        </div>
+                                        <div class="col-8 col-sm-8 ">
+                                            <div class="card-body">
+                                                <p class="card-text">User</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="card border-0 overflow-hidden">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
+                                            <img src="upload/logos/NetGamers_Icon.png" class="img-fluid" alt="User image" />
+                                        </div>
+                                        <div class="col-8 col-sm-8 ">
+                                            <div class="card-body">
+                                                <p class="card-text">User</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="card border-0 overflow-hidden">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
+                                            <img src="upload/logos/NetGamers_Icon.png" class="img-fluid" alt="User image" />
+                                        </div>
+                                        <div class="col-8 col-sm-8 ">
+                                            <div class="card-body">
+                                                <p class="card-text">User</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                     <div class="modal-footer flex-column flex-sm-row">
                         <button type="button" class="btn btn-secondary w-100 w-sm-auto mb-3 mb-sm-0" data-bs-dismiss="modal">Close</button>

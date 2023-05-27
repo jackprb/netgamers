@@ -1,3 +1,7 @@
 .postUserImg {
     height: 3em;
 }
+
+.userImg{
+    max-height: 100px;
+}

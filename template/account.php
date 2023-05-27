@@ -27,22 +27,22 @@
                         </div>
                     </div>
                     <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
-                        <div class="col-sm-6">
+                        <div class="col-12 col-sm-12 col-md-6">
                             <label class="form-label" for="name">Name</label>
                             <input class="form-control" type="text" value="name" id="name">
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-12 col-sm-12 col-md-6">
                             <label class="form-label" for="surname">Surname</label>
                             <input class="form-control" type="text" value="surname" id="surname">
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-12 col-sm-6">
                             <label class="form-label" for="country">Country</label>
                             <select class="form-select" id="country">
                                 <option value="" selected disabled>Select country</option>
                                 <?php generateListOfCountries(); ?>
                             </select>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-12 col-sm-6">
                             <label class="form-label" for="language">Language</label>
                             <select class="form-select" id="language">
                                 <option value="" selected disabled>Select language</option>
@@ -50,7 +50,7 @@
                                 <option value="Italiano">Italiano</option>
                             </select>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-12 col-sm-12 col-md-6">
                             <label class="form-label" for="email">Email address</label>
                             <input class="form-control" type="email" value="email@example.com" id="email">
                         </div>
