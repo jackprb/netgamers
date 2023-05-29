@@ -19,9 +19,6 @@ function changeTheme(){
         logoBig.forEach(element => {
             element.src = "upload/logos/NetGamers_Logo_White.png";
         });
-        userImg.forEach(element => {
-            element.src = "upload/userImages/default_white.png";
-        });
         mode = 'light';
     } else {
         /*logoImg.forEach(element => {
@@ -30,9 +27,6 @@ function changeTheme(){
         logoBig.forEach(element => {
             element.src ="upload/logos/NetGamers_Logo.png";
         });
-        userImg.forEach(element => {
-            element.src = "upload/userImages/default.png";
-        }); 
         mode = 'dark';
     }
 }
