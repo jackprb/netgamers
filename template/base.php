@@ -298,7 +298,5 @@
         <script src="js/theme.min.js"></script>
         <!-- theme changer script -->
         <script src="js/themeChange.js"></script>
-        <!-- show login toast -->
-        <script src="js/displayToast.js"></script>
     </body>
     </html>
