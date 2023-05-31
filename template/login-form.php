@@ -31,7 +31,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-lg btn-light w-100 mb-4" type="submit">Log in</button>
+                <button class="btn btn-lg btn-light w-100 mb-4" type="submit" name="login">Log in</button>
             </form>
         </div>
     </div>
@@ -66,7 +66,7 @@
                     <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                 </label>
             </div>
-            <button class="btn btn-lg btn-primary w-100 mb-4" type="submit">Sign up</button>
+            <button class="btn btn-lg btn-primary w-100 mb-4" type="submit" name="signup">Sign up</button>
         </form>
     </div>
 </div>
