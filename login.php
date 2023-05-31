@@ -1,13 +1,12 @@
 <?php 
 require_once 'CONFIG.php';
 
-if(isset($_POST["username"]) && isset($_POST["password"])){
+if(isset($_POST["username"], $_POST["password"])){
     $login_result = $dbh->checkLogin($_POST["username"], $_POST["password"]);
     if(count($login_result)==0){
         //Login fallito
         $templateParams["errorelogin"] = "Errore! Controllare username o password!";
-    }
-    else{
+    } else{
         registerLoggedUser($login_result[0]);
         setcookie("loggedin", "", time()+ (3600 * 6)); //cookie expires in 6 hours
     }
