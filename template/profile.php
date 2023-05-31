@@ -2,7 +2,7 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center mt-sm-n1 pb-4 mb-0 mb-lg-1 mb-xl-3"><i class="ai-user text-primary lead pe-1 me-2"></i>
                         <h2 class="h4 mb-0">User profile</h2>
-                        <a class="btn btn-sm btn-secondary ms-auto" href="account.php">
+                        <a class="btn btn-sm btn-primary ms-auto" href="account.php">
                             <i class="ai-edit ms-n1 me-2"></i>Edit info
                         </a>
                     </div>

@@ -274,9 +274,9 @@
                     <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
                     <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
                 </div>
-                <?php //if(isset($_SESSION["username"])){
+                <?php if(isset($_SESSION["userID"])){
                     require("loggedin-menu.php");
-                    //} 
+                    } 
                     ?>
                 </div>
             </header>

@@ -1,3 +1,8 @@
+            <?php
+                function getApiPath($nomeFile){
+                    return "api/" . $nomeFile;
+                }
+            ?>
             <section class="card border-0 py-1 p-md-2 p-xl-3 mb-4">
                 <div class="card-body">
                     <div class="d-flex align-items-center mt-sm-n1 pb-2 mb-0 mb-lg-1 mb-xl-3">
@@ -69,7 +74,7 @@
             <!-- Password-->
             <section class="card border-0 py-1 p-md-2 p-xl-3  mb-4">
                 <div class="card-body">
-                    <form action="" method="post">
+                    <form action="<?php echo getApiPath('api-change-psw.php'); ?>" method="post">
                         <div class="d-flex align-items-center pb-4 mt-sm-n1 mb-0 mb-lg-1 mb-xl-3">
                             <i class="ai-lock-closed text-primary lead pe-1 me-2"></i>
                             <h2 class="h4 mb-0">Password change</h2>
@@ -99,7 +104,7 @@
                             <div class="col-sm-6">
                                 <label class="form-label" for="confirmPsw">Confirm new password</label>
                                 <div class="password-toggle">
-                                    <input class="form-control" type="password" placeholder="Confirm new password" id="confirmPsw" />
+                                    <input class="form-control" type="password" placeholder="Confirm new password" id="confirmPsw" name="confirmPsw" />
                                     <label class="password-toggle-btn" aria-label="Show/hide password">
                                         <input class="password-toggle-check" type="checkbox" />
                                         <span class="password-toggle-indicator"></span>
@@ -130,7 +135,7 @@
                     <div class="d-flex align-items-center pb-4 mt-sm-n1 mb-0 mb-lg-1 mb-xl-3">
                         <i class="ai-bell text-primary lead pe-1 me-2"></i>
                         <h2 class="h4 mb-0">Notifications</h2>
-                        <button class="btn btn-sm btn-outline-secondary ms-auto" type="button" data-bs-toggle="checkbox" 
+                        <button class="btn btn-sm btn-primary ms-auto" type="button" data-bs-toggle="checkbox" 
                         data-bs-target="#checkboxList">Toggle all</button>
                     </div>
                     <form action="" method="post">
