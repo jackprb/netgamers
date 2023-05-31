@@ -13,11 +13,6 @@ function isUserLoggedIn(){
     return !empty($_SESSION['userID']);
 }
 
-function registerLoggedUser($user){
-    $_SESSION["userID"] = $user["id"];
-    $_SESSION["username"] = $user["username"];
-}
-
 function getLoggedInUsername(){
     if (isset($_SESSION["username"])){
         echo $_SESSION["username"];

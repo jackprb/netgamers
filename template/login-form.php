@@ -7,15 +7,19 @@
         <div class="card-body">
             <h1 class="py-2 pb-lg-3">Log in</h1>
 
-            <?php if(isset($templateParams["errorelogin"])): ?>
-                <p class="fw-semibold">Error: <?php echo $templateParams["errorelogin"]; ?></p>
-            <?php endif; ?>
-
             <?php if(isset($_GET["a"]) && $_GET["a"] == 1): ?>
-                <p>Error: Login to access the page.</p>
+                <p class="fw-semibold">Error: Login to access the page.</p>
             <?php endif; ?>
 
-            <form action="./login.php" method="POST">
+            <?php if(isset($_GET["el"]) && $_GET["el"] == 1): ?>
+                <p class="fw-semibold">Error: Username and/or password are not valid.</p>
+            <?php endif; ?>
+
+            <?php if(isset($_GET["el"]) && $_GET["el"] == 2): ?>
+                <p class="fw-semibold">Error: To log in, type in your username and password.</p>
+            <?php endif; ?>
+
+            <form action="./login_process.php" method="POST">
                 <div class="pb-3 mb-3">
                     <div class="position-relative"><i class="ai-user fs-lg position-absolute top-50 start-0 translate-middle-y text-light opacity-80 ms-3"></i>
                         <input class="form-control form-control-lg ps-5" type="text" name="username" id="username" placeholder="Username" required>
@@ -41,11 +45,20 @@
     <div class="ps-md-3 ps-lg-5 ps-xl-0">
         <h2 class="h1 pb-2 pb-lg-3">No account? Sign Up</h2>
 
-        <?php if(isset($templateParams["erroreregister"])): ?>
-        <p class="fw-semibold">Error: <?php echo $templateParams["erroreregister"]; ?></p>
-        <?php endif; ?>
+            <?php if(isset($_GET["r"]) && $_GET["r"] == 1): ?>
+                <p class="fw-semibold">Registration completed successfully! Please log in.</p>
+            <?php endif; ?>
+            <?php if(isset($_GET["er"]) && $_GET["er"] == 1): ?>
+                <p class="fw-semibold">Error: Fill in all fields to complete the registration.</p>
+            <?php endif; ?>
+            <?php if(isset($_GET["er"]) && $_GET["er"] == 2): ?>
+                <p class="fw-semibold">Error: there already is a user with this username.</p>
+            <?php endif; ?>
+            <?php if(isset($_GET["er"]) && $_GET["er"] == 3): ?>
+                <p class="fw-semibold">Error: there already is a user registered with this email.</p>
+            <?php endif; ?>
 
-        <form action="register.php" method="POST">
+        <form action="./register_process.php" method="POST">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 row-cols-lg-2">
                 <div class="col mb-4">
                     <input class="form-control form-control-lg" type="text" placeholder="Username" required name="usernameReg" id="usernameReg">

@@ -9,8 +9,8 @@ class DatabaseHelper{
         }        
     }   
 
-    public function checkLogin($username, $password){
-        $query = "SELECT id, username FROM users WHERE active=1 AND username = ? AND psw = ?";
+    public function getUserId($username, $password){
+        $query = "SELECT id FROM users WHERE active=1 AND username = ? AND psw = ?";
         $stmt = $this->db->prepare($query);
         //
         $stmt->bind_param('ss', $username, $password);
@@ -46,14 +46,14 @@ class DatabaseHelper{
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $username);
         $stmt->execute();
-        $resultCheckUser = $stmt->get_result();
+        $resultCheckUser = $stmt->get_result()->num_rows;
 
         //check if already exists an user with this email
         $query = "SELECT email FROM users WHERE active=1 AND email = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $email);
         $stmt->execute();
-        $resultCheckEmail = $stmt->get_result();
+        $resultCheckEmail = $stmt->get_result()->num_rows;
 
         // if previous checks are satisfied, register the new user
         if($resultCheckEmail !== FALSE && $resultCheckUser !== FALSE){
@@ -63,10 +63,14 @@ class DatabaseHelper{
             $stmt->bind_param('ssss', $username, $psw, $email, $registrationDate);
             $stmt->execute();
             $result = $stmt->get_result();
-
             return TRUE;
+        } 
+        if($resultCheckUser !== 0){ // if another user registered with this email
+            return "usernameExist";
         }
-        return FALSE;
+        if($resultCheckEmail !== 0){ // if this username is already taken
+            return "emailExist";
+        }
     }
 }
 ?>
