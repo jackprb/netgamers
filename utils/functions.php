@@ -1,4 +1,16 @@
 <?php
+// Funzione per proteggere l'input dagli attacchi di injection
+function sanitizeInput($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+function checkPassword($psw){
+    return strlen($psw) >= 10;
+}
+
 function isActive($pagename){
     if(basename($_SERVER['PHP_SELF'])==$pagename){
         echo " class='active' ";

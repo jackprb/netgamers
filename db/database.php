@@ -31,13 +31,12 @@ class DatabaseHelper{
     }
 
     public function setNewUserPsw($username, $newPsw){
-        $query = "UPDATE users SET `password` = ? WHERE username = ?";
+        $query = "UPDATE users SET `psw` = ? WHERE username = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ss', $newPsw, $username);
         $stmt->execute();
         $result = $stmt->get_result();
-
-        return $result->fetch_all(MYSQLI_ASSOC);
+        return $stmt->errno; // 0 -> no errors
     }
 
     public function registerNewUser($username, $psw, $email){

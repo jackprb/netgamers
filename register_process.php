@@ -29,14 +29,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signup"]) && allFieldsA
 function allFieldsAreSet(){ //check if email address is valid
     return filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) && isset($_POST["usernameReg"], $_POST["email"], $_POST["psw"], $_POST["confPsw"]);
 }
-
-// Funzione per proteggere l'input dagli attacchi di injection
-function sanitizeInput($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
 ?>
 
     

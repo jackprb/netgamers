@@ -32,14 +32,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"]) && allFieldsA
     header("location:login.php?el=2");
 }
 
-// Funzione per proteggere l'input dagli attacchi di injection
-function sanitizeInput($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
 function allFieldsAreSet(){
     return isset($_POST["username"], $_POST["password"]);
 }

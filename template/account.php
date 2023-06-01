@@ -2,6 +2,16 @@
                 function getApiPath($nomeFile){
                     return "api/" . $nomeFile;
                 }
+
+                function pswChangeMsg($code){
+                    $msg[1] = "Cannot change password: retry later.";
+                    $msg[2] = "Cannot change password: your current password is not correct.";
+                    $msg[3] = "Cannot change password: the new password does not match the requirements.";
+                    $msg[4] = "Cannot change password: the fields 'new password' and 'confirm password' do not match.";
+                    $msg[5] = "Cannot change password: the new password is equal to the current password.";
+                    $msg[6] = "Cannot change password: fill in all the required fields.";
+                    return $msg[$code];
+                }
             ?>
             <section class="card border-0 py-1 p-md-2 p-xl-3 mb-4">
                 <div class="card-body">
@@ -20,7 +30,7 @@
                             </a>
                             <div class="dropdown-menu my-1">
                                 <a class="dropdown-item fw-normal" href="#"><i class="ai-camera fs-base opacity-70 me-2"></i>Upload new photo</a>
-                                <a class="dropdown-item text-danger fw-normal" href="#"><i class="ai-trash fs-base me-2"></i>Delete photo</a>
+                                <a class="dropdown-item fw-normal" href="#"><i class="ai-trash fs-base me-2"></i>Delete photo</a>
                             </div>
                         </div>
                         <div class="ps-3">
@@ -79,11 +89,28 @@
                             <i class="ai-lock-closed text-primary lead pe-1 me-2"></i>
                             <h2 class="h4 mb-0">Password change</h2>
                         </div>
+                        <div class="row align-items-center">
+                            <div class="col-sm-12 col-md-6">
+                                <?php if(isset($_GET["r"]) && $_GET["r"] == 0): ?>
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <div><i class="ai-circle-check fs-xl pe-1 me-2"></i>Password modificata con successo!</div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php endif; ?>
+
+                                <?php if(isset($_GET["r"]) && $_GET["r"] >= 1 && $_GET["r"] <= 6): ?>
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <div><i class="ai-circle-alert fs-xl pe-1 me-2"></i><?php echo pswChangeMsg($_GET["r"]);?></div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
                         <div class="row align-items-center g-3 g-sm-4 pb-3">
                             <div class="col-sm-6">
                                 <label class="form-label" for="currPsw">Current password</label>
                                 <div class="password-toggle">
-                                    <input class="form-control" type="password" placeholder="Current password" id="currPsw" name="currPsw" />
+                                    <input class="form-control" type="password" placeholder="Current password" id="currPsw" name="currPsw" required/>
                                     <label class="password-toggle-btn" aria-label="Show/hide password">
                                         <input class="password-toggle-check" type="checkbox" />
                                         <span class="password-toggle-indicator"></span>
@@ -94,7 +121,7 @@
                             <div class="col-sm-6">
                                 <label class="form-label" for="newPsw">New password</label>
                                 <div class="password-toggle">
-                                    <input class="form-control" type="password" placeholder="New password" id="newPsw" name="newPsw" />
+                                    <input class="form-control" type="password" placeholder="New password" id="newPsw" name="newPsw" required />
                                     <label class="password-toggle-btn" aria-label="Show/hide password">
                                         <input class="password-toggle-check" type="checkbox">
                                         <span class="password-toggle-indicator"></span>
@@ -104,7 +131,7 @@
                             <div class="col-sm-6">
                                 <label class="form-label" for="confirmPsw">Confirm new password</label>
                                 <div class="password-toggle">
-                                    <input class="form-control" type="password" placeholder="Confirm new password" id="confirmPsw" name="confirmPsw" />
+                                    <input class="form-control" type="password" placeholder="Confirm new password" id="confirmPsw" name="confirmPsw" required />
                                     <label class="password-toggle-btn" aria-label="Show/hide password">
                                         <input class="password-toggle-check" type="checkbox" />
                                         <span class="password-toggle-indicator"></span>
