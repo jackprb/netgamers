@@ -41,6 +41,6 @@ function sanitizeInput($data) {
 }
 
 function allFieldsAreSet(){
-    return isset($_POST["username"], $_POST["psw"]);
+    return isset($_POST["username"], $_POST["password"]);
 }
 ?>

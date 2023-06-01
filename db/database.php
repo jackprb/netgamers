@@ -56,7 +56,7 @@ class DatabaseHelper{
         $resultCheckEmail = $stmt->get_result()->num_rows;
 
         // if previous checks are satisfied, register the new user
-        if($resultCheckEmail !== FALSE && $resultCheckUser !== FALSE){
+        if($resultCheckEmail == 0 && $resultCheckUser == 0){
             $query = "INSERT INTO users (`username`, `psw`, `email`, `registrationDate`) VALUES (?, ?, ?, ?)";
             $stmt = $this->db->prepare($query);
             $registrationDate = date('Y-m-d');
@@ -65,10 +65,10 @@ class DatabaseHelper{
             $result = $stmt->get_result();
             return TRUE;
         } 
-        if($resultCheckUser !== 0){ // if another user registered with this email
+        if($resultCheckUser != 0){ // if another user registered with this email
             return "usernameExist";
         }
-        if($resultCheckEmail !== 0){ // if this username is already taken
+        if($resultCheckEmail != 0){ // if this username is already taken
             return "emailExist";
         }
     }
