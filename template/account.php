@@ -1,6 +1,4 @@
             <?php
-                require_once 'CONFIG.php';
-
                 function pswChangeMsg($code){
                     $msg[1] = "Cannot change password: retry later.";
                     $msg[2] = "Cannot change password: your current password is not correct.";
@@ -33,7 +31,7 @@
                         </div>
                         <div class="ps-3">
                             <h3 class="h5 mb-1"><?php printUserName(); ?> - 
-                                <span class="fs-lg text-muted mb-0"><?php echo "email@mail.com"; ?></span>
+                                <span class="fs-lg text-muted mb-0"><?php printEmail($dbh); ?></span>
                             </h3>
 
                             <p class="fs-sm text-muted mb-0">Click on the image to change or delete it. <br> 
@@ -52,14 +50,14 @@
                         </div>
                         <div class="col-12 col-sm-6">
                             <label class="form-label" for="country">Country</label>
-                            <select class="form-select" id="country">
+                            <select class="form-select" id="country" name="country">
                                 <option value="" selected disabled>Select country</option>
                                 <?php generateListOfCountries(); ?>
                             </select>
                         </div>
                         <div class="col-12 col-sm-6">
                             <label class="form-label" for="language">Language</label>
-                            <select class="form-select" id="language">
+                            <select class="form-select" id="language" name="language">
                                 <option value="" selected disabled>Select language</option>
                                 <option value="English">English</option>
                                 <option value="Italiano">Italiano</option>
@@ -67,11 +65,11 @@
                         </div>
                         <div class="col-12 col-sm-12 col-md-6">
                             <label class="form-label" for="email">Email address</label>
-                            <input class="form-control" type="email" value="email@example.com" id="email">
+                            <input class="form-control" type="email" value="<?php printEmail($dbh); ?>" id="email" name="email">
                         </div>
                         <div class="col-12">
                             <label class="form-label" for="bio">Bio</label>
-                            <textarea class="form-control" rows="5" placeholder="Add a bio" id="bio"></textarea>
+                            <textarea class="form-control" rows="5" placeholder="Add a bio" id="bio" name="bio"></textarea>
                         </div>
                         
                         <div class="col-12 d-flex justify-content-end pt-3">
@@ -165,7 +163,7 @@
                         <button class="btn btn-sm btn-primary ms-auto" type="button" data-bs-toggle="checkbox" 
                         data-bs-target="#checkboxList">Toggle all</button>
                     </div>
-                    <form action="" method="post">
+                    <form action="<?php echo getApiPath('api-notification-preferences.php'); ?>" method="post">
                         <div id="checkboxList">
                             <div class="form-check form-switch d-flex pb-md-2 mb-4">
                                 <input class="form-check-input flex-shrink-0" type="checkbox" checked id="newFollower" name="newFollower" />

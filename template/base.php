@@ -248,7 +248,7 @@
                 </div>
                 <div class="text-center">
                     <h3 class="h5 mb-1"><?php printUserName(); ?></h3>
-                    <p class="fs-sm text-muted mb-0"><?php echo "--"; ?></p>
+                    <p class="fs-sm text-muted mb-0"><?php printEmail($dbh); ?></p>
                 </div>
                 <ul class="navbar-nav p-0">
                     <li class="nav-item mt-3">

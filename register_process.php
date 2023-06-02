@@ -12,6 +12,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signup"]) && allFieldsA
     // i controlli su email e password sono inclusi in registerNewUser
     $result = $dbh->registerNewUser($username, $hashedPassword, $email);
 
+    // ottiene id di utente appena registrato
+    $userID = $dbh->getUserId($username, $hashedPassword)[0]['id'];
+
+    // inserisce le impostazioni di default per le notifiche
+    $res = $dbh->setDefaultNotificationSettings($userID);
+
     if ($result === TRUE){ //registrazione con successo
         header("location:login.php?r=1"); //redirect a login, deve fare accesso di nuovo
 

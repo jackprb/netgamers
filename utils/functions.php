@@ -1,4 +1,5 @@
 <?php
+
 // Funzione per proteggere l'input dagli attacchi di injection
 function sanitizeInput($data) {
     $data = trim($data);
@@ -7,12 +8,14 @@ function sanitizeInput($data) {
     return $data;
 }
 
-function printUserName(){
-    echo $_SESSION["username"];
+function printEmail($dbh){
+    echo $dbh->getUserEmail($_SESSION["username"])[0]['email'];
 }
 
-function printEmail(){
-    echo $dbh->getUserEmail($_SESSION["username"])[0]['email'];
+function printUserName(){
+    if (isset($_SESSION["username"])){
+        echo $_SESSION["username"];
+    }
 }
 
 function getApiPath($nomeFile){
@@ -35,12 +38,6 @@ function getIdFromName($name){
 
 function isUserLoggedIn(){
     return !empty($_SESSION['userID']);
-}
-
-function getLoggedInUsername(){
-    if (isset($_SESSION["username"])){
-        echo $_SESSION["username"];
-    }
 }
 
 function getEmptyArticle(){
