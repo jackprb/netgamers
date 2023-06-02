@@ -82,7 +82,7 @@ class DatabaseHelper{
         $stmt->bind_param('s', $DstUserId);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $stmt->errno;
+        return  $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public function readNotification($notificationID){
@@ -109,7 +109,7 @@ class DatabaseHelper{
         $stmt->bind_param('s', $userIdFollowed);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $stmt->errno;
+        return  $result->fetch_all(MYSQLI_ASSOC);
     }
     
     public function getFollowed($userIdFollowing){
@@ -118,7 +118,7 @@ class DatabaseHelper{
         $stmt->bind_param('s', $userIdFollowing);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $stmt->errno;
+        return  $result->fetch_all(MYSQLI_ASSOC);
     }
     
     public function updatePost($postId, $userId, $img, $title, $text){
@@ -158,10 +158,10 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }   
     
-    public function updateUserImg($username, $imgPath){
+    public function updateUserImg($username, $imgID){
         $query = "UPDATE users SET userImg = ? WHERE username = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ss', $imgPath, $username);
+        $stmt->bind_param('ss', $imgID, $username);
         $stmt->execute();
         $result = $stmt->get_result();
         return $stmt->errno;
@@ -173,7 +173,16 @@ class DatabaseHelper{
         $stmt->bind_param('sss', $imgPath, $altText, $longdesc);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $stmt->errno;
+        if($stmt->errno == 0){
+            $query = "SELECT ID FROM profile_images WHERE `path` = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('s', $imgPath);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+        return FALSE;
     }  
     
     public function getCurrentUserPsw($username){
@@ -215,7 +224,7 @@ class DatabaseHelper{
     }
 
     public function modifyNotificationSettings($nFollower, $nComment, $nPostFeed, $nLikePost, $nLikeComment ,$userId){
-        $query = "UPDATE preferences SET `value` = ? WHERE `type` = ? AND userID = ?)";
+        $query = "UPDATE preferences SET `value` = ? WHERE `type` = ? AND userID = ?";
 
         $settings = array("NFOLLOWER" => $nFollower, "NCOMMENT" => $nComment, "NPOSTFEED" => $nPostFeed, "NLIKEPOST" => $nLikePost, 
                     "NLIKECOMMENT" => $nLikeComment);
@@ -244,7 +253,7 @@ class DatabaseHelper{
         $result = $stmt->get_result();
 
         if($result->errno == 0){
-            return $result;
+            return $result->fetch_all(MYSQLI_ASSOC);
         } else {
             return FALSE;
         }
