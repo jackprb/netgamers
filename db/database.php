@@ -216,7 +216,20 @@ class DatabaseHelper{
     }
 
     public function getNotificationSettings($userId){
+        $settings = array("NFOLLOWER" => FALSE, "NCOMMENT" => FALSE, "NPOSTFEED" => FALSE, "NLIKEPOST" => FALSE, 
+                    "NLIKECOMMENT" => FALSE);
+        
+        $query = "SELECT `type`, `values` FROM preferences WHERE userID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
+        if($result->errno == 0){
+            return $result;
+        } else {
+            return FALSE;
+        }
     }
     
     public function registerNewUser($username, $psw, $email){
