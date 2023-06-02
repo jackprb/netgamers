@@ -1,4 +1,12 @@
             <?php
+                $res = $dbh->getNotificationSettings($_SESSION["userID"]);
+                $arr = array();
+                for ($i=0; $i < count($res); $i++) { 
+                    $val = $res[$i];
+                    $values = array_values($val);
+                    $arr[$values[0]] = $values[1];
+                }
+                
                 function pswChangeMsg($code){
                     $msg[1] = "Cannot change password: retry later.";
                     $msg[2] = "Cannot change password: your current password is not correct.";
@@ -7,6 +15,12 @@
                     $msg[5] = "Cannot change password: the new password is equal to the current password.";
                     $msg[6] = "Cannot change password: fill in all the required fields.";
                     return $msg[$code];
+                }
+                
+                function getStatus($notificationType, $res){
+                    if($res[$notificationType] == 1){
+                        echo " checked ";
+                    }
                 }
             ?>
             <section class="card border-0 py-1 p-md-2 p-xl-3 mb-4">
@@ -25,8 +39,12 @@
                                 </span>
                             </a>
                             <div class="dropdown-menu my-1">
-                                <a class="dropdown-item fw-normal" href="#"><i class="ai-camera fs-base opacity-70 me-2"></i>Upload new photo</a>
-                                <a class="dropdown-item fw-normal" href="#"><i class="ai-trash fs-base me-2"></i>Delete photo</a>
+                                <a class="dropdown-item fw-normal" href="#" data-bs-toggle="modal" data-bs-target="#modalUploadPhoto">
+                                    <i class="ai-camera fs-base opacity-70 me-2"></i>Upload new photo
+                                </a>
+                                <a class="dropdown-item fw-normal" href="#" data-bs-toggle="modal" data-bs-target="#modalDeletePhoto">
+                                    <i class="ai-trash fs-base me-2"></i>Delete photo
+                                </a>
                             </div>
                         </div>
                         <div class="ps-3">
@@ -161,42 +179,54 @@
                         <i class="ai-bell text-primary lead pe-1 me-2"></i>
                         <h2 class="h4 mb-0">Notifications</h2>
                         <button class="btn btn-sm btn-primary ms-auto" type="button" data-bs-toggle="checkbox" 
-                        data-bs-target="#checkboxList">Toggle all</button>
+                            data-bs-target="#checkboxList">Toggle all</button>
                     </div>
                     <form action="<?php echo getApiPath('api-notification-preferences.php'); ?>" method="post">
+                        <?php if(isset($_GET["n"]) && $_GET["n"] == 0): ?>
+                            <div class="alert alert-success alert-dismissible fade show col-sm-12 col-md-6" role="alert">
+                                <div><i class="ai-circle-check fs-xl pe-1 me-2"></i>Notification settings updated successfully.</div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php endif;?>
+                        <?php if(isset($_GET["n"]) && $_GET["n"] == 1): ?>
+                            <div class="alert alert-success alert-dismissible fade show col-sm-12 col-md-6" role="alert">
+                                <div><i class="ai-circle-check fs-xl pe-1 me-2"></i>Cannot update notification settings. Retry later.</div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php endif;?>
                         <div id="checkboxList">
                             <div class="form-check form-switch d-flex pb-md-2 mb-4">
-                                <input class="form-check-input flex-shrink-0" type="checkbox" checked id="newFollower" name="newFollower" />
-                                <label class="form-check-label ps-3 ps-sm-4" for="newFollower">
+                                <input class="form-check-input flex-shrink-0" type="checkbox" <?php getStatus("NFOLLOWER", $arr); ?> id="NFOLLOWER" name="NFOLLOWER" />
+                                <label class="form-check-label ps-3 ps-sm-4" for="NFOLLOWER">
                                     <span class="h6 d-block mb-2">New follower notifications <span class="badge bg-info">Active by default</span></span>
                                     
                                     <span class="fs-sm text-muted">Send a notification when someone starts following me.</span>
                                 </label>
                             </div>
                             <div class="form-check form-switch d-flex pb-md-2 mb-4">
-                                <input class="form-check-input flex-shrink-0" type="checkbox" checked id="newComment" name="newComment" />
-                                <label class="form-check-label ps-3 ps-sm-4" for="newComment">
+                                <input class="form-check-input flex-shrink-0" type="checkbox" <?php getStatus("NCOMMENT", $arr); ?> id="NCOMMENT" name="NCOMMENT" />
+                                <label class="form-check-label ps-3 ps-sm-4" for="NCOMMENT">
                                     <span class="h6 d-block mb-2">New comment notifications <span class="badge bg-info">Active by default</span></span>
                                     <span class="fs-sm text-muted">Send a notification when someone comments one of my posts.</span>
                                 </label>
                             </div>
                             <div class="form-check form-switch d-flex pb-md-2 mb-4">
-                                <input class="form-check-input flex-shrink-0" type="checkbox" id="newPostOnFeed" name="newPostOnFeed" />
-                                <label class="form-check-label ps-3 ps-sm-4" for="newPostOnFeed">
+                                <input class="form-check-input flex-shrink-0" type="checkbox" <?php getStatus("NPOSTFEED", $arr); ?> id="NPOSTFEED" name="NPOSTFEED" />
+                                <label class="form-check-label ps-3 ps-sm-4" for="NPOSTFEED">
                                     <span class="h6 d-block mb-2">New post on feed notifications</span>
                                     <span class="fs-sm text-muted">Send a notification when someone I follow posts something new.</span>
                                 </label>
                             </div>
                             <div class="form-check form-switch d-flex pb-md-2 mb-4">
-                                <input class="form-check-input flex-shrink-0" type="checkbox" id="newLikePost" name="newLikePost" />
-                                <label class="form-check-label ps-3 ps-sm-4" for="newLikePost">
+                                <input class="form-check-input flex-shrink-0" type="checkbox" <?php getStatus("NLIKEPOST", $arr); ?> id="NLIKEPOST" name="NLIKEPOST" />
+                                <label class="form-check-label ps-3 ps-sm-4" for="NLIKEPOST">
                                     <span class="h6 d-block mb-2">New like on post notifications</span>
                                     <span class="fs-sm text-muted">Send a notification when someone likes one of my posts.</span>
                                 </label>
                             </div>
                             <div class="form-check form-switch d-flex pb-md-2 mb-4">
-                                <input class="form-check-input flex-shrink-0" type="checkbox" id="newLikeComment" name="newLikeComment" />
-                                <label class="form-check-label ps-3 ps-sm-4" for="newLikeComment">
+                                <input class="form-check-input flex-shrink-0" type="checkbox" <?php getStatus("NLIKECOMMENT", $arr); ?> id="NLIKECOMMENT" name="NLIKECOMMENT" />
+                                <label class="form-check-label ps-3 ps-sm-4" for="NLIKECOMMENT">
                                     <span class="h6 d-block mb-2">New like on comment notifications</span>
                                     <span class="fs-sm text-muted">Send a notification when someone likes one of my comments.</span>
                                 </label>
@@ -260,6 +290,50 @@
                         <div class="modal-footer row">
                             <button type="button" class="btn btn-secondary col-sm-12 col-md-4" data-bs-dismiss="modal">Cancel</button>
                             <input type="submit" class="btn btn-danger col-sm-12 col-md-5 ms-3" value="Delete account" form="deleteAccount" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modalUploadPhoto" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Upload photo</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Choose the image to upload as your profile image. <br>
+                                Upload only PNG, JPG of GIF images, max 500KB.
+                            </p>
+                            <form action="" method="post">
+                                <div class="col-12">
+                                    <label class="form-label" for="postImg">Choose post image</label>
+                                    <input class="form-control" type="file" value="postImg" id="postImg" accept=".png,.gif,.jpg,.jpeg">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer row">
+                            <button type="button" class="btn btn-secondary col-sm-12 col-md-4" data-bs-dismiss="modal">Cancel</button>
+                            <input type="submit" class="btn btn-primary col-sm-12 col-md-5 ms-3" value="Upload image" form="uploadPhoto" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modalDeletePhoto" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Confirm delete photo</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete your profile image?</p>
+                            <p class="text-danger">It can't be undone.</p>
+                        </div>
+                        <div class="modal-footer row">
+                            <button type="button" class="btn btn-secondary col-sm-12 col-md-4" data-bs-dismiss="modal">Cancel</button>
+                            <input type="submit" class="btn btn-danger col-sm-12 col-md-5 ms-3" value="Delete photo"/>
                         </div>
                     </div>
                 </div>

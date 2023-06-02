@@ -232,7 +232,7 @@ class DatabaseHelper{
         $ok = TRUE;
         foreach ($settings as $type => $value) {
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param('sss',$value, $type, $userId);
+            $stmt->bind_param('ssi', $value, $type, $userId);
             $stmt->execute();
             $result = $stmt->get_result()->errno;
             if($result != 0){
