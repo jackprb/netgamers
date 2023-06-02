@@ -70,7 +70,16 @@ class DatabaseHelper{
     public function newNotification($SrcUserId, $DstUserId, $type, $content){
         $query = "INSERT INTO notifications (content, `type`, dateTimeCreated, userSrc, userDest) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('sssss', $content, $type, date('Y-m-d H:i:s'), $userIdFollowing, $userIdFollowed);
+        $stmt->bind_param('sssss', $content, $type, date('Y-m-d H:i:s'), $SrcUserId, $DstUserId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $stmt->errno;
+    }
+
+    public function NotificationsToRead($DstUserId){
+        $query = "SELECT * FROM notifications WHERE userDest = ? AND viewed = FALSE";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $DstUserId);
         $stmt->execute();
         $result = $stmt->get_result();
         return $stmt->errno;
@@ -141,7 +150,7 @@ class DatabaseHelper{
     }   
     
     public function getUserImg($username){
-        $query = "SELECT userImg FROM users WHERE active=1 AND username = ?";
+        $query = "SELECT `path` FROM profile_images WHERE ID = (SELECT userImg FROM users WHERE active=1 AND username = ?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $username);
         $stmt->execute();
@@ -157,6 +166,15 @@ class DatabaseHelper{
         $result = $stmt->get_result();
         return $stmt->errno;
     }   
+
+    public function addImg($altText, $longdesc, $imgPath){
+        $query = "INSERT INTO profile_images (`path`, altText, longdesc) VALUES (?,?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('sss', $imgPath, $altText, $longdesc);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $stmt->errno;
+    }  
     
     public function getCurrentUserPsw($username){
         $query = "SELECT psw FROM users WHERE active=1 AND username = ?";
