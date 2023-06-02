@@ -7,6 +7,18 @@ function sanitizeInput($data) {
     return $data;
 }
 
+function printUserName(){
+    echo $_SESSION["username"];
+}
+
+function printEmail(){
+    echo $dbh->getUserEmail($_SESSION["username"])[0]['email'];
+}
+
+function getApiPath($nomeFile){
+    return "api/" . $nomeFile;
+}
+
 function checkPassword($psw){
     return strlen($psw) >= 10;
 }
