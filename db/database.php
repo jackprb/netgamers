@@ -252,7 +252,7 @@ class DatabaseHelper{
         $stmt->execute();
         $result = $stmt->get_result();
 
-        if($result->errno == 0){
+        if($stmt->errno == 0){
             return $result->fetch_all(MYSQLI_ASSOC);
         } else {
             return FALSE;
