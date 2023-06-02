@@ -1,31 +1,37 @@
 <?php
 require_once 'CONFIG.php';
+require_once './utils/functions.php';
 
 if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signup"]) && allFieldsAreSet()){
     $username = sanitizeInput($_POST["usernameReg"]);
     $email = sanitizeInput($_POST["email"]);
     $psw = sanitizeInput($_POST["psw"]);
 
-    // Genera l'hash della password
-    $hashedPassword = password_hash($psw, PASSWORD_DEFAULT);
+    // Check sui caratteri obbligatori della psw
+    if(checkPassword($psw)){
+        // Genera l'hash della password
+        $hashedPassword = password_hash($psw, PASSWORD_DEFAULT);
 
-    // i controlli su email e password sono inclusi in registerNewUser
-    $result = $dbh->registerNewUser($username, $hashedPassword, $email);
+        // i controlli su email e password sono inclusi in registerNewUser
+        $result = $dbh->registerNewUser($username, $hashedPassword, $email);
 
-    // ottiene id di utente appena registrato
-    $userID = $dbh->getUserId($username, $hashedPassword)[0]['id'];
+        // ottiene id di utente appena registrato
+        $userID = $dbh->getUserId($username, $hashedPassword)[0]['id'];
 
-    // inserisce le impostazioni di default per le notifiche
-    $res = $dbh->setDefaultNotificationSettings($userID);
+        // inserisce le impostazioni di default per le notifiche
+        $res = $dbh->setDefaultNotificationSettings($userID);
 
-    if ($result === TRUE){ //registrazione con successo
-        header("location:login.php?r=1"); //redirect a login, deve fare accesso di nuovo
+        if ($result === TRUE){ //registrazione con successo
+            header("location:login.php?r=1"); //redirect a login, deve fare accesso di nuovo
 
-    } else if($result == "usernameExist"){
-        header("location:login.php?er=2"); //redirect a login
+        } else if($result == "usernameExist"){
+            header("location:login.php?er=2"); //redirect a login
 
-    } else if($result == "emailExist"){
-        header("location:login.php?er=3"); //redirect a login
+        } else if($result == "emailExist"){
+            header("location:login.php?er=3"); //redirect a login
+        }
+    }else{
+        header("location:login.php?er=4");
     }
 
 } else if(!allFieldsAreSet()){

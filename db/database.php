@@ -66,6 +66,24 @@ class DatabaseHelper{
         $result = $stmt->get_result();
         return $stmt->errno;
     }
+
+    public function newNotification($SrcUserId, $DstUserId, $type, $content){
+        $query = "INSERT INTO notifications (content, `type`, dateTimeCreated, userSrc, userDest) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('sssss', $content, $type, date('Y-m-d H:i:s'), $userIdFollowing, $userIdFollowed);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $stmt->errno;
+    }
+
+    public function readNotification($notificationID){
+        $query = "UPDATE notifications SET viewed = TRUE, dateTimeViewed = ? WHERE ID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ss', date('Y-m-d H:i:s'), $notificationID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $stmt->errno;
+    }
     
     public function removeFollow($userIdFollowing, $userIdFollowed){
         $query = "DELETE FROM follow WHERE userFollowing = ? AND userFollowed = ?";
@@ -169,6 +187,25 @@ class DatabaseHelper{
         foreach ($settings as $type => $value) {
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('sss', $type, $userId, $value);
+            $stmt->execute();
+            $result = $stmt->get_result()->errno;
+            if($result != 0){
+                $ok = FALSE;
+            }
+        }
+        return $ok;
+    }
+
+    public function modifyNotificationSettings($nFollower, $nComment, $nPostFeed, $nLikePost, $nLikeComment ,$userId){
+        $query = "UPDATE preferences SET `value` = ? WHERE `type` = ? AND userID = ?)";
+
+        $settings = array("NFOLLOWER" => $nFollower, "NCOMMENT" => $nComment, "NPOSTFEED" => $nPostFeed, "NLIKEPOST" => $nLikePost, 
+                    "NLIKECOMMENT" => $nLikeComment);
+        
+        $ok = TRUE;
+        foreach ($settings as $type => $value) {
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('sss',$value, $type, $userId);
             $stmt->execute();
             $result = $stmt->get_result()->errno;
             if($result != 0){

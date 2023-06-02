@@ -61,6 +61,9 @@
             <?php if(isset($_GET["er"]) && $_GET["er"] == 3): ?>
                 <p class="fw-semibold">Error: there already is a user registered with this email.</p>
             <?php endif; ?>
+            <?php if(isset($_GET["er"]) && $_GET["er"] == 4): ?>
+                <p class="fw-semibold">Error: the password does not match the requirements.</p>
+            <?php endif; ?>
 
         <form action="./register_process.php" method="POST">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 row-cols-lg-2">
@@ -82,6 +85,10 @@
                 <label class="password-toggle-btn" aria-label="Show/hide password">
                     <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                 </label>
+            </div>
+            <div class="alert alert-info d-flex my-3 my-sm-4">
+                <i class="ai-circle-info fs-xl me-2"></i>
+                <p class="mb-0">Password <strong>must</strong> be minimum 10 characters long and <strong>must</strong> contain at least one number one special char and one capital letter.</p>
             </div>
             <button class="btn btn-lg btn-primary w-100 mb-4" type="submit" name="signup">Sign up</button>
         </form>
