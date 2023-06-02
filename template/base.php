@@ -247,8 +247,8 @@
                     <img class="userImg d-block rounded-circle mb-2 img-fluid" src="upload/userImages/default.png" width="80" alt="User image">
                 </div>
                 <div class="text-center">
-                    <h3 class="h5 mb-1">User</h3>
-                    <p class="fs-sm text-muted mb-0">email@example.com</p>
+                    <h3 class="h5 mb-1"><?php printUserName(); ?></h3>
+                    <p class="fs-sm text-muted mb-0"><?php echo "--"; ?></p>
                 </div>
                 <ul class="navbar-nav p-0">
                     <li class="nav-item mt-3">
@@ -266,20 +266,37 @@
         
         <header class="navbar navbar-expand-lg fixed-top">
             <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <a class="navbar-brand pe-sm-3" href="index.php" style="margin-left: 1%;"><span class="text-primary flex-shrink-0 me-2">
                     <img class="logoImg img-fluid" src="upload/logos/NetGamers_Icon.png" style="height: 70px;" alt="" />
                 </a>
-                <div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
+                <div class="form-check form-switch mode-switch order-lg-1 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
                     <input class="form-check-input" type="checkbox" id="theme-mode" onclick="changeTheme()">
                     <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
                     <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
                 </div>
-                <?php if(isset($_SESSION["userID"])){
-                    require("loggedin-menu.php");
-                    } 
-                    ?>
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 order-lg-2">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                    </ul>
+                    <div class="order-lg-3">
+                        <?php 
+                            if(isset($_SESSION["userID"])){
+                                require("loggedin-menu.php");
+                            } 
+                        ?>
+                    </div>
                 </div>
-            </header>
+            </div>
+        </header>
+
             <!-- Page content-->
             <div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5">
                 <div class="row pt-sm-2 pt-lg-0 align-items-center">

@@ -7,6 +7,10 @@
         <div class="card-body">
             <h1 class="py-2 pb-lg-3">Log in</h1>
 
+            <?php if(isset($_GET["d"]) && $_GET["d"] == 1): ?>
+                <p class="fw-semibold">Your account has been deleted successfully.</p>
+            <?php endif; ?>
+
             <?php if(isset($_GET["a"]) && $_GET["a"] == 1): ?>
                 <p class="fw-semibold">Error: Login to access the page.</p>
             <?php endif; ?>

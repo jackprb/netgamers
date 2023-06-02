@@ -1,7 +1,5 @@
             <?php
-                function getApiPath($nomeFile){
-                    return "api/" . $nomeFile;
-                }
+                require_once 'CONFIG.php';
 
                 function pswChangeMsg($code){
                     $msg[1] = "Cannot change password: retry later.";
@@ -22,7 +20,7 @@
                     <div class="d-flex align-items-center">
                         <div class="dropdown">
                             <a class="d-flex flex-column justify-content-end position-relative overflow-hidden rounded-circle bg-size-cover bg-position-center flex-shrink-0" 
-                            href="#" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100px; height: 100px;">
+                                href="#" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100px; height: 100px;">
                                 <img src="upload/userImages/default.png" class="userImg rounded-circle img-fluid" alt="User image" />
                                 <span class="d-block text-light text-center lh-1 pb-1" style="background-color: rgba(0,0,0,.5)">
                                     <i class="ai-camera"></i>
@@ -34,8 +32,10 @@
                             </div>
                         </div>
                         <div class="ps-3">
-                            <h3 class="h5 mb-1">Username - <span class="fs-lg text-muted mb-0">user@example.com</span></h3>
-                            
+                            <h3 class="h5 mb-1"><?php printUserName(); ?> - 
+                                <span class="fs-lg text-muted mb-0"><?php echo "email@mail.com"; ?></span>
+                            </h3>
+
                             <p class="fs-sm text-muted mb-0">Click on the image to change or delete it. <br> 
                                 Upload only PNG, JPG of GIF images, max 500KB.
                             </p>
@@ -222,14 +222,47 @@
                         <p class="mb-0">If you delete your account, your public profile will be deactivated immediately.<br>
                         There is no way back!!</p>
                     </div>
-                    <form action="" method="post">
+
+                    <?php if(isset($_GET["r"]) && $_GET["r"] == 7): ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <div><i class="ai-triangle-alert fs-xl pe-1 me-2"></i>To delete your account, you need to tick the checkbox</div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if(isset($_GET["r"]) && $_GET["r"] == 8): ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <div><i class="ai-triangle-alert fs-xl pe-1 me-2"></i>An error occurred while deleting your account. Your account has NOT been deleted.</div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <?php endif; ?>
+
+                    <form action="<?php echo getApiPath('api-delete-account.php'); ?>" method="post" id="deleteAccount">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="confirmDelete">
+                            <input class="form-check-input" type="checkbox" name="confirmDelete" id="confirmDelete" required>
                             <label class="form-check-label text-dark fw-medium" for="confirmDelete">Yes, I want to delete my account</label>
                         </div>
                         <div class="d-flex flex-column flex-sm-row justify-content-end pt-4 mt-sm-2 mt-md-3">
-                            <input type="submit" class="btn btn-danger" type="button" value="Delete account" />
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#modalConfirmDelete" class="btn btn-danger">Delete account</button>
                         </div>
                     </form>
                 </div>
             </section>
+
+            <div class="modal fade" id="modalConfirmDelete" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Confirm delete account</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete your account?</p>
+                            <p class="text-danger">There is NO WAY BACK!</p>
+                        </div>
+                        <div class="modal-footer row">
+                            <button type="button" class="btn btn-secondary col-sm-12 col-md-4" data-bs-dismiss="modal">Cancel</button>
+                            <input type="submit" class="btn btn-danger col-sm-12 col-md-5 ms-3" value="Delete account" form="deleteAccount" />
+                        </div>
+                    </div>
+                </div>
+            </div>
