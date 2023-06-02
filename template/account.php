@@ -306,10 +306,10 @@
                             <p>Choose the image to upload as your profile image. <br>
                                 Upload only PNG, JPG of GIF images, max 500KB.
                             </p>
-                            <form action="" method="post">
+                            <form action="<?php echo getApiPath('api-change-userImg.php'); ?>" method="post" id="uploadPhoto">
                                 <div class="col-12">
                                     <label class="form-label" for="postImg">Choose post image</label>
-                                    <input class="form-control" type="file" value="postImg" id="postImg" accept=".png,.gif,.jpg,.jpeg">
+                                    <input class="form-control" required type="file" value="postImg" id="postImg" accept=".png,.gif,.jpg,.jpeg">
                                 </div>
                             </form>
                         </div>
@@ -332,8 +332,10 @@
                             <p class="text-danger">It can't be undone.</p>
                         </div>
                         <div class="modal-footer row">
-                            <button type="button" class="btn btn-secondary col-sm-12 col-md-4" data-bs-dismiss="modal">Cancel</button>
-                            <input type="submit" class="btn btn-danger col-sm-12 col-md-5 ms-3" value="Delete photo"/>
+                            <form id="deletePhoto" method="post" action="<?php echo getApiPath('api-delete-userImg.php'); ?>">
+                                <button type="button" class="btn btn-secondary col-sm-12 col-md-4" data-bs-dismiss="modal">Cancel</button>
+                                <input type="submit" class="btn btn-danger col-sm-12 col-md-5 ms-3" value="Delete photo" />
+                            </form>
                         </div>
                     </div>
                 </div>
