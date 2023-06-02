@@ -246,7 +246,7 @@ class DatabaseHelper{
         $settings = array("NFOLLOWER" => FALSE, "NCOMMENT" => FALSE, "NPOSTFEED" => FALSE, "NLIKEPOST" => FALSE, 
                     "NLIKECOMMENT" => FALSE);
         
-        $query = "SELECT `type`, `values` FROM preferences WHERE userID = ?";
+        $query = "SELECT `type`, `value` FROM preferences WHERE userID = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $userId);
         $stmt->execute();
