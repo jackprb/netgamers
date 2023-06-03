@@ -120,6 +120,47 @@ class DatabaseHelper{
         $result = $stmt->get_result();
         return  $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function getFollowersList($userIdFollowed){
+        $followers = $this->getFollowers($userIdFollowed);
+        $IDsfollowers = array(); //lista di ID dei followers
+        for ($i=0; $i < count($followers); $i++) { 
+            $IDsfollowers[$i] = $followers[$i]['userFollowing'];
+        }
+        $res = array();
+        foreach ($IDsfollowers as $key => $userID) {
+            $query = "SELECT username, userImg FROM users WHERE ID = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('s', $userID);
+            $stmt->execute();
+            $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0];
+            $res[$result['username']] = $result['userImg'];
+        }
+        return $res;
+    }
+
+    public function getFollowedList($userIdFollowing){
+        $followed = $this->getFollowed($userIdFollowing);
+        $IDsfollowed = array(); //lista di ID dei followed
+        for ($i=0; $i < count($followed); $i++) { 
+            $IDsfollowed[$i] = $followed[$i]['userFollowed'];
+        }
+        $res = array();
+        foreach ($IDsfollowed as $key => $userID) {
+            $query = "SELECT username, userImg FROM users WHERE ID = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('i', $userID);
+            $stmt->execute();
+            $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0];
+            $res[$result['username']] = $result['userImg'];
+        }
+
+        foreach ($res as $username => $userImgID) {
+            // ottieni img usando getUserImgByUserID($userID)
+            
+        }
+        return  $res;
+    }
     
     public function updatePost($postId, $userId, $img, $title, $text){
         $query = "UPDATE posts SET img = ?, title = ?, `text` = ?, dateTimePublished = ? WHERE ID = ?";
@@ -151,6 +192,15 @@ class DatabaseHelper{
     
     public function getUserImg($username){
         $query = "SELECT `path`, `altText` FROM profile_images WHERE ID = (SELECT userImg FROM users WHERE active=1 AND username = ?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }   
+
+    public function getUserImgByUserID($userID){
+        $query = "SELECT `path`, `altText` FROM profile_images WHERE ID = (SELECT userImg FROM users WHERE active=1 AND ID = ?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $username);
         $stmt->execute();

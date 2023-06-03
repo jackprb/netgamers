@@ -248,7 +248,7 @@
                 </div>
                 <div class="text-center">
                     <h3 class="h5 mb-1"><?php printUserName(); ?></h3>
-                    <p class="fs-sm text-muted mb-0"><?php printEmail($dbh); ?></p>
+                    <p class="fs-sm text-muted mb-0"><a href="<?php printEmail($dbh); ?>"><?php printEmail($dbh); ?></a></p>
                 </div>
                 <ul class="navbar-nav p-0">
                     <li class="nav-item mt-3">
@@ -310,7 +310,6 @@
         </main>
         <!-- Vendor scripts: js libraries and plugins-->
         <script src="js/bootstrap.bundle.min.js"></script>
-        <script src="js/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
         <!-- Main theme script-->
         <script src="js/theme.min.js"></script>
         <!-- theme changer script -->

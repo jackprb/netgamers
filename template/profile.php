@@ -3,6 +3,10 @@
                 function printUserImgAlt($userImg){
                     echo $userImg[0]["altText"];
                 }
+                $followers = $dbh->getFollowersList($_SESSION['userID']);
+                $followed = $dbh->getFollowedList($_SESSION['userID']);
+                $nrFollower = count($followers);
+                $nrFollowed = count($followed);
             ?>
             <section class="card border-0 py-1 p-md-2 p-xl-3 mb-4">
                 <div class="card-body">
@@ -20,9 +24,9 @@
                             <h3 class="h5 mb-2"><?php printUserName(); ?></h3>
                             <p class="fs-sm">
                                 Followers: 
-                                <a data-bs-toggle="modal" data-bs-target="#modalFollowers" href="#">5</a>
+                                <a data-bs-toggle="modal" data-bs-target="#modalFollowers" href="#"><?php echo $nrFollower; ?></a>
                                 Followed: 
-                                <a data-bs-toggle="modal" data-bs-target="#modalFollowed" href="#">5</a>
+                                <a data-bs-toggle="modal" data-bs-target="#modalFollowed" href="#"><?php echo $nrFollowed; ?></a>
                             </p>
                             <p class="fs-sm"><i class="ai-mail me-1"></i><a href="mailto:<?php printEmail($dbh); ?>"><?php printEmail($dbh); ?></a></p>
                             <i class="ai-map-pin me-1"></i>USA
@@ -79,78 +83,25 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>Total followers: 5</p>
+                        <p>Total followers: <?php echo $nrFollower; ?></p>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <div class="card border-0 overflow-hidden">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
-                                            <img src="upload/logos/NetGamers_Icon.png" class="img-fluid" alt="User image" />
-                                        </div>
-                                        <div class="col-8 col-sm-8 ">
-                                            <div class="card-body">
-                                                <p class="card-text">User</p>
+                            <?php print_r($followers);
+                            ?>
+
+                                <li class="list-group-item">
+                                    <div class="card border-0 overflow-hidden">
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
+                                                <img src="" class="img-fluid" alt="" />
+                                            </div>
+                                            <div class="col-8 col-sm-8 ">
+                                                <div class="card-body">
+                                                    <p class="card-text">ccc</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="card border-0 overflow-hidden">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
-                                            <img src="upload/logos/NetGamers_Icon.png" class="img-fluid" alt="User image" />
-                                        </div>
-                                        <div class="col-8 col-sm-8 ">
-                                            <div class="card-body">
-                                                <p class="card-text">User</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="card border-0 overflow-hidden">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
-                                            <img src="upload/logos/NetGamers_Icon.png" class="img-fluid" alt="User image" />
-                                        </div>
-                                        <div class="col-8 col-sm-8 ">
-                                            <div class="card-body">
-                                                <p class="card-text">User</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="card border-0 overflow-hidden">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
-                                            <img src="upload/logos/NetGamers_Icon.png" class="img-fluid" alt="User image" />
-                                        </div>
-                                        <div class="col-8 col-sm-8 ">
-                                            <div class="card-body">
-                                                <p class="card-text">User</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="card border-0 overflow-hidden">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
-                                            <img src="upload/logos/NetGamers_Icon.png" class="img-fluid" alt="User image" />
-                                        </div>
-                                        <div class="col-8 col-sm-8 ">
-                                            <div class="card-body">
-                                                <p class="card-text">User</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                                </li>
                         </ul>
                     </div>
                     <div class="modal-footer flex-column flex-sm-row">
@@ -168,64 +119,10 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>Total followed: 5</p>
+                        <p>Total followed: <?php echo $nrFollowed; ?></p>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <div class="card border-0 overflow-hidden">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
-                                            <img src="upload/logos/NetGamers_Icon.png" class="img-fluid" alt="User image" />
-                                        </div>
-                                        <div class="col-8 col-sm-8 ">
-                                            <div class="card-body">
-                                                <p class="card-text">User</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="card border-0 overflow-hidden">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
-                                            <img src="upload/logos/NetGamers_Icon.png" class="img-fluid" alt="User image" />
-                                        </div>
-                                        <div class="col-8 col-sm-8 ">
-                                            <div class="card-body">
-                                                <p class="card-text">User</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="card border-0 overflow-hidden">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
-                                            <img src="upload/logos/NetGamers_Icon.png" class="img-fluid" alt="User image" />
-                                        </div>
-                                        <div class="col-8 col-sm-8 ">
-                                            <div class="card-body">
-                                                <p class="card-text">User</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="card border-0 overflow-hidden">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
-                                            <img src="upload/logos/NetGamers_Icon.png" class="img-fluid" alt="User image" />
-                                        </div>
-                                        <div class="col-8 col-sm-8 ">
-                                            <div class="card-body">
-                                                <p class="card-text">User</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                            <?php print_r($followed);
+                            ?>
                             <li class="list-group-item">
                                 <div class="card border-0 overflow-hidden">
                                     <div class="row d-flex align-items-center">
