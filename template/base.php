@@ -244,7 +244,7 @@
             </div>
             <div class="offcanvas-body">
                 <div class="pb-2 pb-lg-0 mb-2 d-flex justify-content-center align-items-center">
-                    <img class="userImg d-block rounded-circle mb-2 img-fluid" src="upload/userImages/default.png" width="80" alt="User image">
+                    <img class="userImg d-block rounded-circle mb-2 img-fluid" src="<?php echo getUserProfileImgPath(); ?>" width="80" alt="User image">
                 </div>
                 <div class="text-center">
                     <h3 class="h5 mb-1"><?php printUserName(); ?></h3>

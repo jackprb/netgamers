@@ -1,3 +1,9 @@
+            <?php 
+                $userImg = $dbh->getUserImg($_SESSION["username"]);
+                function printUserImgAlt($userImg){
+                    echo $userImg[0]["altText"];
+                }
+            ?>
             <section class="card border-0 py-1 p-md-2 p-xl-3 mb-4">
                 <div class="card-body">
                     <div class="d-flex align-items-center mt-sm-n1 pb-4 mb-0 mb-lg-1 mb-xl-3"><i class="ai-user text-primary lead pe-1 me-2"></i>
@@ -8,17 +14,17 @@
                     </div>
                     <div class="row d-flex align-items-center text-nowrap">
                         <div class="col-5 col-sm-5 col-md-3 col-lg-4 ms-4">
-                            <img src="upload/userImages/default.png" class="userImg rounded-circle img-fluid" alt="User image" />
+                            <img src="<?php echo getUserProfileImgPath(); ?>" class="userImg rounded-circle img-fluid" alt="<?php printUserImgAlt($userImg);?>" />
                         </div>
                         <div class="col-5 col-sm-5 col-md-6 col-lg-7">
-                            <h3 class="h5 mb-2">User</h3>
+                            <h3 class="h5 mb-2"><?php printUserName(); ?></h3>
                             <p class="fs-sm">
                                 Followers: 
                                 <a data-bs-toggle="modal" data-bs-target="#modalFollowers" href="#">5</a>
                                 Followed: 
                                 <a data-bs-toggle="modal" data-bs-target="#modalFollowed" href="#">5</a>
                             </p>
-                            <p class="fs-sm"><i class="ai-mail me-1"></i>email@example.com</p>
+                            <p class="fs-sm"><i class="ai-mail me-1"></i><a href="mailto:<?php printEmail($dbh); ?>"><?php printEmail($dbh); ?></a></p>
                             <i class="ai-map-pin me-1"></i>USA
                         </div>
                     </div>

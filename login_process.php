@@ -12,9 +12,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"]) && allFieldsA
         // Verifica la corrispondenza della password hashata
         if (password_verify($password, $hashedPassword)) {
             $userID = $dbh->getUserId($username, $hashedPassword)[0];
+
+            $img = $dbh->getUserImg($username)[0]['path'];
+
             // Login riuscito
             $_SESSION["username"] = $username;
             $_SESSION["userID"] = $userID["id"];
+            $_SESSION["userImg"] = $img;
+
             $cookieContent = "loggedIn: " . date("Y-m-d H:i:s");
             setcookie("loggedin", $cookieContent, time() + (3600 * 6)); //cookie expires in 6 hours
             header("Location: profile.php"); // Redirect alla dashboard o pagina successiva al login

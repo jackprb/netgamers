@@ -18,19 +18,34 @@
                     $msg[6] = "Cannot change password: fill in all the required fields.";
                     return $msg[$code];
                 }
+
+                function imgChangeMsg($code){
+                    $type = "";
+                    $msg[0] = "Profile image changed successfully.";
+                    $msg[1] = "Cannot change profile image. Retry later. (DB error)";
+                    $msg[2] = "Cannot change profile image: an error occurred while uploading the image.";
+                    $msg[3] = "Profile image deleted successfully.";
+                    $msg[4] = "Cannot delete your profile image. Retry later.";
+                    if($code == 0 || $code == 3){
+                        $type = "alert-success";
+                    } else {
+                        $type = "alert-danger";
+                    }
+                    return array($type, $msg[$code]);
+                }
                 
                 function getStatus($notificationType, $res){
                     if($res[$notificationType] == 1){
                         echo " checked ";
                     }
                 }
-
-                function printUserImgSrc($userImg){
-                    echo $userImg[0]["path"];
-                }
-
+                
                 function printUserImgAlt($userImg){
                     echo $userImg[0]["altText"];
+                }
+
+                function isDefaultProfileImg($userImg){
+                    return stripos($userImg[0]["path"], "default.png");
                 }
             ?>
             <section class="card border-0 py-1 p-md-2 p-xl-3 mb-4">
@@ -43,7 +58,7 @@
                         <div class="dropdown">
                             <a class="d-flex flex-column justify-content-end position-relative overflow-hidden rounded-circle bg-size-cover bg-position-center flex-shrink-0" 
                                 href="#" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100px; height: 100px;">
-                                <img src="<?php printUserImgSrc($userImg); ?>" class="userImg rounded-circle img-fluid" alt="<?php printUserImgAlt($userImg); ?>" />
+                                <img src="<?php echo getUserProfileImgPath(); ?>" class="userImg rounded-circle img-fluid" alt="<?php printUserImgAlt($userImg); ?>" />
                                 <span class="d-block text-light text-center lh-1 pb-1" style="background-color: rgba(0,0,0,.5)">
                                     <i class="ai-camera"></i>
                                 </span>
@@ -52,9 +67,12 @@
                                 <a class="dropdown-item fw-normal" href="#" data-bs-toggle="modal" data-bs-target="#modalUploadPhoto">
                                     <i class="ai-camera fs-base opacity-70 me-2"></i>Upload new photo
                                 </a>
-                                <a class="dropdown-item fw-normal" href="#" data-bs-toggle="modal" data-bs-target="#modalDeletePhoto">
-                                    <i class="ai-trash fs-base me-2"></i>Delete photo
-                                </a>
+                                <?php if(!isDefaultProfileImg($userImg)): ?>
+                                    <a class="dropdown-item fw-normal" href="#" data-bs-toggle="modal" data-bs-target="#modalDeletePhoto">
+                                        <i class="ai-trash fs-base me-2"></i>Delete photo
+                                    </a>
+                                <?php endif; ?>
+
                             </div>
                         </div>
                         <div class="ps-3">
@@ -67,6 +85,14 @@
                             </p>
                         </div>
                     </div>
+                    <?php if(isset($_GET["i"]) && $_GET["i"] >= 0 && $_GET["i"] <= 4): ?>
+                        <div class="row mt-3">
+                            <div class="col-sm-12 col-md-6 alert <?php echo imgChangeMsg($_GET["i"])[0]; ?> alert-dismissible fade show" role="alert">
+                                <div><?php echo imgChangeMsg($_GET["i"])[1]; ?></div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                     <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
                         <div class="col-12 col-sm-12 col-md-6">
                             <label class="form-label" for="name">Name</label>

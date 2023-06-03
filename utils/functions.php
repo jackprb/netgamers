@@ -22,6 +22,14 @@ function getApiPath($nomeFile){
     return "api/" . $nomeFile;
 }
 
+function getUserProfileImgPath(){
+    return UPLOAD_USERIMG_DIR . $_SESSION["userImg"];
+}
+
+function getPostImgPath($nomeFile){
+    return UPLOAD_POSTIMG_DIR . $nomeFile;
+}
+
 function checkPassword($psw){
     return strlen($psw) >= 10;
 }
@@ -133,8 +141,8 @@ function uploadImage($path, $image){
             $msg = $imageName;
         }
     }
-    $finalPath = substr($path.$imageName, 5); //elimina i '.././' a inizio del percorso
-    return array($result, $msg, $finalPath);
+
+    return array($result, $msg, $imageName);
 }
 
 ?>
