@@ -150,7 +150,7 @@ class DatabaseHelper{
     }   
     
     public function getUserImg($username){
-        $query = "SELECT `path` FROM profile_images WHERE ID = (SELECT userImg FROM users WHERE active=1 AND username = ?)";
+        $query = "SELECT `path`, `altText` FROM profile_images WHERE ID = (SELECT userImg FROM users WHERE active=1 AND username = ?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $username);
         $stmt->execute();
@@ -158,6 +158,15 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }   
     
+    public function setDefaultUserImg($username){
+        $query = "UPDATE users SET userImg = 1 WHERE username = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $stmt->errno;
+    }
+
     public function updateUserImg($username, $imgID){
         $query = "UPDATE users SET userImg = ? WHERE username = ?";
         $stmt = $this->db->prepare($query);

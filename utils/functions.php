@@ -91,7 +91,7 @@ function generateListOfCountries(){
 function uploadImage($path, $image){
     $imageName = basename($image["name"]);
     $fullPath = $path.$imageName;
-    
+
     $maxKB = 500;
     $acceptedExtensions = array("jpg", "jpeg", "png", "gif");
     $result = 0;
@@ -133,7 +133,8 @@ function uploadImage($path, $image){
             $msg = $imageName;
         }
     }
-    return array($result, $msg);
+    $finalPath = substr($path.$imageName, 5); //elimina i '.././' a inizio del percorso
+    return array($result, $msg, $finalPath);
 }
 
 ?>

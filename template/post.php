@@ -4,7 +4,7 @@
                         <i class="ai-square-plus text-primary lead pe-1 me-2"></i>
                         <h2 class="h4 mb-0">Create new post</h2>
                     </div>
-                    <form action="" method="post">
+                    <form action="" method="post" enctype="multipart/form-data">
                         <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
                             <div class="col-sm-12 col-lg-10">
                                 <label class="form-label" for="title">Title</label>

@@ -1,5 +1,7 @@
             <?php
                 $res = $dbh->getNotificationSettings($_SESSION["userID"]);
+                $userImg = $dbh->getUserImg($_SESSION["username"]);
+
                 $arr = array();
                 for ($i=0; $i < count($res); $i++) { 
                     $val = $res[$i];
@@ -22,6 +24,14 @@
                         echo " checked ";
                     }
                 }
+
+                function printUserImgSrc($userImg){
+                    echo $userImg[0]["path"];
+                }
+
+                function printUserImgAlt($userImg){
+                    echo $userImg[0]["altText"];
+                }
             ?>
             <section class="card border-0 py-1 p-md-2 p-xl-3 mb-4">
                 <div class="card-body">
@@ -33,7 +43,7 @@
                         <div class="dropdown">
                             <a class="d-flex flex-column justify-content-end position-relative overflow-hidden rounded-circle bg-size-cover bg-position-center flex-shrink-0" 
                                 href="#" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100px; height: 100px;">
-                                <img src="upload/userImages/default.png" class="userImg rounded-circle img-fluid" alt="User image" />
+                                <img src="<?php printUserImgSrc($userImg); ?>" class="userImg rounded-circle img-fluid" alt="<?php printUserImgAlt($userImg); ?>" />
                                 <span class="d-block text-light text-center lh-1 pb-1" style="background-color: rgba(0,0,0,.5)">
                                     <i class="ai-camera"></i>
                                 </span>
@@ -49,7 +59,7 @@
                         </div>
                         <div class="ps-3">
                             <h3 class="h5 mb-1"><?php printUserName(); ?> - 
-                                <span class="fs-lg text-muted mb-0"><?php printEmail($dbh); ?></span>
+                                <span class="fs-lg text-muted mb-0"><a href="mailto:<?php printEmail($dbh); ?>"><?php printEmail($dbh); ?></a></span>
                             </h3>
 
                             <p class="fs-sm text-muted mb-0">Click on the image to change or delete it. <br> 
@@ -306,10 +316,10 @@
                             <p>Choose the image to upload as your profile image. <br>
                                 Upload only PNG, JPG of GIF images, max 500KB.
                             </p>
-                            <form action="<?php echo getApiPath('api-change-userImg.php'); ?>" method="post" id="uploadPhoto">
+                            <form action="<?php echo getApiPath('api-change-userImg.php'); ?>" method="post" id="uploadPhoto" enctype="multipart/form-data">
                                 <div class="col-12">
-                                    <label class="form-label" for="postImg">Choose post image</label>
-                                    <input class="form-control" required type="file" value="postImg" id="postImg" accept=".png,.gif,.jpg,.jpeg">
+                                    <label class="form-label" for="userImg">Choose your new profile image</label>
+                                    <input class="form-control" required type="file" name="userImg" id="userImg" accept=".png,.gif,.jpg,.jpeg" />
                                 </div>
                             </form>
                         </div>
