@@ -26,6 +26,10 @@ function getUserProfileImgPath(){
     return UPLOAD_USERIMG_DIR . $_SESSION["userImg"];
 }
 
+function getUserImagePath($filename){
+    return UPLOAD_USERIMG_DIR . $filename;
+}
+
 function getPostImgPath($nomeFile){
     return UPLOAD_POSTIMG_DIR . $nomeFile;
 }

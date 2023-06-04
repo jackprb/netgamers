@@ -85,23 +85,22 @@
                     <div class="modal-body">
                         <p>Total followers: <?php echo $nrFollower; ?></p>
                         <ul class="list-group list-group-flush">
-                            <?php print_r($followers);
-                            ?>
-
-                                <li class="list-group-item">
-                                    <div class="card border-0 overflow-hidden">
-                                        <div class="row d-flex align-items-center">
-                                            <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
-                                                <img src="" class="img-fluid" alt="" />
-                                            </div>
-                                            <div class="col-8 col-sm-8 ">
-                                                <div class="card-body">
-                                                    <p class="card-text">ccc</p>
-                                                </div>
+                            <?php foreach ($followers as $username => $values): ?>
+                            <li class="list-group-item">
+                                <div class="card border-0 overflow-hidden">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
+                                            <img src="<?php echo getUserImagePath($values['path']); ?>" class="img-fluid" alt="<?php echo $values['altText']; ?>" />
+                                        </div>
+                                        <div class="col-8 col-sm-8 ">
+                                            <div class="card-body">
+                                                <p class="card-text"><?php echo $username; ?></p>
                                             </div>
                                         </div>
                                     </div>
-                                </li>
+                                </div>
+                            </li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                     <div class="modal-footer flex-column flex-sm-row">
@@ -121,22 +120,22 @@
                     <div class="modal-body">
                         <p>Total followed: <?php echo $nrFollowed; ?></p>
                         <ul class="list-group list-group-flush">
-                            <?php print_r($followed);
-                            ?>
+                            <?php foreach ($followed as $username => $values): ?>
                             <li class="list-group-item">
                                 <div class="card border-0 overflow-hidden">
                                     <div class="row d-flex align-items-center">
                                         <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
-                                            <img src="upload/logos/NetGamers_Icon.png" class="img-fluid" alt="User image" />
+                                            <img src="<?php echo getUserImagePath($values['path']); ?>" class="img-fluid" alt="<?php echo $values['altText']; ?>" />
                                         </div>
                                         <div class="col-8 col-sm-8 ">
                                             <div class="card-body">
-                                                <p class="card-text">User</p>
+                                                <p class="card-text"><?php echo $username; ?></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                     <div class="modal-footer flex-column flex-sm-row">

@@ -1,3 +1,28 @@
+<?php 
+    function getRegisterMSg($code){
+        $msg[1] = "Error: Fill in all fields to complete the registration.";
+        $msg[2] = "Error: there already is a user with this username.";
+        $msg[3] = "Error: there already is a user registered with this email.";
+        $msg[4] = "Error: the password does not match the requirements.";
+        $msg[5] = "Error: the fields password and confirm password do not match.";
+        return $msg[$code];
+    }
+
+    function getLoginMsg(){
+        if(isset($_GET["d"]) && $_GET["d"] == 1){
+            return "Your account has been deleted successfully.";
+        }
+        if(isset($_GET["a"]) && $_GET["a"] == 1){
+            return "Error: Login to access the page.";
+        }
+        if(isset($_GET["el"]) && $_GET["el"] == 1){
+            return "Error: Username and/or password are not valid.";
+        }
+        if(isset($_GET["el"]) && $_GET["el"] == 2){
+            return "Error: To log in, type in your username and password.";
+        }
+    }
+?>
 <!-- Sign in form-->
 <div class="d-flex justify-content-center align-items-center mb-4">
     <img class="logoBig" src="" style="height: 140px;" alt="" />
@@ -7,20 +32,8 @@
         <div class="card-body">
             <h1 class="py-2 pb-lg-3">Log in</h1>
 
-            <?php if(isset($_GET["d"]) && $_GET["d"] == 1): ?>
-                <p class="fw-semibold">Your account has been deleted successfully.</p>
-            <?php endif; ?>
-
-            <?php if(isset($_GET["a"]) && $_GET["a"] == 1): ?>
-                <p class="fw-semibold">Error: Login to access the page.</p>
-            <?php endif; ?>
-
-            <?php if(isset($_GET["el"]) && $_GET["el"] == 1): ?>
-                <p class="fw-semibold">Error: Username and/or password are not valid.</p>
-            <?php endif; ?>
-
-            <?php if(isset($_GET["el"]) && $_GET["el"] == 2): ?>
-                <p class="fw-semibold">Error: To log in, type in your username and password.</p>
+            <?php if(isset($_GET)): ?>
+                <p class="fw-semibold"><?php echo getLoginMsg(); ?></p>
             <?php endif; ?>
 
             <form action="./login_process.php" method="POST">
@@ -49,21 +62,12 @@
     <div class="ps-md-3 ps-lg-5 ps-xl-0">
         <h2 class="h1 pb-2 pb-lg-3">No account? Sign Up</h2>
 
-            <?php if(isset($_GET["r"]) && $_GET["r"] == 1): ?>
-                <p class="fw-semibold">Registration completed successfully! Please log in.</p>
-            <?php endif; ?>
-            <?php if(isset($_GET["er"]) && $_GET["er"] == 1): ?>
-                <p class="fw-semibold">Error: Fill in all fields to complete the registration.</p>
-            <?php endif; ?>
-            <?php if(isset($_GET["er"]) && $_GET["er"] == 2): ?>
-                <p class="fw-semibold">Error: there already is a user with this username.</p>
-            <?php endif; ?>
-            <?php if(isset($_GET["er"]) && $_GET["er"] == 3): ?>
-                <p class="fw-semibold">Error: there already is a user registered with this email.</p>
-            <?php endif; ?>
-            <?php if(isset($_GET["er"]) && $_GET["er"] == 4): ?>
-                <p class="fw-semibold">Error: the password does not match the requirements.</p>
-            <?php endif; ?>
+        <?php if(isset($_GET["r"]) && $_GET["r"] == 1): ?>
+            <p class="fw-semibold">Registration completed successfully! Please log in.</p>
+        <?php endif; ?>
+        <?php if(isset($_GET["er"]) && $_GET["er"] >= 1 && $_GET["er"] <= 5): ?>
+            <p class="fw-semibold"><?php echo getRegisterMSg($_GET["er"]); ?></p>
+        <?php endif; ?>
 
         <form action="./register_process.php" method="POST">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 row-cols-lg-2">
@@ -88,7 +92,7 @@
             </div>
             <div class="alert alert-info d-flex my-3 my-sm-4">
                 <i class="ai-circle-info fs-xl me-2"></i>
-                <p class="mb-0">Password <strong>must</strong> be minimum 10 characters long and <strong>must</strong> contain at least one number one special char and one capital letter.</p>
+                <p class="mb-0">Password <strong>must</strong> be minimum 10 characters long and <strong>must</strong> contain at least one number, one special char and one capital letter.</p>
             </div>
             <button class="btn btn-lg btn-primary w-100 mb-4" type="submit" name="signup">Sign up</button>
         </form>

@@ -129,12 +129,12 @@ class DatabaseHelper{
         }
         $res = array();
         foreach ($IDsfollowers as $key => $userID) {
-            $query = "SELECT username, userImg FROM users WHERE ID = ?";
+            $query = "SELECT username, `path`, `altText` FROM users JOIN `profile_images` ON users.userImg = `profile_images`.ID WHERE users.ID = ?";
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param('s', $userID);
+            $stmt->bind_param('i', $userID);
             $stmt->execute();
             $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0];
-            $res[$result['username']] = $result['userImg'];
+            $res[$result['username']] = array('path' => $result['path'], 'altText' => $result['altText']);
         }
         return $res;
     }
@@ -147,17 +147,12 @@ class DatabaseHelper{
         }
         $res = array();
         foreach ($IDsfollowed as $key => $userID) {
-            $query = "SELECT username, userImg FROM users WHERE ID = ?";
+            $query = "SELECT username, `path`, `altText` FROM users JOIN `profile_images` ON users.userImg = `profile_images`.ID WHERE users.ID = ?";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('i', $userID);
             $stmt->execute();
             $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0];
-            $res[$result['username']] = $result['userImg'];
-        }
-
-        foreach ($res as $username => $userImgID) {
-            // ottieni img usando getUserImgByUserID($userID)
-            
+            $res[$result['username']] = array('path' => $result['path'], 'altText' => $result['altText']);
         }
         return  $res;
     }
@@ -204,8 +199,14 @@ class DatabaseHelper{
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $username);
         $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC);
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+        $res = array();
+        if(count($result) == 1){
+            $res['path'] = $result[0]['path'];
+            $res['altText'] = $result[0]['altText'];
+        }
+        return $res;
     }   
     
     public function setDefaultUserImg($username){
