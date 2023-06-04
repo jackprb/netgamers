@@ -26,6 +26,7 @@
                     $msg[2] = "Cannot change profile image: an error occurred while uploading the image.";
                     $msg[3] = "Profile image deleted successfully.";
                     $msg[4] = "Cannot delete your profile image. Retry later.";
+                    $msg[5] = "The fields Alternative text and Long description must contain a description of your user profile image, at least 10 and 20 characters long, respectively.";
                     if($code == 0 || $code == 3){
                         $type = "alert-success";
                     } else {
@@ -85,7 +86,7 @@
                             </p>
                         </div>
                     </div>
-                    <?php if(isset($_GET["i"]) && $_GET["i"] >= 0 && $_GET["i"] <= 4): ?>
+                    <?php if(isset($_GET["i"]) && $_GET["i"] >= 0 && $_GET["i"] <= 5): ?>
                         <div class="row mt-3">
                             <div class="col-sm-12 col-md-6 alert <?php echo imgChangeMsg($_GET["i"])[0]; ?> alert-dismissible fade show" role="alert">
                                 <div><?php echo imgChangeMsg($_GET["i"])[1]; ?></div>
@@ -346,6 +347,14 @@
                                 <div class="col-12">
                                     <label class="form-label" for="userImg">Choose your new profile image</label>
                                     <input class="form-control" required type="file" name="userImg" id="userImg" accept=".png,.gif,.jpg,.jpeg" />
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <label class="form-label" for="altText">Profile image alternative text</label>
+                                    <textarea class="form-control" required placeholder="Short description of your user profile image - required for screen readers (minimum 10 chars)" name="altText" id="altText"></textarea>
+                                </div>
+                                <div class="col-12 mt-3">
+                                    <label class="form-label" for="longDesc">Profile image long description text</label>
+                                    <textarea class="form-control" required placeholder="Long description of your user profile image - required for screen readers (minimum 20 chars)" name="longDesc" id="longDesc"></textarea>
                                 </div>
                             </form>
                         </div>
