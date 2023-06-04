@@ -27,6 +27,27 @@ class DatabaseHelper{
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }  
+
+    public function getUserDataByID($userID){
+        $query = "SELECT username, email FROM users WHERE active=1 AND ID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $userID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rows = $result->num_rows;
+        
+        $res = array();
+        if($rows == 0){
+            return $res;
+        } else {
+            $tmp = $result->fetch_all(MYSQLI_ASSOC)[0];
+        }
+
+        $res['username'] = $tmp['username'];
+        $res['email'] = $tmp['email'];
+        $res['img'] = $this->getUserImgByUserID($userID);
+        return $res;
+    }
     
     public function insertNewPost($userId, $img, $title, $text){
         $query = "INSERT INTO posts(img, title, `text`, dateTimePublished, userID) VALUES (?, ?, ?, ?, ?)";
@@ -197,7 +218,7 @@ class DatabaseHelper{
     public function getUserImgByUserID($userID){
         $query = "SELECT `path`, `altText` FROM profile_images WHERE ID = (SELECT userImg FROM users WHERE active=1 AND ID = ?)";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('s', $username);
+        $stmt->bind_param('i', $userID);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 

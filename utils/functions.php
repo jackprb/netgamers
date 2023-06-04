@@ -113,6 +113,12 @@ function uploadImage($path, $image){
     if($imageSize === false) {
         $msg .= "File caricato non è un'immagine! ";
     }
+
+    list($width, $height, $type, $attr) = getimagesize($image["tmp_name"]);
+    if(($width / $height) > 1.2 || ($width / $height) < 0.8) { // se img NON è quadrata o quasi quadrata
+        $msg .= "Scegli un'immagine quadrata.";
+    }
+
     //Controllo dimensione dell'immagine < 500KB
     if ($image["size"] > $maxKB * 1024) {
         $msg .= "File caricato pesa troppo! Dimensione massima è $maxKB KB. ";
