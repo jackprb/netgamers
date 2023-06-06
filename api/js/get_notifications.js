@@ -18,7 +18,11 @@ function createNotification(notifications){
 }
 
 window.addEventListener("load", function () {
-    getNotifications();
+    getNotifications();  // fetch notification when the page loads 
+
+    setInterval(function(){ 
+        getNotifications(); 
+    }, 15000); // fetch new notifications every 15 seconds.  
 });
 
 

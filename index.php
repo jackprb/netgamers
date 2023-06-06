@@ -9,7 +9,6 @@ if(isUserLoggedIn()){
         $templateParams["formmsg"] = $_GET["formmsg"];
     }
 
-    $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js","./api/js/get_notifications.js");
 } else {
     header("location:login.php?a=1");
 }

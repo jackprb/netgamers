@@ -288,6 +288,18 @@
                 </div>
             </div>
         </main>
+        <footer class="footer bg-secondary pb-4">
+            <div class="container pt-3 pt-sm-2 pt-md-3 pt-lg-4">
+                <div class="border-bottom text-center pb-4">
+                    <a class="navbar-brand d-inline-flex text-nav py-0 mb-1" href="index.php">
+                        <img class="logoBig" src="upload/logos/NetGamers_Logo_White.png" style="height: 100px;" alt=""/>
+                    </a>
+                </div>
+                <div class="d-sm-flex align-items-center justify-content-between pt-4 mt-2 mt-sm-0">
+                    <p class="fs-sm text-center mb-0 opacity-70">&copy; 2023. All rights reserved. Made by Michele Andrenacci, Andrea Dotti and Giacomo Pierbattista.</p>
+                </div>
+            </div>
+        </footer>
         <!-- Vendor scripts: js libraries and plugins-->
         <script src="js/bootstrap.bundle.min.js"></script>
         <!-- Main theme script-->
@@ -296,6 +308,8 @@
         <script src="js/themeChange.js"></script>
 
         <?php
+        $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js","./api/js/get_notifications.js");
+
         if(isset($templateParams["js"])):
             foreach($templateParams["js"] as $script):
         ?>
