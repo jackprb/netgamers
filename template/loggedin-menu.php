@@ -1,3 +1,6 @@
+		<li class="nav-item">
+			<a class="nav-link" href="index.php">Home</a>
+		</li>
 		<li class="nav-item dropdown">
         	<a href="#" onclick="getNotifications();" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
 				Notifications<span id="totalNotification" class="badge bg-primary ms-2">15</span>

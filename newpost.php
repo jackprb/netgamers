@@ -3,7 +3,7 @@ require_once 'CONFIG.php';
 
 if(isUserLoggedIn()){
     $templateParams["titolo"] = "NetGamers - Post";
-    $templateParams["nome"] = "post.php";
+    $templateParams["nome"] = "newpost.php";
     if(isset($_GET["formmsg"])){
         $templateParams["formmsg"] = $_GET["formmsg"];
     }

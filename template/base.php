@@ -263,10 +263,7 @@
                     </div>
                     <nav class="collapse navbar-collapse" id="menu">
                         <ul class="navbar-nav me-auto ">
-                            <li class="nav-item">
-                                <a class="nav-link" href="index.php">Home</a>
-                            </li>
-
+                            
                             <?php 
                                 if(isset($_SESSION["userID"])){
                                     require("loggedin-menu.php");

@@ -8,16 +8,23 @@
                         <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
                             <div class="col-sm-12 col-lg-10">
                                 <label class="form-label" for="title">Title</label>
-                                <input class="form-control" type="text" placeholder="Post title" id="title">
+                                <input class="form-control" type="text" placeholder="Post title" id="title" name="title">
                             </div>
                             <div class="col-sm-12 col-lg-10">
                                 <label class="form-label" for="postImg">Choose post image</label>
-                                <input class="form-control" type="file" value="postImg" id="postImg" accept=".png,.gif,.jpg,.jpeg">
+                                <input class="form-control" type="file" name="postImg" id="postImg" accept=".png,.gif,.jpg,.jpeg">
                             </div>
-                        
+                            <div class="col-sm-12 col-lg-10">
+                                <label class="form-label" for="altText">Image alternative text</label>
+                                <input class="form-control" type="text" placeholder="Short description of post image" id="altText" name="altText">
+                            </div>
+                            <div class="col-sm-12 col-lg-10">
+                                <label class="form-label" for="longDesc">Image long description</label>
+                                <input class="form-control" type="text" placeholder="Long description of post image" id="longDesc" name="longDesc">
+                            </div>
                             <div class="col-sm-12 col-lg-10">
                                 <label class="form-label" for="content">Post content</label>
-                                <textarea class="form-control" rows="5" placeholder="Post content" id="content"></textarea>
+                                <textarea class="form-control" rows="5" placeholder="Post content" id="content" name="content"></textarea>
                             </div>
                             <div class="col-sm-6 col-lg-5">
                                 <input type="submit" class="btn btn-primary ms-auto" value="Publish"/>
