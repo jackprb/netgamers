@@ -138,24 +138,7 @@
                     <h5 class="offcanvas-title">New posts</h5>
                     <button class="btn-close" type="button" data-bs-dismiss="offcanvas"></button>
                 </div>
-                <div class="offcanvas-body">
-                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                        <div class="toast-header bg-primary text-white">
-                            <i class="ai-bell fs-lg me-2"></i>
-                            <span class="fw-medium me-auto">New post!</span>
-                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                        <div class="toast-body">'User' posted something new!</div>
-                    </div>
-                    
-                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                        <div class="toast-header bg-primary text-white">
-                            <i class="ai-bell fs-lg me-2"></i>
-                            <span class="fw-medium me-auto">New post!</span>
-                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                        <div class="toast-body">'User' posted something new!</div>
-                    </div>
+                <div class="offcanvas-body" id="newPostList">
                 </div>
             </div>
             
@@ -164,24 +147,7 @@
                     <h5 class="offcanvas-title">Likes</h5>
                     <button class="btn-close" type="button" data-bs-dismiss="offcanvas"></button>
                 </div>
-                <div class="offcanvas-body">
-                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                        <div class="toast-header text-white" style="background-color: #e23152;">
-                            <i class="ai-bell fs-lg me-2"></i>
-                            <span class="fw-medium me-auto">New like!</span>
-                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                        <div class="toast-body">'User' liked your post!</div>
-                    </div>
-                    
-                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                        <div class="toast-header text-white" style="background-color: #e23152;">
-                            <i class="ai-bell fs-lg me-2"></i>
-                            <span class="fw-medium me-auto">New like!</span>
-                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                        <div class="toast-body">'User' liked your comment!</div>
-                    </div>
+                <div class="offcanvas-body" id="newLikeList">
                 </div>
             </div>
             
@@ -190,8 +156,7 @@
                     <h5 class="offcanvas-title">New followers</h5>
                     <button class="btn-close" type="button" data-bs-dismiss="offcanvas"></button>
                 </div>
-                <div class="offcanvas-body" id="newLikeList">
-                    
+                <div class="offcanvas-body" id="newFollowList">
                 </div>
             </div>
             
@@ -201,7 +166,6 @@
                     <button class="btn-close" type="button" data-bs-dismiss="offcanvas"></button>
                 </div>
                 <div class="offcanvas-body" id="newCommentList">
-                    
                 </div>
             </div>
             
