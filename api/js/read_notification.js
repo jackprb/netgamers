@@ -1,13 +1,10 @@
 window.addEventListener("click", function () {
-    readNotification();  // fetch notification when the page loads 
+    readNotification();
 });
 
 
 function readNotification(IDnotify){
-    axios.post('api/api-read-notification.php', {
-            firstName: IDnotify
-          })
-          .then(function (response) {
-            console.log(response);
-          });
+    axios.get('api/api-read-notification.php?idN='+IDnotify).then(response => {
+        console.log(response);
+    });
 }

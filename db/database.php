@@ -112,7 +112,8 @@ class DatabaseHelper{
     public function readNotification($notificationID){
         $query = "UPDATE notifications SET viewed = TRUE, dateTimeViewed = ? WHERE ID = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('si', date('Y-m-d H:i:s'), $notificationID);
+        $date = date('Y-m-d H:i:s');
+        $stmt->bind_param('si', $date, $notificationID);
         $stmt->execute();
         $result = $stmt->get_result();
         return $stmt->errno;

@@ -8,7 +8,7 @@ function createNotification(notifications){
             <div class="toast-header bg-success text-white">
                 <i class="ai-bell fs-lg me-2"></i>
                 <span class="fw-medium me-auto">New comment!</span>
-                <button id="notify${notifications[i]['ID']}" type="button" onclick="readNotification(${notifications[i]['ID']});" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
+                <button type="button" onclick="readNotification(${notifications[i]['ID']});" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="row">
                 <div class="col-sm-5 col-md-4"><img class="userImg d-block rounded-circle mb-2 img-fluid" src = "./upload/userImages/${notifications[i][`path`]}" >

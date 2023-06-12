@@ -190,24 +190,8 @@
                     <h5 class="offcanvas-title">New followers</h5>
                     <button class="btn-close" type="button" data-bs-dismiss="offcanvas"></button>
                 </div>
-                <div class="offcanvas-body">
-                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                        <div class="toast-header bg-dark text-white">
-                            <i class="ai-bell fs-lg me-2"></i>
-                            <span class="fw-medium me-auto">New follower!</span>
-                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                        <div class="toast-body">'User' started following you!</div>
-                    </div>
+                <div class="offcanvas-body" id="newLikeList">
                     
-                    <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                        <div class="toast-header bg-dark text-white" >
-                            <i class="ai-bell fs-lg me-2"></i>
-                            <span class="fw-medium me-auto">New follower!</span>
-                            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                        <div class="toast-body">'User' started following you!</div>
-                    </div>
                 </div>
             </div>
             
