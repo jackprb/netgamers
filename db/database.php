@@ -97,19 +97,22 @@ class DatabaseHelper{
         return $stmt->errno;
     }
 
+    
     public function NotificationsToRead($DstUserId){
-        $query = "SELECT * FROM notifications WHERE userDest = ? AND viewed = FALSE";
+        $query = "SELECT notifications.*, users.username, profile_images.`path`, profile_images.altText, profile_images.longdesc 
+            FROM notifications JOIN users ON notifications.userSrc = users.ID JOIN profile_images ON users.userImg = profile_images.ID 
+            WHERE notifications.userDest = ? AND notifications.viewed = FALSE";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $DstUserId);
         $stmt->execute();
         $result = $stmt->get_result();
         return  $result->fetch_all(MYSQLI_ASSOC);
     }
-
+    
     public function readNotification($notificationID){
         $query = "UPDATE notifications SET viewed = TRUE, dateTimeViewed = ? WHERE ID = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ss', date('Y-m-d H:i:s'), $notificationID);
+        $stmt->bind_param('si', date('Y-m-d H:i:s'), $notificationID);
         $stmt->execute();
         $result = $stmt->get_result();
         return $stmt->errno;
@@ -123,9 +126,10 @@ class DatabaseHelper{
         $result = $stmt->get_result();
         return $stmt->errno;
     }
-    
+
     public function getFollowers($userIdFollowed){
-        $query = "SELECT userFollowing FROM follow WHERE userFollowed = ?";
+        $query = "SELECT userFollowing FROM follow JOIN users ON users.ID = follow.userFollowing 
+            WHERE follow.userFollowed = ? AND users.active=1";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $userIdFollowed);
         $stmt->execute();
@@ -134,7 +138,8 @@ class DatabaseHelper{
     }
     
     public function getFollowed($userIdFollowing){
-        $query = "SELECT userFollowed FROM follow WHERE userFollowing = ?";
+        $query = "SELECT userFollowed FROM follow JOIN users ON users.ID = follow.userFollowed
+            WHERE follow.userFollowing = ? AND users.active=1";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $userIdFollowing);
         $stmt->execute();
@@ -150,7 +155,8 @@ class DatabaseHelper{
         }
         $res = array();
         foreach ($IDsfollowers as $key => $userID) {
-            $query = "SELECT username, `path`, `altText` FROM users JOIN `profile_images` ON users.userImg = `profile_images`.ID WHERE users.ID = ?";
+            $query = "SELECT username, `path`, `altText` FROM users JOIN `profile_images` ON users.userImg = `profile_images`.ID 
+                WHERE users.ID = ? AND users.active = 1";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('i', $userID);
             $stmt->execute();
@@ -168,7 +174,8 @@ class DatabaseHelper{
         }
         $res = array();
         foreach ($IDsfollowed as $key => $userID) {
-            $query = "SELECT username, `path`, `altText` FROM users JOIN `profile_images` ON users.userImg = `profile_images`.ID WHERE users.ID = ?";
+            $query = "SELECT username, `path`, `altText` FROM users JOIN `profile_images` ON users.userImg = `profile_images`.ID 
+                WHERE users.ID = ? AND users.active = 1";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('i', $userID);
             $stmt->execute();
