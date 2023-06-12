@@ -35,8 +35,35 @@ function getPostImgPath($nomeFile){
 }
 
 function checkPassword($psw){
-    return strlen($psw) >= 10;
+
+// Controlla se la password contiene almeno una lettera maiuscola
+if (!preg_match('/[A-Z]/', $psw)) {
+    return false;
 }
+
+// Controlla se la password contiene almeno una lettera minuscola
+if (!preg_match('/[a-z]/', $psw)) {
+    return false;
+}
+
+// Controlla se la password contiene almeno un numero
+if (!preg_match('/[0-9]/', $psw)) {
+    return false;
+}
+
+// Controlla se la password contiene almeno un carattere speciale (simbolo)
+if (!preg_match('/[^A-Za-z0-9]/', $psw)) {
+    return false;
+}
+
+if (!strlen($psw) >= 10){
+    return false;
+}
+
+// Se tutti i controlli passano, la password è valida
+return true;
+}
+
 
 function isActive($pagename){
     if(basename($_SERVER['PHP_SELF'])==$pagename){
