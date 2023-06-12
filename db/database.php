@@ -337,7 +337,7 @@ class DatabaseHelper{
         
         $query = "SELECT `type`, `value` FROM preferences WHERE userID = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('s', $userId);
+        $stmt->bind_param('i', $userId);
         $stmt->execute();
         $result = $stmt->get_result();
 

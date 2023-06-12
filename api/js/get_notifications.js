@@ -38,8 +38,18 @@ window.addEventListener("load", function () {
 
 
 function getNotifications(){
-    axios.get('api/api-get-notification.php').then(response => {
+    let settings = [];
+    axios.get('api/api-get-notification-preferences.php').then(response => {
         console.log(response);
+        settings[0] = response.data['NCOMMENT'];
+        settings['NFOLLOWER'] = response.data['NFOLLOWER'];
+        settings['NLIKECOMMENT'] = response.data['NLIKECOMMENT'];
+        settings['NLIKEPOST'] = response.data['NLIKEPOST'];
+        settings['NPOSTFEED'] = response.data['NPOSTFEED'];
+        console.log(settings);
+    });
+    axios.get('api/api-get-notification.php').then(response => {
+        //console.log(response);
         let notificationNewComment = [];
         let notificationNewFollower = [];
         let notificationNewLike = [];
@@ -48,23 +58,23 @@ function getNotifications(){
         for(let i=0; i < response.data.length; i++){
             switch (response.data[i]['type']) {
                 case 'NCOMMENT':
-                    notificationNewComment.push(response.data[i]);
+                    if(settings['NCOMMENT'] == 1) notificationNewComment.push(response.data[i]);
                     break;
                 
                 case 'NFOLLOWER':
-                    notificationNewFollower.push(response.data[i]);
+                    if(settings['NFOLLOWER'] == 1) notificationNewFollower.push(response.data[i]);
                     break;
                 
                 case 'NLIKECOMMENT':
-                    notificationNewLike.push(response.data[i]);
+                    if(settings['NLIKECOMMENT'] == 1) notificationNewLike.push(response.data[i]);
                     break;
                 
                 case 'NLIKEPOST':
-                    notificationNewLike.push(response.data[i]);
+                    if(settings['NLIKEPOST'] == 1) notificationNewLike.push(response.data[i]);
                     break;
 
                 case 'NPOSTFEED':
-                    notificationNewPostFeed.push(response.data[i]);
+                    if(settings['NPOSTFEED'] == 1) notificationNewPostFeed.push(response.data[i]);
                     break;
                 
                 default:
@@ -72,7 +82,8 @@ function getNotifications(){
             } 
         }
 
-        document.querySelector("#totalNotification").innerText = response.data.length == 0 ? '' : response.data.length; 
+        totCount = notificationNewPostFeed.length + notificationNewLike.length + notificationNewFollower.length + notificationNewComment.length;
+        document.querySelector("#totalNotification").innerText = totCount == 0 ? '' : totCount; 
         document.querySelector("#postNotification").innerText = notificationNewPostFeed.length == 0 ? '' : notificationNewPostFeed.length;
         document.querySelector("#likeNotification").innerText = notificationNewLike.length == 0 ? '' : notificationNewLike.length;
         document.querySelector("#followNotification").innerText = notificationNewFollower.length == 0 ? '' : notificationNewFollower.length;
