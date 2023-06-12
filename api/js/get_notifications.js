@@ -8,7 +8,7 @@ function createNotification(notifications){
             "NLIKEPOST": ['text-white" style="background-color: #e23152;', "New like!", " liked your post!"],
             "NPOSTFEED": ["bg-primary text-white", "New post!", " posted something new!"]};
         for(let i=0; i < notifications.length; i++){
-            // notifica per un nuovo commento
+            // struttura della notifica
             let str = `
             <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
                 <div class="toast-header ${modalArray[notifications[i][`type`]][0]}">
@@ -29,25 +29,44 @@ function createNotification(notifications){
 }
 
 window.addEventListener("load", function () {
-    getNotifications();  // fetch notification when the page loads 
+    getNotifications(); // fetch notification when the page loads
 
     setInterval(function(){ 
         getNotifications(); 
-    }, 1000); // fetch new notifications every 15 seconds.  
+    }, 10000); // fetch new notifications every 10 seconds.  
 });
 
 
 function getNotifications(){
     let settings = [];
+    let totCount;
+
     axios.get('api/api-get-notification-preferences.php').then(response => {
-        console.log(response);
-        settings[0] = response.data['NCOMMENT'];
-        settings['NFOLLOWER'] = response.data['NFOLLOWER'];
-        settings['NLIKECOMMENT'] = response.data['NLIKECOMMENT'];
-        settings['NLIKEPOST'] = response.data['NLIKEPOST'];
-        settings['NPOSTFEED'] = response.data['NPOSTFEED'];
-        console.log(settings);
+        for(let i=0; i < response.data.length; i++){
+            switch (response.data[i]['type']){
+                case 'NCOMMENT':
+                    settings[0] = response.data[i]['value'];
+                    break;
+
+                case 'NFOLLOWER':
+                    settings[1] = response.data[i]['value'];
+                    break;
+
+                case 'NLIKECOMMENT':
+                    settings[2] = response.data[i]['value'];
+                    break;
+
+                case 'NLIKEPOST':
+                    settings[3] = response.data[i]['value'];
+                    break;
+
+                case 'NPOSTFEED':
+                    settings[4] = response.data[i]['value'];
+                break;
+            }
+        }
     });
+
     axios.get('api/api-get-notification.php').then(response => {
         //console.log(response);
         let notificationNewComment = [];
@@ -58,23 +77,23 @@ function getNotifications(){
         for(let i=0; i < response.data.length; i++){
             switch (response.data[i]['type']) {
                 case 'NCOMMENT':
-                    if(settings['NCOMMENT'] == 1) notificationNewComment.push(response.data[i]);
+                    if(settings[0] == 1) notificationNewComment.push(response.data[i]);
                     break;
                 
                 case 'NFOLLOWER':
-                    if(settings['NFOLLOWER'] == 1) notificationNewFollower.push(response.data[i]);
+                    if(settings[1] == 1) notificationNewFollower.push(response.data[i]);
                     break;
                 
                 case 'NLIKECOMMENT':
-                    if(settings['NLIKECOMMENT'] == 1) notificationNewLike.push(response.data[i]);
+                    if(settings[2] == 1) notificationNewLike.push(response.data[i]);
                     break;
                 
                 case 'NLIKEPOST':
-                    if(settings['NLIKEPOST'] == 1) notificationNewLike.push(response.data[i]);
+                    if(settings[3] == 1) notificationNewLike.push(response.data[i]);
                     break;
 
                 case 'NPOSTFEED':
-                    if(settings['NPOSTFEED'] == 1) notificationNewPostFeed.push(response.data[i]);
+                    if(settings[4] == 1) notificationNewPostFeed.push(response.data[i]);
                     break;
                 
                 default:

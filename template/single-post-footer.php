@@ -13,9 +13,6 @@
                                 </a>
                                 <?php endif; ?>
                                 <a href="#" class="nav-item position-relative fs-4 p-2 mx-sm-1">
-                                    <i class="ai-circle-plus"></i>
-                                </a>
-                                <a href="#" class="nav-item position-relative fs-4 p-2 mx-sm-1">
                                     <i class="ai-message-plus"></i>
                                 </a>
                                 <a href="#" class="nav-item position-relative fs-4 p-2 mx-sm-1">
