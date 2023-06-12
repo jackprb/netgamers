@@ -11,15 +11,15 @@ function createNotification(notifications){
             // notifica per un nuovo commento
             let str = `
             <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                <div class="toast-header ${modalArray[notifications[0][`type`]][0]}">
+                <div class="toast-header ${modalArray[notifications[i][`type`]][0]}">
                     <i class="ai-bell fs-lg me-2"></i>
-                    <span class="fw-medium me-auto">${modalArray[notifications[0][`type`]][1]}</span>
+                    <span class="fw-medium me-auto">${modalArray[notifications[i][`type`]][1]}</span>
                     <button type="button" onclick="readNotification(${notifications[i]['ID']});" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
                 <div class="row">
                     <div class="col-sm-5 col-md-4"><img class="userImg d-block rounded-circle mb-2 img-fluid" src = "./upload/userImages/${notifications[i][`path`]}" >
                     </div>
-                    <div class="toast-body col-sm-7 col-md-8"><a href="profile.php?u=${notifications[i]['userSrc']}"><strong>${notifications[i]['username']}</strong></a>${modalArray[notifications[0][`type`]][2]}</div>
+                    <div class="toast-body col-sm-7 col-md-8"><a href="profile.php?u=${notifications[i]['userSrc']}"><strong>${notifications[i]['username']}</strong></a>${modalArray[notifications[i][`type`]][2]}</div>
                 </div>
             </div>`;
             result += str;
