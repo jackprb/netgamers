@@ -56,6 +56,7 @@ if (!preg_match('/[^A-Za-z0-9]/', $psw)) {
     return false;
 }
 
+// Controlla se la password è lunga almeno 10 caratteri
 if (!strlen($psw) >= 10){
     return false;
 }
