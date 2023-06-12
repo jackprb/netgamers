@@ -33,7 +33,7 @@ window.addEventListener("load", function () {
 
     setInterval(function(){ 
         getNotifications(); 
-    }, 15000); // fetch new notifications every 15 seconds.  
+    }, 1000); // fetch new notifications every 15 seconds.  
 });
 
 
