@@ -201,17 +201,11 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <a class="navbar-brand pe-sm-3" href="index.php" style="margin-left: 1%;"><span class="text-primary flex-shrink-0 me-2">
-                        <img class="logoImg img-fluid" src="upload/logos/NetGamers_Icon.png" style="height: 70px;" alt="" />
+                    <a class="navbar-brand pe-sm-3 logoNavBar" href="index.php">
+                        <img class="logoImg img-fluid" src="upload/logos/NetGamers_Icon.png" alt="" />
                     </a>
-                    <div class="form-check form-switch mode-switch me-3 me-lg-4 ms-auto order-md-1" data-bs-toggle="mode">
-                        <input class="form-check-input" type="checkbox" id="theme-mode" onclick="changeTheme()">
-                        <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
-                        <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
-                    </div>
                     <nav class="collapse navbar-collapse" id="menu">
-                        <ul class="navbar-nav me-auto ">
-                            
+                        <ul class="navbar-nav me-auto">
                             <?php 
                                 if(isset($_SESSION["userID"])){
                                     require("loggedin-menu.php");
@@ -219,6 +213,20 @@
                             ?>
                         </ul>
                     </nav>
+                    <?php if(isset($_SESSION["userID"])): ?>
+                    <div class="d-flex flex-row-reverse">
+                        <ul class="navbar-nav me-auto ">
+                            <a href="#" onclick="getNotifications();" class="nav-link dropdown-toggle position-relative" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                <i class="ai-bell"></i><span id="totalNotification" class="badge bg-primary ms-2">--</span>
+                            </a>    
+                        </ul>
+                    </div>
+                    <?php endif; ?>
+                    <div class="form-check form-switch mode-switch me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
+                        <input class="form-check-input" type="checkbox" id="theme-mode" onclick="changeTheme()">
+                        <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
+                        <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
+                    </div>
                 </div>
             </header>
 
@@ -237,7 +245,7 @@
             <div class="container pt-3 pt-sm-2 pt-md-3 pt-lg-4">
                 <div class="border-bottom text-center pb-4">
                     <a class="navbar-brand d-inline-flex text-nav py-0 mb-1" href="index.php">
-                        <img class="logoBig" src="upload/logos/NetGamers_Logo_White.png" style="height: 100px;" alt=""/>
+                        <img class="logoBig" src="upload/logos/NetGamers_Logo_White.png" alt=""/>
                     </a>
                 </div>
                 <div class="d-sm-flex align-items-center justify-content-between pt-4 mt-2 mt-sm-0">
