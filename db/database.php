@@ -49,19 +49,6 @@ class DatabaseHelper{
         $res['img'] = $this->getUserImgByUserID($userID);
         return $res;
     }
-
-    public function insertNewPostImage($userId, $imgPath, $altText, $longDesc, $title, $text){
-        $query = "INSERT INTO `post_images`(`path`, `altText`, `longdesc`) VALUES (?,?,?)";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('sss', $imgPath, $altText, $longDesc);
-        $stmt->execute();
-        $result2 = $stmt->get_result();
-        /*$query1 = "SELECT max(ID) FROM post_images";
-        $stmt1 = $this->db->prepare($query1);
-        $stmt1->execute();
-        $result = $stmt1->get_result();*/
-        return $stmt->errno;//($stmt->errno == 0 && $stmt1->errno == 0 && $this->insertNewPost($result, $userId, $title, $text) == 0) ? 0 : 1;
-    }
   
     public function insertNewPost($img, $userId, $title, $text){
         $query = "INSERT INTO posts(img, title, `text`, dateTimePublished, userID) VALUES (?, ?, ?, ?, ?)";
@@ -105,19 +92,18 @@ class DatabaseHelper{
     public function newNotification($SrcUserId, $DstUserId, $type, $content){
         $query = "INSERT INTO notifications (content, `type`, dateTimeCreated, userSrc, userDest) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('sssss', $content, $type, date('Y-m-d H:i:s'), $SrcUserId, $DstUserId);
+        $stmt->bind_param('sssii', $content, $type, date('Y-m-d H:i:s'), $SrcUserId, $DstUserId);
         $stmt->execute();
         $result = $stmt->get_result();
         return $stmt->errno;
     }
-
     
     public function NotificationsToRead($DstUserId){
         $query = "SELECT notifications.*, users.username, profile_images.`path`, profile_images.altText, profile_images.longdesc 
             FROM notifications JOIN users ON notifications.userSrc = users.ID JOIN profile_images ON users.userImg = profile_images.ID 
             WHERE notifications.userDest = ? AND notifications.viewed = FALSE";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('s', $DstUserId);
+        $stmt->bind_param('i', $DstUserId);
         $stmt->execute();
         $result = $stmt->get_result();
         return  $result->fetch_all(MYSQLI_ASSOC);
@@ -146,7 +132,7 @@ class DatabaseHelper{
         $query = "SELECT userFollowing FROM follow JOIN users ON users.ID = follow.userFollowing 
             WHERE follow.userFollowed = ? AND users.active=1";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('s', $userIdFollowed);
+        $stmt->bind_param('i', $userIdFollowed);
         $stmt->execute();
         $result = $stmt->get_result();
         return  $result->fetch_all(MYSQLI_ASSOC);
@@ -156,7 +142,7 @@ class DatabaseHelper{
         $query = "SELECT userFollowed FROM follow JOIN users ON users.ID = follow.userFollowed
             WHERE follow.userFollowing = ? AND users.active=1";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('s', $userIdFollowing);
+        $stmt->bind_param('i', $userIdFollowing);
         $stmt->execute();
         $result = $stmt->get_result();
         return  $result->fetch_all(MYSQLI_ASSOC);
@@ -204,7 +190,7 @@ class DatabaseHelper{
         $query = "UPDATE posts SET img = ?, title = ?, `text` = ?, dateTimePublished = ? WHERE ID = ?";
         $stmt = $this->db->prepare($query);
         $img = 'helloooo';
-        $stmt->bind_param('sssss', $img, $title, $text, date('Y-m-d H:i:s'), $postId);
+        $stmt->bind_param('ssssi', $img, $title, $text, date('Y-m-d H:i:s'), $postId);
         $stmt->execute();
         $result = $stmt->get_result();
         return $stmt->errno;
