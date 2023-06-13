@@ -277,9 +277,25 @@ class DatabaseHelper{
         $stmt->execute();
         $result = $stmt->get_result();
         if($stmt->errno == 0){
-            $query = "SELECT ID FROM profile_images WHERE `path` = ?";
+            $query = "SELECT MAX(ID) as ID FROM profile_images";
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param('s', $imgPath);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+        return FALSE;
+    }  
+
+    public function addPostImg($altText, $longdesc, $imgPath){
+        $query = "INSERT INTO post_images (`path`, altText, longdesc) VALUES (?,?,?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('sss', $imgPath, $altText, $longdesc);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if($stmt->errno == 0){
+            $query = "SELECT MAX(ID) as ID FROM post_images";
+            $stmt = $this->db->prepare($query);
             $stmt->execute();
             $result = $stmt->get_result();
             
