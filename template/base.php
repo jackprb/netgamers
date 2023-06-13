@@ -22,6 +22,11 @@
         
         <!-- Page loading styles-->
         <style>
+            @media (max-width: 367px) {
+                html, body {
+                    overflow: hidden;
+                }
+            }
             .page-loading {
                 position: fixed;
                 top: 0;
@@ -196,7 +201,64 @@
                 </div>
             </div>
             
-            <header class="navbar navbar-expand-md fixed-top">
+            <header class="navbar navbar-expand-sm fixed-top">
+                <div class="container">
+                    <div class="navbar-brand pe-sm-3 logoNavBar">
+                        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false" aria-controls="menu" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <a href="index.php">
+                            <img class="logoImg img-fluid" src="upload/logos/NetGamers_Icon.png" alt="" />
+                        </a>
+                    </div>
+                    <div class="nav align-items-center order-sm-2">
+                        <?php if(isset($_SESSION["userID"])): ?>
+                        <div class="dropdown nav d-block">
+                            <a class="nav-link position-relative p-2" href="#" data-bs-toggle="dropdown" aria-expanded="false" onclick="getNotifications();">
+                                <div class="dropdown-toggle">
+                                    <i class="ai-bell"></i><span id="totalNotification" class="badge bg-primary ms-2"></span>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasPost">
+                                    New posts<span id="postNotification" class="badge bg-primary ms-2"></span>
+                                </a>
+                                <a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLike">
+                                    New likes<span id="likeNotification" class="badge bg-primary ms-2"></span>
+                                </a>
+                                <a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFollow">
+                                    New followers<span id="followNotification" class="badge bg-primary ms-2"></span>
+                                </a>
+                                <a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasComment">
+                                    New comments<span  id="commentNotification" class="badge bg-primary ms-2"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <?php endif; ?>
+                        <a class="nav-link p-1 me-2" href="#">
+                            <div class="form-check form-switch mode-switch me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
+                                <input class="form-check-input" type="checkbox" id="theme-mode" onclick="changeTheme()">
+                                <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
+                                <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
+                            </div>
+                        </a>
+                    </div>
+                    <?php if(isset($_SESSION["userID"])): ?>
+                    <nav class="navbar-collapse collapse" id="menu">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAccount">Account</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <?php endif; ?>
+                </div>
+          </header>
+
+            <!-- <header class="navbar navbar-expand-sm fixed-top">
                 <div class="container">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -212,23 +274,39 @@
                                 } 
                             ?>
                         </ul>
+                        <div class="d-flex flex-row-reverse">
+                            <div class="form-check form-switch mode-switch me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
+                                <input class="form-check-input" type="checkbox" id="theme-mode" onclick="changeTheme()">
+                                <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
+                                <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
+                            </div>
+                            <?php if(isset($_SESSION["userID"])): ?>
+                            <div class="dropdown nav d-block me-3">
+                                <a class="nav-link d-flex p-0" href="#" data-bs-toggle="dropdown" aria-expanded="false" onclick="getNotifications();">
+                                    <div class="dropdown-toggle">
+                                        <i class="ai-bell"></i><span id="totalNotification" class="badge bg-primary ms-2"></span>
+                                    </div>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasPost">
+                                        New posts<span id="postNotification" class="badge bg-primary ms-2"></span>
+                                    </a>
+                                    <a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLike">
+                                        New likes<span id="likeNotification" class="badge bg-primary ms-2"></span>
+                                    </a>
+                                    <a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFollow">
+                                        New followers<span id="followNotification" class="badge bg-primary ms-2"></span>
+                                    </a>
+                                    <a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasComment">
+                                        New comments<span  id="commentNotification" class="badge bg-primary ms-2"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <?php endif; ?>
+                        </div>
                     </nav>
-                    <?php if(isset($_SESSION["userID"])): ?>
-                    <div class="d-flex flex-row-reverse">
-                        <ul class="navbar-nav me-auto ">
-                            <a href="#" onclick="getNotifications();" class="nav-link dropdown-toggle position-relative" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                                <i class="ai-bell"></i><span id="totalNotification" class="badge bg-primary ms-2">--</span>
-                            </a>    
-                        </ul>
-                    </div>
-                    <?php endif; ?>
-                    <div class="form-check form-switch mode-switch me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
-                        <input class="form-check-input" type="checkbox" id="theme-mode" onclick="changeTheme()">
-                        <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
-                        <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
-                    </div>
                 </div>
-            </header>
+            </header> -->
 
             <!-- Page content-->
             <div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5">
