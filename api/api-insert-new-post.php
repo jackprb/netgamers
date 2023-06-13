@@ -6,20 +6,28 @@ if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "POST"){  // se utente è l
 
     if (areFieldsSet()){
         //mette nel database il post in base al tipo (immagine o solo testo)
-
-        //TODO: togliere il commento dalle funzioni quando database.php è aggiornato
-        if(isset($_POST["postImg"])){
-            //$currentUserPost= $dbh->insertNewPostImg($_SESSION["userID"], $_POST["postImg"], $_POST["altText"], $_POST["longDesc"], $_POST["title"], $_POST["content"]);
-        }else{
-            $currentUserPost = $dbh->insertNewPost($_SESSION["userID"], $_POST["title"], $_POST["content"]);
+        list($resultUpload, $msg, $finalImgPath) = uploadImage("../".UPLOAD_POSTIMG_DIR, $_FILES["postImg"]);
+        if($resultUpload == 1){ //upload completato con successo in cartella upload/userImages, ma non in DB
+            $altText = $_POST['altText'];
+            $longDesc = $_POST['longDesc'];
+        }
+        if(isset($_FILE["postImg"])){
+            $currentUserPost= $dbh->insertNewPostImg($_SESSION["userID"], $finalImgPath, $altText, $longDesc, $_POST["title"], $_POST["content"]);
             if($currentUserPost == 0){ // tutto ok 
-                header("location: newpost.php?r=0");
+                header("location: ../newpost.php?r=0");
             } else {
-                header("location: newpost.php?r=3");
+                header("location: ../newpost.php?r=3");
+            }
+        }else{
+            $currentUserPost = $dbh->insertNewPost(NULL, $_SESSION["userID"], $_POST["title"], $_POST["content"]);
+            if($currentUserPost == 0){ // tutto ok 
+                header("location: ../newpost.php?r=0");
+            } else {
+                header("location: ../newpost.php?r=3");
             }
         }
     } else {
-        header("location: newpost.php?r=1");
+        header("location: ../newpost.php?r=1");
     }
 } 
 

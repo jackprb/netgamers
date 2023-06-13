@@ -50,13 +50,16 @@ class DatabaseHelper{
     }
 
     public function insertNewPostImage($userId, $imgPath, $altText, $longDesc, $title, $text){
-        $query = "INSERT INTO posts_images(`path`, altText, longdesc) VALUES (?, ?, ?);
-                SELECT SCOPE_IDENTITY()";
+        $query = "INSERT INTO `post_images`(`path`, `altText`, `longdesc`) VALUES (?,?,?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('sss', $imgPath, $altText, $longDesc);
         $stmt->execute();
-        $result = $stmt->get_result();
-        return $stmt->errno && $this->insertNewPost($result, $userId, $title, $text);
+        $result2 = $stmt->get_result();
+        /*$query1 = "SELECT max(ID) FROM post_images";
+        $stmt1 = $this->db->prepare($query1);
+        $stmt1->execute();
+        $result = $stmt1->get_result();*/
+        return $stmt->errno;//($stmt->errno == 0 && $stmt1->errno == 0 && $this->insertNewPost($result, $userId, $title, $text) == 0) ? 0 : 1;
     }
   
     public function insertNewPost($img, $userId, $title, $text){
