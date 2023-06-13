@@ -49,18 +49,19 @@ class DatabaseHelper{
         return $res;
     }
 
-    //TODO: servirebbere 2 funzioni una per il post con l'immagine e una per il post con l'immagine
-/*
-    public function insertNewPostImage($userId, $img, $altText, $longDesc, $title, $text){
-
+    public function insertNewPostImage($userId, $imgPath, $altText, $longDesc, $title, $text){
+        $query = "INSERT INTO posts_images(`path`, altText, longdesc) VALUES (?, ?, ?);
+                SELECT SCOPE_IDENTITY()";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('sss', $imgPath, $altText, $longDesc);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $stmt->errno && $this->insertNewPost($result, $userId, $title, $text);
     }
-*/   
-
-    // insert new post with NO image
-    public function insertNewPost($userId, $title, $text){
+  
+    public function insertNewPost($img, $userId, $title, $text){
         $query = "INSERT INTO posts(img, title, `text`, dateTimePublished, userID) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
-        $img = NULL;
         $data = date('Y-m-d H:i:s');
         $stmt->bind_param('ssssi', $img, $title, $text, $data, $userId);
         $stmt->execute();
