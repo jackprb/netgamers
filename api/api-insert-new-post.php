@@ -9,17 +9,22 @@ if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "POST"){  // se utente è l
 
         //TODO: togliere il commento dalle funzioni quando database.php è aggiornato
         if(isset($_POST["postImg"])){
-            //$currentUserPost= $dbh->insertNewPostImg($_SESSION["userID"], $_POST["postImg"], $_POST["altText"], $_POST["longDesc"], $_POST["title"], $_POST["content"]);
+            $currentUserPost= $dbh->insertNewPostImg($_SESSION["userID"], $_POST["postImg"], $_POST["altText"], $_POST["longDesc"], $_POST["title"], $_POST["content"]);
+            if($currentUserPost == 0){ // tutto ok 
+                header("location: ../newpost.php?r=0");
+            } else {
+                header("location: ../newpost.php?r=3");
+            }
         }else{
             $currentUserPost = $dbh->insertNewPost($_SESSION["userID"], $_POST["title"], $_POST["content"]);
             if($currentUserPost == 0){ // tutto ok 
-                header("location: newpost.php?r=0");
+                header("location: ../newpost.php?r=0");
             } else {
-                header("location: newpost.php?r=3");
+                header("location: ../newpost.php?r=3");
             }
         }
     } else {
-        header("location: newpost.php?r=1");
+        header("location: ../newpost.php?r=1");
     }
 } 
 

@@ -31,7 +31,7 @@
                         </a>
                         <?php else: ?>
                         <h2 class="h4 mb-0">User profile</h2>
-                        <form class="ms-auto" method="post" action="">
+                        <form class="ms-auto" method="post" action="<?php ?>">
                             <a class="btn btn-sm btn-primary" href="#">
                                 <i class="ai-user-plus ms-n1 me-2"></i>Follow
                             </a>
@@ -116,7 +116,7 @@
                                         </div>
                                         <div class="col-8 col-sm-8 ">
                                             <div class="card-body">
-                                                <p class="card-text"><?php echo $username; ?></p>
+                                                <p class="card-text"><a href="profile.php?u=<?php echo $values['id']; ?>"><?php echo $username; ?></a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -151,7 +151,7 @@
                                         </div>
                                         <div class="col-8 col-sm-8 ">
                                             <div class="card-body">
-                                                <p class="card-text"><?php echo $username; ?></p>
+                                                <p class="card-text"><a href="profile.php?u=<?php echo $values['id']; ?>"><?php echo $username; ?></a></p>
                                             </div>
                                         </div>
                                     </div>

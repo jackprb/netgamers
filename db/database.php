@@ -29,7 +29,7 @@ class DatabaseHelper{
     }  
 
     public function getUserDataByID($userID){
-        $query = "SELECT username, email FROM users WHERE active=1 AND ID = ?";
+        $query = "SELECT ID, username, email FROM users WHERE active=1 AND ID = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $userID);
         $stmt->execute();
@@ -43,6 +43,7 @@ class DatabaseHelper{
             $tmp = $result->fetch_all(MYSQLI_ASSOC)[0];
         }
 
+        $res['ID'] = $tmp['ID'];
         $res['username'] = $tmp['username'];
         $res['email'] = $tmp['email'];
         $res['img'] = $this->getUserImgByUserID($userID);
@@ -91,7 +92,7 @@ class DatabaseHelper{
     public function newFollow($userIdFollowing, $userIdFollowed){
         $query = "INSERT INTO follow VALUES (?, ?)";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ss', $userIdFollowing, $userIdFollowed);
+        $stmt->bind_param('ii', $userIdFollowing, $userIdFollowed);
         $stmt->execute();
         $result = $stmt->get_result();
         return $stmt->errno;
@@ -131,7 +132,7 @@ class DatabaseHelper{
     public function removeFollow($userIdFollowing, $userIdFollowed){
         $query = "DELETE FROM follow WHERE userFollowing = ? AND userFollowed = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ss', $userIdFollowing, $userIdFollowed);
+        $stmt->bind_param('ii', $userIdFollowing, $userIdFollowed);
         $stmt->execute();
         $result = $stmt->get_result();
         return $stmt->errno;
@@ -165,13 +166,13 @@ class DatabaseHelper{
         }
         $res = array();
         foreach ($IDsfollowers as $key => $userID) {
-            $query = "SELECT username, `path`, `altText` FROM users JOIN `profile_images` ON users.userImg = `profile_images`.ID 
+            $query = "SELECT users.ID, username, `path`, `altText` FROM users JOIN `profile_images` ON users.userImg = `profile_images`.ID 
                 WHERE users.ID = ? AND users.active = 1";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('i', $userID);
             $stmt->execute();
             $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0];
-            $res[$result['username']] = array('path' => $result['path'], 'altText' => $result['altText']);
+            $res[$result['username']] = array('id' => $result['ID'], 'path' => $result['path'], 'altText' => $result['altText']);
         }
         return $res;
     }
@@ -184,13 +185,13 @@ class DatabaseHelper{
         }
         $res = array();
         foreach ($IDsfollowed as $key => $userID) {
-            $query = "SELECT username, `path`, `altText` FROM users JOIN `profile_images` ON users.userImg = `profile_images`.ID 
+            $query = "SELECT users.ID, username, `path`, `altText` FROM users JOIN `profile_images` ON users.userImg = `profile_images`.ID 
                 WHERE users.ID = ? AND users.active = 1";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param('i', $userID);
             $stmt->execute();
             $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0];
-            $res[$result['username']] = array('path' => $result['path'], 'altText' => $result['altText']);
+            $res[$result['username']] = array('id' => $result['ID'], 'path' => $result['path'], 'altText' => $result['altText']);
         }
         return  $res;
     }
