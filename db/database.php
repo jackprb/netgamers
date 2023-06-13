@@ -55,13 +55,14 @@ class DatabaseHelper{
 
     }
 */   
-    //$img non serve in questa funzione
-    
-    public function insertNewPost($userId, $img, $title, $text){
+
+    // insert new post with NO image
+    public function insertNewPost($userId, $title, $text){
         $query = "INSERT INTO posts(img, title, `text`, dateTimePublished, userID) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
-        $img = 'helloooo';
-        $stmt->bind_param('sssss', $img, $title, $text, date('Y-m-d H:i:s'), $userId);
+        $img = NULL;
+        $data = date('Y-m-d H:i:s');
+        $stmt->bind_param('ssssi', $img, $title, $text, $data, $userId);
         $stmt->execute();
         $result = $stmt->get_result();
         return $stmt->errno;

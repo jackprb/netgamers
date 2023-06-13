@@ -256,57 +256,7 @@
                     </nav>
                     <?php endif; ?>
                 </div>
-          </header>
-
-            <!-- <header class="navbar navbar-expand-sm fixed-top">
-                <div class="container">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <a class="navbar-brand pe-sm-3 logoNavBar" href="index.php">
-                        <img class="logoImg img-fluid" src="upload/logos/NetGamers_Icon.png" alt="" />
-                    </a>
-                    <nav class="collapse navbar-collapse" id="menu">
-                        <ul class="navbar-nav me-auto">
-                            <?php 
-                                if(isset($_SESSION["userID"])){
-                                    require("loggedin-menu.php");
-                                } 
-                            ?>
-                        </ul>
-                        <div class="d-flex flex-row-reverse">
-                            <div class="form-check form-switch mode-switch me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
-                                <input class="form-check-input" type="checkbox" id="theme-mode" onclick="changeTheme()">
-                                <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
-                                <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
-                            </div>
-                            <?php if(isset($_SESSION["userID"])): ?>
-                            <div class="dropdown nav d-block me-3">
-                                <a class="nav-link d-flex p-0" href="#" data-bs-toggle="dropdown" aria-expanded="false" onclick="getNotifications();">
-                                    <div class="dropdown-toggle">
-                                        <i class="ai-bell"></i><span id="totalNotification" class="badge bg-primary ms-2"></span>
-                                    </div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasPost">
-                                        New posts<span id="postNotification" class="badge bg-primary ms-2"></span>
-                                    </a>
-                                    <a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLike">
-                                        New likes<span id="likeNotification" class="badge bg-primary ms-2"></span>
-                                    </a>
-                                    <a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFollow">
-                                        New followers<span id="followNotification" class="badge bg-primary ms-2"></span>
-                                    </a>
-                                    <a class="dropdown-item" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasComment">
-                                        New comments<span  id="commentNotification" class="badge bg-primary ms-2"></span>
-                                    </a>
-                                </div>
-                            </div>
-                            <?php endif; ?>
-                        </div>
-                    </nav>
-                </div>
-            </header> -->
+            </header>
 
             <!-- Page content-->
             <div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5">
