@@ -48,6 +48,14 @@ class DatabaseHelper{
         $res['img'] = $this->getUserImgByUserID($userID);
         return $res;
     }
+
+    //TODO: servirebbere 2 funzioni una per il post con l'immagine e una per il post con l'immagine
+/*
+    public function insertNewPostImage($userId, $img, $altText, $longDesc, $title, $text){
+
+    }
+*/   
+    //$img non serve in questa funzione
     
     public function insertNewPost($userId, $img, $title, $text){
         $query = "INSERT INTO posts(img, title, `text`, dateTimePublished, userID) VALUES (?, ?, ?, ?, ?)";
