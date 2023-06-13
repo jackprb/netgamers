@@ -7,11 +7,13 @@ if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "POST"){  // se utente è l
     if (areFieldsSet()){
 
         //mette nel database il post in base al tipo (immagine o solo testo)
+
+        //TODO: togliere il commento dalle funzioni quando database.php è aggiornato
         if(isset($_POST["postImg"])){
             //$currentUserPost= $dbh->insertNewPostImg($_SESSION["useID"], $_POST["postImg"], $_POST["altText"], $_POST["longDesc"], $_POST["title"], $_POST["content"]);
 
         }else{
-            $currentUserPost= $dbh->insertNewPost($_SESSION["useID"], NULL, $_POST["title"], $_POST["content"]);
+            //$currentUserPost= $dbh->insertNewPost($_SESSION["useID"], $_POST["title"], $_POST["content"]);
         }
     
     }
