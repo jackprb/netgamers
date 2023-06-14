@@ -60,9 +60,9 @@
                             <h3 class="h5 mb-2"><?php echo $username; ?></h3>
                             <p class="fs-sm">
                                 Followers: 
-                                <a data-bs-toggle="modal" data-bs-target="#modalFollowers" href="#" class="followerCount"><?php echo $nrFollower; ?></a>
+                                <a data-bs-toggle="modal" data-bs-target="#modalFollowers" href="#" class="followerCount"></a>
                                 Followed: 
-                                <a data-bs-toggle="modal" data-bs-target="#modalFollowed" href="#" class="followedCount"><?php echo $nrFollowed; ?></a>
+                                <a data-bs-toggle="modal" data-bs-target="#modalFollowed" href="#" class="followedCount"></a>
                             </p>
                             <p class="fs-sm"><i class="ai-mail me-1"></i><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></p>
                             <i class="ai-map-pin me-1"></i>USA
@@ -119,24 +119,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>Total followers: <span class="followerCount"><?php echo $nrFollower; ?></span></p>
+                        <p>Total followers: <span class="followerCount"></span></p>
                         <ul class="list-group list-group-flush" id="followerList">
-                            <?php foreach ($followers as $username => $values): ?>
-                            <li class="list-group-item">
-                                <div class="card border-0 overflow-hidden">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
-                                            <img src="<?php echo getUserImagePath($values['path']); ?>" class="img-fluid" alt="<?php echo $values['altText']; ?>" />
-                                        </div>
-                                        <div class="col-8 col-sm-8 ">
-                                            <div class="card-body">
-                                                <p class="card-text"><a href="profile.php?u=<?php echo $values['id']; ?>"><?php echo $username; ?></a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <?php endforeach; ?>
                         </ul>
                     </div>
                     <div class="modal-footer flex-column flex-sm-row">
@@ -154,24 +138,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>Total followed: <span class="followedCount"><?php echo $nrFollowed; ?></span></p>
+                        <p>Total followed: <span class="followedCount"></span></p>
                         <ul class="list-group list-group-flush" id="followedList">
-                            <?php foreach ($followed as $username => $values): ?>
-                            <li class="list-group-item">
-                                <div class="card border-0 overflow-hidden">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
-                                            <img src="<?php echo getUserImagePath($values['path']); ?>" class="img-fluid" alt="<?php echo $values['altText']; ?>" />
-                                        </div>
-                                        <div class="col-8 col-sm-8 ">
-                                            <div class="card-body">
-                                                <p class="card-text"><a href="profile.php?u=<?php echo $values['id']; ?>"><?php echo $username; ?></a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <?php endforeach; ?>
                         </ul>
                     </div>
                     <div class="modal-footer flex-column flex-sm-row">
