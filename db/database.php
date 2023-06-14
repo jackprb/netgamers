@@ -124,6 +124,33 @@ class DatabaseHelper{
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }  
+
+    public function searchPostByTitle($title){
+        $query = "SELECT * FROM posts WHERE title LIKE '%?%'";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $title);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function searchPostByContent($content){
+        $query = "SELECT * FROM posts WHERE text LIKE '%?%'";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $content);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function searchUserByUsername($username){
+        $query = "SELECT * FROM users WHERE `text` LIKE '%?%'";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
     
     public function newComment($SrcUserId, $postId, $img, $text){
         $query = "INSERT INTO comments VALUES (?, ?, ?, ?, ?)";
