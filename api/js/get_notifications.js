@@ -2,11 +2,11 @@ function createNotification(notifications){
     let result = "";
     if(notifications.length > 0){
         let modalArray = 
-            {"NCOMMENT" : ["bg-success text-white", "New comment!", " commented your post!"],
+            {"NCOMMENT" : ["bg-success text-white", "New comment!", " commented your post: "],
             "NFOLLOWER": ["bg-dark text-white", "New follower!", " started following you!"],
-            "NLIKECOMMENT": ['text-white" style="background-color: #e23152;', "New like!", " liked your comment!"],
-            "NLIKEPOST": ['text-white" style="background-color: #e23152;', "New like!", " liked your post!"],
-            "NPOSTFEED": ["bg-primary text-white", "New post!", " posted something new!"]};
+            "NLIKECOMMENT": ['text-white" style="background-color: #e23152;', "New like!", " liked your comment in the post: "],
+            "NLIKEPOST": ['text-white" style="background-color: #e23152;', "New like!", " liked your post: "],
+            "NPOSTFEED": ["bg-primary text-white", "New post!", " posted something new! Post title: "]};
         for(let i=0; i < notifications.length; i++){
             // struttura della notifica
             let str = `
@@ -19,7 +19,7 @@ function createNotification(notifications){
                 <div class="row">
                     <div class="col-sm-5 col-md-4"><img class="userImg d-block rounded-circle mb-2 img-fluid" src = "./upload/userImages/${notifications[i][`path`]}" >
                     </div>
-                    <div class="toast-body col-sm-7 col-md-8"><a href="profile.php?u=${notifications[i]['userSrc']}"><strong>${notifications[i]['username']}</strong></a>${modalArray[notifications[i][`type`]][2]}</div>
+                    <div class="toast-body col-sm-7 col-md-8"><a href="profile.php?u=${notifications[i]['userSrc']}"><strong>${notifications[i]['username']}</strong></a>${modalArray[notifications[i][`type`]][2]}<strong>${notifications[i]['content']}</strong></div>
                 </div>
             </div>`;
             result += str;
@@ -38,34 +38,7 @@ window.addEventListener("load", function () {
 
 
 function getNotifications(){
-    let settings = [];
     let totCount;
-
-    axios.get('api/api-get-notification-preferences.php').then(response => {
-        for(let i=0; i < response.data.length; i++){
-            switch (response.data[i]['type']){
-                case 'NCOMMENT':
-                    settings[0] = response.data[i]['value'];
-                    break;
-
-                case 'NFOLLOWER':
-                    settings[1] = response.data[i]['value'];
-                    break;
-
-                case 'NLIKECOMMENT':
-                    settings[2] = response.data[i]['value'];
-                    break;
-
-                case 'NLIKEPOST':
-                    settings[3] = response.data[i]['value'];
-                    break;
-
-                case 'NPOSTFEED':
-                    settings[4] = response.data[i]['value'];
-                break;
-            }
-        }
-    });
 
     axios.get('api/api-get-notification.php').then(response => {
         //console.log(response);
@@ -77,23 +50,23 @@ function getNotifications(){
         for(let i=0; i < response.data.length; i++){
             switch (response.data[i]['type']) {
                 case 'NCOMMENT':
-                    if(settings[0] == 1) notificationNewComment.push(response.data[i]);
+                    notificationNewComment.push(response.data[i]);
                     break;
                 
                 case 'NFOLLOWER':
-                    if(settings[1] == 1) notificationNewFollower.push(response.data[i]);
+                    notificationNewFollower.push(response.data[i]);
                     break;
                 
                 case 'NLIKECOMMENT':
-                    if(settings[2] == 1) notificationNewLike.push(response.data[i]);
+                    notificationNewLike.push(response.data[i]);
                     break;
                 
                 case 'NLIKEPOST':
-                    if(settings[3] == 1) notificationNewLike.push(response.data[i]);
+                    notificationNewLike.push(response.data[i]);
                     break;
 
                 case 'NPOSTFEED':
-                    if(settings[4] == 1) notificationNewPostFeed.push(response.data[i]);
+                    notificationNewPostFeed.push(response.data[i]);
                     break;
                 
                 default:
