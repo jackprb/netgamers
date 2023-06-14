@@ -54,7 +54,7 @@ class DatabaseHelper{
         $query = "INSERT INTO posts(img, title, `text`, dateTimePublished, userID) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
         $data = date('Y-m-d H:i:s');
-        $stmt->bind_param('ssssi', $img, $title, $text, $data, $userId);
+        $stmt->bind_param('isssi', $img, $title, $text, $data, $userId);
         $stmt->execute();
         $result = $stmt->get_result();
         return $stmt->errno;
@@ -81,12 +81,21 @@ class DatabaseHelper{
     }
     
     public function newFollow($userIdFollowing, $userIdFollowed){
-        $query = "INSERT INTO follow VALUES (?, ?)";
+        $query = "SELECT * FROM follow WHERE userFollowing = ? and userFollowed = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ii', $userIdFollowing, $userIdFollowed);
+        $stmt->bind_param('ss', $userIdFollowing, $userIdFollowed);
         $stmt->execute();
-        $result = $stmt->get_result();
-        return $stmt->errno;
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        
+        if(count($result) == 0){ //userFollowing does not already follow userFollowed
+            $query = "INSERT INTO follow VALUES (?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ss', $userIdFollowing, $userIdFollowed);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $stmt->errno;
+        }
+        return FALSE;
     }
 
     public function newNotification($SrcUserId, $DstUserId, $type, $content){
@@ -267,7 +276,7 @@ class DatabaseHelper{
             $stmt = $this->db->prepare($query);
             $stmt->execute();
             $result = $stmt->get_result();
-            
+
             return $result->fetch_all(MYSQLI_ASSOC);
         }
         return FALSE;

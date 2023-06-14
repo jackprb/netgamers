@@ -1,6 +1,6 @@
 <?php 
-    $title = "Unexpected error";
-    $msg = "An error occurred. That's all.";
+    $title = "User not found - 404 Error";
+    $msg = "The user you are looking for does not exist. Maybe you followed an incorrect link.";
     
     if(isset($_GET['e'])){
         switch ($_GET['e']) {
@@ -15,6 +15,8 @@
                 break;
 
             default:
+                $title = "Unexpected error";
+                $msg = "An error occurred. That's all.";
                 break;
         }
     }

@@ -1,12 +1,12 @@
-            <?php 
+            <?php
                 $infoUser = array();
                 $id = -1;
                 if(isset($_GET['u']) && (int) $_GET['u'] > 0){
                     $infoUser = $dbh->getUserDataByID($_GET['u']);
                     $id = $_GET['u'];
-                    if (count($infoUser) == 0){ //utente non trovato -> mostra info di utente stesso
-                        $infoUser = $dbh->getUserDataByID($_SESSION['userID']);
-                        $id = $_SESSION['userID'];  
+                    if (count($infoUser) == 0){
+                        require 'error.php';
+                        exit();
                     }
                 } else {
                     $infoUser = $dbh->getUserDataByID($_SESSION['userID']);
@@ -32,7 +32,8 @@
                         <?php else: ?>
                         <h2 class="h4 mb-0">User profile</h2>
                         <form class="ms-auto" method="post" action="<?php ?>">
-                            <a class="btn btn-sm btn-primary" href="#">
+                            <input type="hidden" name="userID" id="userID" value="<?php echo $_GET['u']; ?>" />
+                            <a class="btn btn-sm btn-primary" id="followButton" href="#">
                                 <i class="ai-user-plus ms-n1 me-2"></i>Follow
                             </a>
                         </form>

@@ -3,9 +3,11 @@ require '../CONFIG.php';
 
 if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "GET"){ // se utente è loggato e se c'è invio con GET
 
-    $userToUnfollow = $dbh->removeFollow($_SESSION['userID'], $userIdFollowed);
+    if(isset($_GET['u']) && $_GET['u'] > 0){ // se specificato id di utente da non seguire più
+        $userToUnfollow = $dbh->removeFollow($_SESSION['userID'], $_GET['u']);
 
-    header('Content-Type: application/json');
-    echo json_encode($notificationToRead);
+        header('Content-Type: application/json');
+        echo json_encode($userToUnfollow);
+    }
 }
 ?>

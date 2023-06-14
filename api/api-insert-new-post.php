@@ -4,9 +4,6 @@ require_once '../utils/functions.php';
 
 if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "POST"){  // se utente è loggato e se c'è invio con POST
 
-    echo "POST:"; print_r($_POST);
-    echo "FILES:"; print_r($_FILES);
-
     if(isImageChosen()){ // post con immagine
         if(areFieldsSetPostImage()){
             // uploads image in UPLOAD_POSTIMG_DIR
@@ -50,12 +47,12 @@ if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "POST"){  // se utente è l
 } 
 
 function isImageChosen(){
-    return isset($_FILES["postImg"]) && isset($_FILES["postImg"]) && $_FILES["postImg"]["error"] == 0;
+    return isset($_FILES["postImg"]) && $_FILES["postImg"]["error"] == 0;
 }
 
 function areFieldsSetPostImage(){
     return isset($_POST["title"], $_POST["content"], $_POST["altText"], $_POST["longDesc"]) && strlen($_POST["title"]) > 0
-    && strlen($_POST["content"]) > 0 && strlen($_POST["altText"]) > 10 && strlen($_POST["longDesc"]) > 20;
+        && strlen($_POST["content"]) > 0 && strlen($_POST["altText"]) > 10 && strlen($_POST["longDesc"]) > 20;
 }
 
 function areFieldsSetPostNOimage(){
