@@ -60,7 +60,7 @@ class DatabaseHelper{
         $type = 'NPOSTFEED';
         $dstUsers = $this->getFollowers($userId);
         for ($i=0; $i < count($dstUsers); $i++) { 
-            $err = $err || $this->sendNotification($userId, $dstUsers[i]['userFollowing'], $type);
+            $err = $err || $this->sendNotification($userId, $dstUsers[$i]['userFollowing'], $type);
         }
         return $err;
     }
