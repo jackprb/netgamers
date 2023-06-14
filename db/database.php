@@ -65,7 +65,7 @@ class DatabaseHelper{
         return $err;
     }
 
-    public function sendNotification($SrcUserId, $DstUserId, $notifyType, $content='content'){
+    public function sendNotification($SrcUserId, $DstUserId, $notifyType, $content=''){
         $err = FALSE;
         $res = $this->getNotificationSettings($DstUserId);
         if($res !== FALSE){
@@ -88,6 +88,15 @@ class DatabaseHelper{
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }  
+
+    public function getUsernameFromPost($postID){
+        $query = "SELECT users.username FROM users JOIN posts ON posts.usersID = users.ID WHERE posts.ID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $postID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    } 
 
     public function getUserIdFromComment($commentID){
         $query = "SELECT userID FROM comments WHERE ID = ?";
@@ -185,7 +194,8 @@ class DatabaseHelper{
         $stmt->execute();
         $DstUserId = $this->getUserIdFromComment($commentID);
         $type = 'NLIKECOMMENT';
-        $content = $this->getTitleOfPost($this->getPostIDofComment($commentId));
+        $postID = $this->getPostIDofComment($commentId);
+        $content = $this->getTitleOfPost($postID) . ' of the user: ' . $this->getUsernameFromPost($postID);
         return $stmt->errno && $this->sendNotification($SrcUserId, $DstUserId, $type, $content);
     }
 
