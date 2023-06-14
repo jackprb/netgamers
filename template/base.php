@@ -289,8 +289,6 @@
         <script src="js/themeChange.js"></script>
 
         <?php
-        $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js","./api/js/get_notifications.js",
-            "./api/js/read_notification.js", "./api/js/follow-manager.js");
         if(isset($templateParams["js"])):
             foreach($templateParams["js"] as $script):
         ?>
