@@ -60,18 +60,18 @@ class DatabaseHelper{
         $type = 'NPOSTFEED';
         $dstUsers = $this->getFollowers($userId);
         for ($i=0; $i < count($dstUsers); $i++) { 
-            $err = $err || $this->sendNotification($userId, $dstUsers[$i]['userFollowing'], $type);
+            $err = $err || $this->sendNotification($userId, $dstUsers[$i]['userFollowing'], $type, $title);
         }
         return $err;
     }
 
-    public function sendNotification($SrcUserId, $DstUserId, $notifyType){
+    public function sendNotification($SrcUserId, $DstUserId, $notifyType, $content='content'){
         $err = FALSE;
         $res = $this->getNotificationSettings($DstUserId);
         if($res !== FALSE){
             for ($j=0; $j < count($res); $j++) { 
                 if($res[$j]['type'] == $notifyType && $res[$j]['value'] == TRUE){
-                    $err = $err || $this->newNotification($SrcUserId, $DstUserId, $notifyType, 'content');
+                    $err = $err || $this->newNotification($SrcUserId, $DstUserId, $notifyType, $content);
                 }
             }
         }else{
@@ -97,6 +97,24 @@ class DatabaseHelper{
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }  
+
+    public function getTitleOfPost($postId){
+        $query = "SELECT title FROM posts WHERE ID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $postID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }  
+
+    public function getPostIDofComment($commentId){
+        $query = "SELECT postID FROM comments WHERE ID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $commentId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }  
     
     public function newComment($SrcUserId, $postId, $img, $text){
         $query = "INSERT INTO comments VALUES (?, ?, ?, ?, ?)";
@@ -107,7 +125,8 @@ class DatabaseHelper{
         $stmt->execute();
         $type = 'NCOMMENT';
         $DstUserId = $this->getUserIdFromPost($postId);
-        return $stmt->errno && $this->sendNotification($SrcUserId, $DstUserId, $type);
+        $content = $this->getTitleOfPost($postId);
+        return $stmt->errno && $this->sendNotification($SrcUserId, $DstUserId, $type, $content);
     }
     
     public function modifyComment($userId, $postId, $img, $text){
@@ -151,21 +170,23 @@ class DatabaseHelper{
     public function newLikeToPost($SrcUserId, $postID){
         $query = "INSERT INTO `user_like_post`(`postID`, `userID`) VALUES (?, ?)";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('sssii', $postID, $SrcUserId);
+        $stmt->bind_param('ii', $postID, $SrcUserId);
         $stmt->execute();
-        $DstUserId = getUserIdFromPost($postID);
+        $DstUserId = $this->getUserIdFromPost($postID);
         $type = 'NLIKEPOST';
-        return $stmt->errno && $this->sendNotification($SrcUserId, $DstUserId, $type);
+        $content = $this->getTitleOfPost($postId);
+        return $stmt->errno && $this->sendNotification($SrcUserId, $DstUserId, $type, $content);
     }
 
     public function newLikeToComment($SrcUserId, $commentID){
-        $query = "INSERT INTO `user_like_post`(`postID`, `userID`) VALUES (?, ?)";
+        $query = "INSERT INTO `user_like_comment`(`commentID`, `userID`) VALUES (?, ?)";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('sssii', $commentID, $SrcUserId);
+        $stmt->bind_param('ii', $commentID, $SrcUserId);
         $stmt->execute();
-        $DstUserId = getUserIdFromComment($commentID);
+        $DstUserId = $this->getUserIdFromComment($commentID);
         $type = 'NLIKECOMMENT';
-        return $stmt->errno && $this->sendNotification($SrcUserId, $DstUserId, $type);
+        $content = $this->getTitleOfPost($this->getPostIDofComment($commentId));
+        return $stmt->errno && $this->sendNotification($SrcUserId, $DstUserId, $type, $content);
     }
 
     public function NotificationsToRead($DstUserId){
