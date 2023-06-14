@@ -60,18 +60,18 @@ class DatabaseHelper{
         $type = 'NPOSTFEED';
         $dstUsers = $this->getFollowers($userId);
         for ($i=0; $i < count($dstUsers); $i++) { 
-            $err = $err || $this->sendNotification($userId, $dstUsers[i]['userFollowing'], $type)
+            $err = $err || $this->sendNotification($userId, $dstUsers[$i]['userFollowing'], $type, $title);
         }
         return $err;
     }
 
-    public function sendNotification($SrcUserId, $DstUserId, $notifyType){
+    public function sendNotification($SrcUserId, $DstUserId, $notifyType, $content=''){
         $err = FALSE;
         $res = $this->getNotificationSettings($DstUserId);
         if($res !== FALSE){
             for ($j=0; $j < count($res); $j++) { 
                 if($res[$j]['type'] == $notifyType && $res[$j]['value'] == TRUE){
-                    $err = $err || $this->newNotification($SrcUserId, $DstUserId, $notifyType, 'content');
+                    $err = $err || $this->newNotification($SrcUserId, $DstUserId, $notifyType, $content);
                 }
             }
         }else{
@@ -81,9 +81,45 @@ class DatabaseHelper{
     }
 
     public function getUserIdFromPost($postID){
-        $query = "SELECT `userID` FROM `posts` WHERE ID = ?";
+        $query = "SELECT userID FROM posts WHERE ID = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $postID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }  
+
+    public function getUsernameFromPost($postID){
+        $query = "SELECT users.username FROM users JOIN posts ON posts.usersID = users.ID WHERE posts.ID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $postID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    } 
+
+    public function getUserIdFromComment($commentID){
+        $query = "SELECT userID FROM comments WHERE ID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $commentID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }  
+
+    public function getTitleOfPost($postId){
+        $query = "SELECT title FROM posts WHERE ID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $postID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }  
+
+    public function getPostIDofComment($commentId){
+        $query = "SELECT postID FROM comments WHERE ID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $commentId);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
@@ -98,7 +134,8 @@ class DatabaseHelper{
         $stmt->execute();
         $type = 'NCOMMENT';
         $DstUserId = $this->getUserIdFromPost($postId);
-        return $stmt->errno && sendNotification($SrcUserId, $DstUserId, $type);
+        $content = $this->getTitleOfPost($postId);
+        return $stmt->errno && $this->sendNotification($SrcUserId, $DstUserId, $type, $content);
     }
     
     public function modifyComment($userId, $postId, $img, $text){
@@ -114,10 +151,10 @@ class DatabaseHelper{
     public function newFollow($userIdFollowing, $userIdFollowed){
         $query = "SELECT * FROM follow WHERE userFollowing = ? and userFollowed = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ss', $userIdFollowing, $userIdFollowed);
+        $stmt->bind_param('ii', $userIdFollowing, $userIdFollowed);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-        
+
         if(count($result) == 0){ //userFollowing does not already follow userFollowed
             $query = "INSERT INTO follow VALUES (?, ?)";
             $stmt = $this->db->prepare($query);
@@ -138,7 +175,30 @@ class DatabaseHelper{
         $stmt->execute();
         return $stmt->errno;
     }
-    
+
+    public function newLikeToPost($SrcUserId, $postID){
+        $query = "INSERT INTO `user_like_post`(`postID`, `userID`) VALUES (?, ?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii', $postID, $SrcUserId);
+        $stmt->execute();
+        $DstUserId = $this->getUserIdFromPost($postID);
+        $type = 'NLIKEPOST';
+        $content = $this->getTitleOfPost($postId);
+        return $stmt->errno && $this->sendNotification($SrcUserId, $DstUserId, $type, $content);
+    }
+
+    public function newLikeToComment($SrcUserId, $commentID){
+        $query = "INSERT INTO `user_like_comment`(`commentID`, `userID`) VALUES (?, ?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii', $commentID, $SrcUserId);
+        $stmt->execute();
+        $DstUserId = $this->getUserIdFromComment($commentID);
+        $type = 'NLIKECOMMENT';
+        $postID = $this->getPostIDofComment($commentId);
+        $content = $this->getTitleOfPost($postID) . ' of the user: ' . $this->getUsernameFromPost($postID);
+        return $stmt->errno && $this->sendNotification($SrcUserId, $DstUserId, $type, $content);
+    }
+
     public function NotificationsToRead($DstUserId){
         $query = "SELECT notifications.*, users.username, profile_images.`path`, profile_images.altText, profile_images.longdesc 
             FROM notifications JOIN users ON notifications.userSrc = users.ID JOIN profile_images ON users.userImg = profile_images.ID 
@@ -301,7 +361,7 @@ class DatabaseHelper{
             $stmt = $this->db->prepare($query);
             $stmt->execute();
             $result = $stmt->get_result();
-
+            
             return $result->fetch_all(MYSQLI_ASSOC);
         }
         return FALSE;

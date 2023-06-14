@@ -214,7 +214,7 @@
                     <div class="nav align-items-center order-sm-2">
                         <?php if(isset($_SESSION["userID"])): ?>
                         <div class="dropdown nav d-block">
-                            <a class="nav-link position-relative p-2" href="#" data-bs-toggle="dropdown" aria-expanded="false" onclick="getNotifications();">
+                            <a class="nav-link position-relative p-2" href="#" aria-expanded="false" onclick="getNotifications();">
                                 <div class="dropdown-toggle">
                                     <i class="ai-bell"></i><span id="totalNotification" class="badge bg-primary ms-2"></span>
                                 </div>
@@ -251,6 +251,9 @@
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAccount">Account</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="newpost.php" class="nav-link">New Post</a>
                             </li>
                         </ul>
                     </nav>
