@@ -56,45 +56,85 @@ class DatabaseHelper{
         $data = date('Y-m-d H:i:s');
         $stmt->bind_param('ssssi', $img, $title, $text, $data, $userId);
         $stmt->execute();
-        $result = $stmt->get_result();
-        return $stmt->errno;
+        $err = $stmt->errno;
+        $type = 'NPOSTFEED';
+        $dstUsers = $this->getFollowers($userId);
+        for ($i=0; $i < count($dstUsers); $i++) { 
+            $err = $err || $this->sendNotification($userId, $dstUsers[i]['userFollowing'], $type)
+        }
+        return $err;
     }
+
+    public function sendNotification($SrcUserId, $DstUserId, $notifyType){
+        $err = FALSE;
+        $res = $this->getNotificationSettings($DstUserId);
+        if($res !== FALSE){
+            for ($j=0; $j < count($res); $j++) { 
+                if($res[$j]['type'] == $notifyType && $res[$j]['value'] == TRUE){
+                    $err = $err || $this->newNotification($SrcUserId, $DstUserId, $notifyType, 'content');
+                }
+            }
+        }else{
+            $err = TRUE;
+        }
+        return $err;
+    }
+
+    public function getUserIdFromPost($postID){
+        $query = "SELECT `userID` FROM `posts` WHERE ID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $postID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }  
     
-    public function newComment($userId, $postId, $img, $text){
+    public function newComment($SrcUserId, $postId, $img, $text){
         $query = "INSERT INTO comments VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
         $img = 'helloooo';
-        $stmt->bind_param('sssss', $img, $text, date('Y-m-d H:i:s'), $userId, $postId);
+        $data = date('Y-m-d H:i:s');
+        $stmt->bind_param('sssii', $img, $text, $data, $SrcUserId, $postId);
         $stmt->execute();
-        $result = $stmt->get_result();
-        return $stmt->errno;
+        $type = 'NCOMMENT';
+        $DstUserId = $this->getUserIdFromPost($postId);
+        return $stmt->errno && sendNotification($SrcUserId, $DstUserId, $type);
     }
     
     public function modifyComment($userId, $postId, $img, $text){
         $query = "UPDATE comments SET img = ?, text = ?, dateTime = ? WHERE userID = ? AND postID = ?";
         $stmt = $this->db->prepare($query);
         $img = 'helloooo';
-        $stmt->bind_param('sssss', $img, $text, date('Y-m-d H:i:s'), $userId, $postId);
+        $data = date('Y-m-d H:i:s');
+        $stmt->bind_param('sssii', $img, $text, $data, $userId, $postId);
         $stmt->execute();
-        $result = $stmt->get_result();
         return $stmt->errno;
     }
     
     public function newFollow($userIdFollowing, $userIdFollowed){
-        $query = "INSERT INTO follow VALUES (?, ?)";
+        $query = "SELECT * FROM follow WHERE userFollowing = ? and userFollowed = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ii', $userIdFollowing, $userIdFollowed);
         $stmt->execute();
-        $result = $stmt->get_result();
-        return $stmt->errno;
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        if(count($result) == 0){ //userFollowing does not already follow userFollowed
+            $query = "INSERT INTO follow VALUES (?, ?)";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('ii', $userIdFollowing, $userIdFollowed);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $type = 'NFOLLOWER';
+            return $stmt->errno && $this->sendNotification($userIdFollowing, $userIdFollowed, $type);
+        }
+        return FALSE;
     }
 
     public function newNotification($SrcUserId, $DstUserId, $type, $content){
         $query = "INSERT INTO notifications (content, `type`, dateTimeCreated, userSrc, userDest) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('sssii', $content, $type, date('Y-m-d H:i:s'), $SrcUserId, $DstUserId);
+        $data = date('Y-m-d H:i:s');
+        $stmt->bind_param('sssii', $content, $type, $data, $SrcUserId, $DstUserId);
         $stmt->execute();
-        $result = $stmt->get_result();
         return $stmt->errno;
     }
     
@@ -115,7 +155,6 @@ class DatabaseHelper{
         $date = date('Y-m-d H:i:s');
         $stmt->bind_param('si', $date, $notificationID);
         $stmt->execute();
-        $result = $stmt->get_result();
         return $stmt->errno;
     }
     
@@ -124,7 +163,6 @@ class DatabaseHelper{
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ii', $userIdFollowing, $userIdFollowed);
         $stmt->execute();
-        $result = $stmt->get_result();
         return $stmt->errno;
     }
 
@@ -190,9 +228,9 @@ class DatabaseHelper{
         $query = "UPDATE posts SET img = ?, title = ?, `text` = ?, dateTimePublished = ? WHERE ID = ?";
         $stmt = $this->db->prepare($query);
         $img = 'helloooo';
-        $stmt->bind_param('ssssi', $img, $title, $text, date('Y-m-d H:i:s'), $postId);
+        $data = date('Y-m-d H:i:s');
+        $stmt->bind_param('ssssi', $img, $title, $text, $data, $postId);
         $stmt->execute();
-        $result = $stmt->get_result();
         return $stmt->errno;
     } 
     
@@ -201,7 +239,6 @@ class DatabaseHelper{
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ss', $email, $username);
         $stmt->execute();
-        $result = $stmt->get_result();
         return $stmt->errno;
     }   
     
@@ -210,7 +247,6 @@ class DatabaseHelper{
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $username);
         $stmt->execute();
-        $result = $stmt->get_result();
         return $stmt->errno;
     }   
     
@@ -243,16 +279,14 @@ class DatabaseHelper{
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('s', $username);
         $stmt->execute();
-        $result = $stmt->get_result();
         return $stmt->errno;
     }
 
     public function updateUserImg($username, $imgID){
         $query = "UPDATE users SET userImg = ? WHERE username = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ss', $imgID, $username);
+        $stmt->bind_param('is', $imgID, $username);
         $stmt->execute();
-        $result = $stmt->get_result();
         return $stmt->errno;
     }   
 
@@ -261,7 +295,6 @@ class DatabaseHelper{
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('sss', $imgPath, $altText, $longdesc);
         $stmt->execute();
-        $result = $stmt->get_result();
         if($stmt->errno == 0){
             $query = "SELECT MAX(ID) as ID FROM profile_images";
             $stmt = $this->db->prepare($query);
@@ -278,7 +311,6 @@ class DatabaseHelper{
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('sss', $imgPath, $altText, $longdesc);
         $stmt->execute();
-        $result = $stmt->get_result();
         if($stmt->errno == 0){
             $query = "SELECT MAX(ID) as ID FROM post_images";
             $stmt = $this->db->prepare($query);
@@ -305,7 +337,6 @@ class DatabaseHelper{
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ss', $newPsw, $username);
         $stmt->execute();
-        $result = $stmt->get_result();
         return $stmt->errno; // 0 -> no errors
     }
     
@@ -318,7 +349,7 @@ class DatabaseHelper{
         $ok = TRUE;
         foreach ($settings as $type => $value) {
             $stmt = $this->db->prepare($query);
-            $stmt->bind_param('sss', $type, $userId, $value);
+            $stmt->bind_param('sis', $type, $userId, $value);
             $stmt->execute();
             $result = $stmt->get_result()->errno;
             if($result != 0){
@@ -348,9 +379,6 @@ class DatabaseHelper{
     }
 
     public function getNotificationSettings($userId){
-        $settings = array("NFOLLOWER" => FALSE, "NCOMMENT" => FALSE, "NPOSTFEED" => FALSE, "NLIKEPOST" => FALSE, 
-                    "NLIKECOMMENT" => FALSE);
-        
         $query = "SELECT `type`, `value` FROM preferences WHERE userID = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $userId);
