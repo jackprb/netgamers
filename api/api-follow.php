@@ -6,8 +6,10 @@ if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "GET"){ // se utente è log
     if(isset($_GET['u']) && $_GET['u'] > 0){ // se specificato id di utente da seguire
         $userToFollow = $dbh->newFollow($_SESSION['userID'], $_GET['u']);
 
-        header('Content-Type: application/json');
-        echo json_encode($userToFollow);
+        if($userToFollow === FALSE){
+            header('Content-Type: application/json');
+            echo json_encode($userToFollow);
+        }
     }
 }
 ?>

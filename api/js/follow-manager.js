@@ -1,19 +1,25 @@
 let btnFollow = document.querySelector("#followButton");
 let currUserID = document.querySelector("#userID");
 
-btnFollow.addEventListener("click", function(){
-    textButtonChanger(currUserID);
-});
+if(btnFollow != null){
+    btnFollow.addEventListener("click", function(){
+        if(currUserID != null){
+            textButtonChanger(currUserID.value);
+        }
+    });
+}
 
 function unfollow(IDUser){
     axios.get('api/api-unfollow.php?u=' +IDUser).then(response=>{
-        console.log("unfollow: " + response.data);
+        getFollowers();
+        getFollowed(); 
     });
 }
 
 function follow(IDUser){
     axios.get('api/api-follow.php?u='+IDUser).then(response=>{
-        console.log("follow: " + response.data);
+        getFollowers();
+        getFollowed(); 
     });
 }
 

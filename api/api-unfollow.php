@@ -6,8 +6,10 @@ if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "GET"){ // se utente è log
     if(isset($_GET['u']) && $_GET['u'] > 0){ // se specificato id di utente da non seguire più
         $userToUnfollow = $dbh->removeFollow($_SESSION['userID'], $_GET['u']);
 
-        header('Content-Type: application/json');
-        echo json_encode($userToUnfollow);
+        if($userToUnfollow === FALSE){
+            header('Content-Type: application/json');
+            echo json_encode($userToUnfollow);
+        }
     }
 }
 ?>
