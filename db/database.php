@@ -125,28 +125,45 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }  
 
-    public function searchPostByTitle($title){
-        $query = "SELECT * FROM posts WHERE title LIKE '%?%'";
+    public function searchPostWithImgByTitle($title){
+        $query = "SELECT posts.userID, posts.title, post_images.`path`, post_images.`altText` FROM posts JOIN post_images 
+        ON posts.img = post_images.ID WHERE title LIKE '%$title%'";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('s', $title);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function searchPostByContent($content){
-        $query = "SELECT * FROM posts WHERE text LIKE '%?%'";
+    public function searchPostWithOutImgByTitle($title){
+        $query = "SELECT userID, title, `text` FROM posts WHERE title LIKE '%$title%' AND img = NULL";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('s', $content);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function searchPostWithImgByContent($content){
+        $query = "SELECT posts.userID, posts.title, post_images.`path`, post_images.`altText` FROM posts JOIN post_images 
+                    ON posts.img = post_images.ID WHERE posts.`text` LIKE '%$content%';";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function searchPostWithOutImageByContent($content){
+        $query = "SELECT userID, title, `text` FROM posts WHERE `text` LIKE '%$content%' AND img = NULL";
+        $stmt = $this->db->prepare($query);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public function searchUserByUsername($username){
-        $query = "SELECT * FROM users WHERE `text` LIKE '%?%'";
+        $query = "SELECT users.ID, username, `path`, `altText` FROM users JOIN `profile_images` 
+                    ON users.userImg = `profile_images`.ID 
+                    WHERE username LIKE '%$username%' AND users.active = 1 ";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('s', $username);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);

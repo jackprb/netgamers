@@ -12,12 +12,12 @@ if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "GET"){ // se utente è log
                 break;
 
             case 'postTitle':
-                $res = $dbh->searchPostWithImgByTitle($_GET['searchI']);
-
+                $res = $dbh->searchPostWithOutImgByTitle($_GET['searchI']);
+                
                 break;
                 
             case 'postContent':
-                $res = $dbh->searchPostWithImgByContent($_GET['searchI']);
+                $res = $dbh->searchPostWithOutImageByContent($_GET['searchI']);
                 break;
 
             default:
