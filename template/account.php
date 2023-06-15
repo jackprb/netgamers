@@ -1,6 +1,9 @@
             <?php
                 $res = $dbh->getNotificationSettings($_SESSION["userID"]);
                 $userImg = $dbh->getUserImg($_SESSION["username"]);
+                $allInfoUser = $dbh->getAllUserData($_SESSION["userID"]);
+
+                print_r($allInfoUser);
 
                 $arr = array();
                 for ($i=0; $i < count($res); $i++) { 
@@ -97,11 +100,11 @@
                     <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
                         <div class="col-12 col-sm-12 col-md-6">
                             <label class="form-label" for="name">Name</label>
-                            <input class="form-control" type="text" value="name" id="name">
+                            <input class="form-control" type="text" name="name" id="name" placeholder="Type your name">
                         </div>
                         <div class="col-12 col-sm-12 col-md-6">
                             <label class="form-label" for="surname">Surname</label>
-                            <input class="form-control" type="text" value="surname" id="surname">
+                            <input class="form-control" type="text" name="surname" id="surname" placeholder="Type your surname">
                         </div>
                         <div class="col-12 col-sm-6">
                             <label class="form-label" for="country">Country</label>
@@ -111,9 +114,9 @@
                             </select>
                         </div>
                         <div class="col-12 col-sm-6">
-                            <label class="form-label" for="language">Language</label>
+                            <label class="form-label" for="language">Your main language</label>
                             <select class="form-select" id="language" name="language">
-                                <option value="" selected disabled>Select language</option>
+                                <option value="" selected disabled>Select your main language</option>
                                 <option value="English">English</option>
                                 <option value="Italiano">Italiano</option>
                             </select>
@@ -215,8 +218,6 @@
                     <div class="d-flex align-items-center pb-4 mt-sm-n1 mb-0 mb-lg-1 mb-xl-3">
                         <i class="ai-bell text-primary lead pe-1 me-2"></i>
                         <h2 class="h4 mb-0">Notifications</h2>
-                        <button class="btn btn-sm btn-primary ms-auto" type="button" data-bs-toggle="checkbox" 
-                            data-bs-target="#checkboxList">Toggle all</button>
                     </div>
                     <form action="<?php echo getApiPath('api-notification-preferences.php'); ?>" method="post">
                         <?php if(isset($_GET["n"]) && $_GET["n"] == 0): ?>
@@ -236,7 +237,6 @@
                                 <input class="form-check-input flex-shrink-0" type="checkbox" <?php getStatus("NFOLLOWER", $arr); ?> id="NFOLLOWER" name="NFOLLOWER" />
                                 <label class="form-check-label ps-3 ps-sm-4" for="NFOLLOWER">
                                     <span class="h6 d-block mb-2">New follower notifications <span class="badge bg-info">Active by default</span></span>
-                                    
                                     <span class="fs-sm text-muted">Send a notification when someone starts following me.</span>
                                 </label>
                             </div>

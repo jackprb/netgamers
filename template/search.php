@@ -1,5 +1,5 @@
         <section id="search" class="mt-5 mx-sm-1">
-            <form method="get" action="getSearchResult(searchI);">
+            <form method="get" onsubmit="getSearchResult(searchI);">
                 <div class="row justify-content-center text-center">
                     <div class="col-12 col-sm-12 col-md-6">
                         <label class="form-label fs-lg" for="search">Search</label>
