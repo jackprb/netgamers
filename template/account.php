@@ -139,6 +139,26 @@
                                     <option value="" selected disabled>Select your main language</option>
                                     <option value="English">English</option>
                                     <option value="Italiano">Italiano</option>
+                                    <option value="Espanol">Español</option>
+                                    <option value="Francais">Français</option>
+                                    <option value="Deutsch">Deutsch</option>
+                                    <option value="Portugues">Português</option>
+                                    <option value="Nederlands">Nederlands</option>
+                                    <option value="Russian">Русский</option>
+                                    <option value="Giapponese">日本語</option>
+                                    <option value="CineseS">简体中文</option>
+                                    <option value="Coreano">한국어</option>
+                                    <option value="Arabo">العربية</option>
+                                    <option value="Svenska">Svenska</option>
+                                    <option value="Norsk">Norsk</option>
+                                    <option value="Dansk">Dansk</option>
+                                    <option value="Suomi">Suomi</option>
+                                    <option value="Polski">Polski</option>
+                                    <option value="Ceco">Čeština</option>
+                                    <option value="Magyar">Magyar</option>
+                                    <option value="Rumeno">Română</option>
+                                    <option value="Greco">Ελληνικά</option>
+                                    <option value="Turco">Türkçe</option>
                                 </select>
                             </div>
                             <div class="col-12 col-sm-12 col-md-6">
@@ -149,7 +169,6 @@
                                 <label class="form-label" for="bio">Bio</label>
                                 <textarea class="form-control" rows="5" placeholder="Add a bio" id="bio" name="bio"><?php echo $allInfoUser[0]['bio']; ?></textarea>
                             </div>
-                            
                             <div class="col-12 d-flex justify-content-end pt-3">
                                 <input type="submit" class="btn btn-primary ms-3" value="Save changes" name="submit"/>
                             </div>

@@ -123,5 +123,5 @@ specifico per ogni personas
 ## Istruzioni
 + Copia il folder in xxamp/htdocs/
 + Copia il contenuto del file ** in DBMS
-+ Connettiti a localhost\netgamers
++ Connettiti a localhost/netgamers/login.php
 + Registrati o fai LogIn
