@@ -1,11 +1,10 @@
 <?php
 require '../CONFIG.php';
 
-if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "GET"){ // se utente è loggato 
+if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "GET"){ // se utente è loggato e se c'è invio con GET
     
+    $res = array();
     if(isAllSet()){
-        $res = array();
-
         switch ($_GET['searchType']) {
             case 'username':
                 $res = $dbh->searchUserByUsername($_GET['searchI']);
@@ -22,11 +21,10 @@ if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "GET"){ // se utente è log
 
             default:
                 break;
-        }
-        
-        header('Content-Type: application/json');
-        echo json_encode($res);
+        }    
     }
+    header('Content-Type: application/json');
+    echo json_encode($res);
 }
 
 function isAllSet(){
