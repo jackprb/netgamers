@@ -349,14 +349,6 @@ class DatabaseHelper{
         return $stmt->errno;
     } 
     
-    public function updateUserEmail($username, $email){
-        $query = "UPDATE users SET email = ? WHERE username = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ss', $email, $username);
-        $stmt->execute();
-        return $stmt->errno;
-    }   
-    
     public function standbyAccount($username){
         $query = "UPDATE users SET active = 0 WHERE username = ?";
         $stmt = $this->db->prepare($query);
@@ -538,6 +530,23 @@ class DatabaseHelper{
         if($resultCheckEmail != 0){ // if this username is already taken
             return "emailExist";
         }
+    }
+
+    public function getAllUserData($userID){
+        $query = "SELECT `email`, `name`, `surname`, `country`, `language`, `bio` from users WHERE ID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $userID);
+        $stmt->execute();
+        $result = $stmt->get_result();          
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function updateUserData($userID, $email, $name, $surname, $country, $language, $bio){
+        $query = "UPDATE `users` SET `email`=?, `name`=?, `surname`=?, `country`=?, `language`=?, `bio`=? WHERE ID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ssssssi', $email, $name, $surname, $country, $language, $bio, $userID);
+        $stmt->execute();
+        return $stmt->errno; // 0 -> no errors
     }
 }
 ?>
