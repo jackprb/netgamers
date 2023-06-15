@@ -216,7 +216,7 @@
                         <div class="dropdown nav d-block">
                             <a class="nav-link position-relative p-2" href="#" aria-expanded="false" onclick="getNotifications();">
                                 <div class="dropdown-toggle">
-                                    <i class="ai-bell"></i><span id="totalNotification" class="badge bg-primary ms-2"></span>
+                                    <i class="ai-bell fs-lg"></i><span id="totalNotification" class="badge bg-primary ms-2"></span>
                                 </div>
                             </a>
                             <div class="dropdown-menu">
@@ -247,13 +247,24 @@
                     <nav class="navbar-collapse collapse" id="menu">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="index.php">Home</a>
+                                <a class="nav-link" href="index.php" title="Home"><i class="ai-home fs-lg"></i>
+                                    <span class="nav-link d-sm-none ms-2">Home</span>
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAccount">Account</a>
+                                <a href="search.php" class="nav-link" title="Search"><i class="ai-search fs-lg"></i>
+                                    <span class="nav-link d-sm-none ms-2">Search</span>
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a href="newpost.php" class="nav-link">New Post</a>
+                                <a href="newpost.php" class="nav-link" title="New post"><i class="ai-square-plus fs-lg"></i>
+                                    <span class="nav-link d-sm-none ms-2">New post</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" title="Account" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAccount"><i class="ai-user fs-lg"></i>
+                                    <span class="nav-link d-sm-none ms-2">Account</span>
+                                </a>
                             </li>
                         </ul>
                     </nav>
