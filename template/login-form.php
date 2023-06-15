@@ -46,9 +46,7 @@
                     <div class="position-relative"><i class="ai-lock-closed fs-lg position-absolute top-50 start-0 translate-middle-y text-light opacity-80 ms-3"></i>
                         <div class="password-toggle">
                             <input class="form-control form-control-lg ps-5" type="password" placeholder="Password" id="password" name="password" required>
-                            <label class="password-toggle-btn" aria-label="Show/hide password">
-                                <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
-                            </label>
+                            
                         </div>
                     </div>
                 </div>
@@ -80,15 +78,11 @@
             </div>
             <div class="password-toggle mb-4">
                 <input class="form-control form-control-lg" type="password" placeholder="Password" required name="psw" id="psw">
-                <label class="password-toggle-btn" aria-label="Show/hide password">
-                    <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
-                </label>
+                
             </div>
             <div class="password-toggle mb-4">
                 <input class="form-control form-control-lg" type="password" placeholder="Confirm password" required name="confPsw" id="confPsw">
-                <label class="password-toggle-btn" aria-label="Show/hide password">
-                    <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
-                </label>
+                
             </div>
             <div class="alert alert-info d-flex my-3 my-sm-4">
                 <i class="ai-circle-info fs-xl me-2"></i>
