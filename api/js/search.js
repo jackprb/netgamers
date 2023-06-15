@@ -6,7 +6,6 @@ function createUsersSearchResult(search){
         for(let i=0; i < search.length; i++){
             // struttura della notifica
             let str = `
-<<<<<<< HEAD
             <li class="list-group-item">
                 <div class="card border-0 overflow-hidden">
                     <div class="row d-flex align-items-center">
@@ -19,18 +18,6 @@ function createUsersSearchResult(search){
                             </div>
                         </div>
                     </div>
-=======
-            <div class="toast fade show" role="alert" style="margin-bottom: 7%;" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
-                <div class="toast-header ${notifications[i][`type`][0]}">
-                    <i class="ai-bell fs-lg me-2"></i>
-                    <span class="fw-medium me-auto">${notifications[i][`type`][1]}</span>
-                    <button type="button" onclick="readNotification(${notifications[i]['ID']});" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="row">
-                    <div class="col-sm-5 col-md-4"><img class="userImg d-block rounded-circle mb-2 img-fluid" src = "./upload/userImages/${notifications[i][`path`]}" >
-                    </div>
-                    <div class="toast-body col-sm-7 col-md-8"><a href="profile.php?u=${notifications[i]['userSrc']}"><strong>${notifications[i]['username']}</strong></a>${notifications[i][`type`][2]}<strong>${notifications[i]['content']}</strong></div>
->>>>>>> 9d4366acf1030b0021b142a6814bdccdd753d90e
                 </div>
             </li>`;
             result += str;
@@ -41,10 +28,12 @@ function createUsersSearchResult(search){
 
 function createPostSearchResult(searchImg, searchNoImg){
     let result = "";
+    console.log(searchImg);
     if(searchImg.length > 0){
         result = `
         <p class="fs-sm">
-        With Image:`;
+        With Image:
+        <ul>`;
         for(let i=0; i < searchImg.length; i++){
             // struttura della notifica
             let str = `
@@ -65,12 +54,14 @@ function createPostSearchResult(searchImg, searchNoImg){
                 </li>`;
             result += str;
         }
-        result += `</p>`;
+        result += `</ul>
+        </p>`;
     }
     if(searchNoImg.length > 0){
-        result = `
+        result += `
             <p class="fs-sm">
-                With-Out Image:`;
+                With-Out Image:
+                <ul>`;
         for(let i=0; i < searchNoImg.length; i++){
             // struttura della notifica
             let str1 = `
@@ -82,7 +73,7 @@ function createPostSearchResult(searchImg, searchNoImg){
                             </div>
                             <div class="col-8 col-sm-8 ">
                                 <div class="card-body">
-                                    <p class="card-text"><strong>${searchNoImg[i]['title']}</strong></p>
+                                    <p class="card-text"><strong>${searchNoImg[i]['text']}</strong></p>
                                     <p class="card-text"><a href="profile.php?u=${searchNoImg[i]['ID']}"></a></p>
                                 </div>
                             </div>
@@ -91,14 +82,15 @@ function createPostSearchResult(searchImg, searchNoImg){
                 </li>`;
             result += str1;
         }
-        result += `</p>`;
+        result += `</ul>
+        </p>`;
     }
     return result;
 }
 
 document.querySelector("#searchBtn").addEventListener("click", function(){
-    let searchQuery = document.querySelector("#searchI").innerText;
-    let searchTypeRadios = document.getElementsByName("searchType").innerText; 
+    let searchQuery = document.getElementById("searchI").value;
+    let searchTypeRadios = document.getElementsByName("searchType"); 
     let searchType = "";
     for (let i = 0; i < searchTypeRadios.length; i++) {
         if (searchTypeRadios[i].checked){
@@ -115,30 +107,32 @@ function getTypeResult(){
     });
 }
 
-function getUserImagePath($filename){
-    return "./upload/userImages/" + $filename;
+function getUserImagePath(filename){
+    return "./upload/userImages/" + filename;
 }
 
-function getPostImagePath($filename){
-    return "./upload/postImages/" + $filename;
+function getPostImagePath(filename){
+    return "./upload/postImages/" + filename;
 }
 
-function getSearchResult(searchQuery){
+function getSearchResult(searchQuery, searchType){
     
-        if(getTypeResult() == 'username'){
-            axios.get('api/api-search.php?s='+ searchQuery).then(response => {
+        if(searchType == 'username'){
+            axios.get('api/api-search.php?searchI='+ searchQuery + '&searchType=' + searchType).then(response => {
                 srcList.innerHTML = createUsersSearchResult(response.data); 
             });
         }else{
-            let Img;
-            let noImg;
-            axios.get('api/api-search-noImg.php?s='+ searchQuery).then(response => {
-                noImg=response; 
+            let Img = [];
+            let noImg = [];
+            axios.get('api/api-search-noImg.php?searchI='+ searchQuery + '&searchType=' + searchType).then(response => {
+                noImg=response.data;
+                axios.get('api/api-search.php?searchI='+ searchQuery + '&searchType=' + searchType).then(response => {
+                    Img=response.data; 
+                    console.log(Img);
+                    srcList.innerHTML = createPostSearchResult(Img, noImg);
+                }); 
             });
-            axios.get('api/api-search.php?s='+ searchQuery).then(response => {
-                Img=response; 
-            });
-            srcList.innerHTML = createPostSearchResult(Img, noImg);
+
         }
    
 }
