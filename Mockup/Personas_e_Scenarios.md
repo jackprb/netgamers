@@ -122,7 +122,7 @@ specifico per ogni personas
 
 ## Istruzioni
 + Copia il folder in xxamp/htdocs/
-+ Copia il contenuto del file ** in DBMS
++ Copia il contenuto del file *createDatabase.sql* che si trova nella cartella db in DBMS
 + Connettiti a localhost/netgamers/login.php
 + Registrati o fai LogIn
 
