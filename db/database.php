@@ -192,12 +192,12 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
     
-    public function newComment($SrcUserId, $postId, $img, $text){
-        $query = "INSERT INTO comments VALUES (?, ?, ?, ?, ?)";
+    public function newComment($SrcUserId, $postId, $text){
+        $query = "INSERT INTO comments(`text`, `dateTime`, `userID`, `postID`) VALUES (?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
         $img = 'helloooo';
         $data = date('Y-m-d H:i:s');
-        $stmt->bind_param('sssii', $img, $text, $data, $SrcUserId, $postId);
+        $stmt->bind_param('ssii', $text, $data, $SrcUserId, $postId);
         $stmt->execute();
         $type = 'NCOMMENT';
         $DstUserId = $this->getUserIdFromPost($postId);
@@ -213,6 +213,17 @@ class DatabaseHelper{
         $stmt->bind_param('sssii', $img, $text, $data, $userId, $postId);
         $stmt->execute();
         return $stmt->errno;
+    }
+
+    public function getComments($postID){
+        $userId = $this->getUserIdFromPost($postId);
+        $query = "SELECT postID, `text`, `dateTime`, users.username FROM `comments` 
+                    JOIN users ON users.ID = ? WHERE comments.`postID` = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii', $userId,$postID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return  $result->fetch_all(MYSQLI_ASSOC);
     }
     
     public function newFollow($userIdFollowing, $userIdFollowed){

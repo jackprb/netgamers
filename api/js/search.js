@@ -115,13 +115,6 @@ function createPostSearchResult(searchImg, searchNoImg){
     return result;
 }
 
-function getTypeResult(){
-    axios.get('api/api-get-search-type.php').then(response => {
-        let typeRes = response.data;
-        return typeRes;
-    });
-}
-
 function getUserImagePath(filename){
     return "./upload/userImages/" + filename;
 }

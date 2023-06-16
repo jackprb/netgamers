@@ -40,17 +40,9 @@
                             <h2 class="pb-2 pb-lg-3 pb-xl-4">Leave a comment</h2>
                             <form class="g-4" novalidate>
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        <label class="form-label" for="c-name">Name</label>
-                                        <input class="form-control" type="text" placeholder="Your name" required id="c-name">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label class="form-label" for="c-email">Email</label>
-                                        <input class="form-control" type="email" placeholder="Your email" required id="c-email">
-                                    </div>
                                     <div class="col-12">
-                                        <label class="form-label" for="c-comment">Comment</label>
-                                        <textarea class="form-control" rows="4" placeholder="Type your comment here..." required id="c-comment"></textarea>
+                                        <label class="form-label" for="text">Comment</label>
+                                        <textarea class="form-control" rows="4" placeholder="Type your comment here..." required id="text"></textarea>
                                     </div>
                                     <div class="col-12">
                                         <button class="btn btn-primary" type="submit">Post a comment</button>

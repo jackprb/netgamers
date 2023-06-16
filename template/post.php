@@ -1,4 +1,15 @@
         <?php
+        function publishCommentMsg($code){
+            $msg[0] = "Comment published successfully.";
+            $msg[1] = "Comment not published: fill the required fields.";
+            $msg[2] = "An error occurred. Comment not published. Retry later.";
+            if($code == 0){
+                $type = "alert-success";
+            } else {
+                $type = "alert-danger";
+            }
+            return array($type, $msg[$code]);
+        }
         if (isset($_GET['p']) && $_GET['p'] > 0){
             $res = $dbh->getPostData($_GET['p']);
             if(count($res) != 0){ // post esiste
@@ -21,6 +32,14 @@
         ?>
         
         <section id="post" class="mt-5 mx-sm-1"> 
+            <?php if(isset($_GET["r"]) && $_GET["r"] >= 0 && $_GET["r"] <= 4): ?>
+            <div class="col-12">
+                <div class="alert <?php echo publishCommentMsg($_GET["r"])[0]; ?> alert-dismissible fade show" role="alert">
+                    <div><?php echo publishCommentMsg($_GET["r"])[1]; ?></div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            <?php endif; ?>
 
             <?php 
             if($res[0]['img'] != NULL) : /* post CON IMMAGINE */ ?> 
@@ -50,6 +69,35 @@
             </div>
             <?php endif; ?>
 
+        </section>
+        <section id="insertComment">
+            <div class="card border-0 pt-2 p-md-2 p-xl-3 p-xxl-4 mt-n3 mt-md-0">
+                <div class="card-body">
+                    <h2 class="pb-2 pb-lg-3 pb-xl-4">Leave a comment:</h2>
+                    <form class="g-4" method="POST" action="<?php echo getApiPath('api-insert-new-comment.php'); ?>">
+                        <div class="row">
+                            <div class="col-12">
+                                <input type = "hidden" value="<?php echo $_GET['p']; ?>" id="postId" name = "postId"/>
+                                <textarea class="form-control" rows="4" placeholder="Type your comment here..." required id="CommentText" name="CommentText"></textarea>
+                            </div>
+                            <div class="col-12 justify-content-end d-flex">
+                                <button class="btn btn-primary mt-4" type="submit">Post a comment</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section id="getComments">
+            <div class="card border-0 pt-2 p-md-2 p-xl-3 p-xxl-4 mt-n3 mt-md-0">
+                <div class="card-body">
+                    <h2 class="pb-2 pb-lg-3 pb-xl-4" id="commentsCount"></h2>
+                    <section class="row justify-content-center text-center">
+                        <ul class="list-group list-group-flush" id="commentsList">
+                        </ul>
+                    </section>
+                </div>
+            </div>
         </section>
 
         <div class="modal fade" id="modalText" tabindex="-1" role="dialog">
