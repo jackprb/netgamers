@@ -101,9 +101,10 @@
                             
                         </div>
                         
-                        <div class="card mt-5" style="display: flex; justify-content: center; align-items: center; white-space: pre-line; ">
-                            <?php echo $bio; ?>
-                            
+                        <div class="card" style="display: flex; justify-content: center; align-items: left; white-space: pre-line; ">
+                            <?php echo $bio."</br>"; ?>
+                            <div style="position: absolute; top: -12px; left: 40px; z-index: 1; color: #4999e9;">BIO</div>
+                        
                         </div>
                         
                     </div>
@@ -122,12 +123,15 @@
                                         }else{
                                             echo $value['text'];
                                         };
+                                        
                                         echo "</div>";
                                     echo "</div>";
                                 }
                                 
                              ?>
                             </div>
+                            <div style="position: absolute; top: -12px; left: 40px; z-index: 1; color: #4999e9;">POST</div>
+
                         </div>
                     </div>
                 </div>
