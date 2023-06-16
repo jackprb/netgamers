@@ -57,7 +57,16 @@
                             <i class="ai-edit ms-n1 me-2"></i>Edit info
                         </a>
                         <?php else: ?>
-                        <h2 class="h4 mb-0">User profile</h2>
+                        <h2 class="h4 mb-0"><?php 
+                                if ($name != NULL && $surname){
+                                    echo $name; 
+                                    echo ' ';
+                                    echo $surname;
+                                }else {
+                                    echo 'User Profile';
+                                }
+                                    
+                            ?></h2>
                         <div class="ms-auto">
                             <button class="btn btn-sm btn-primary" id="followButton" onclick="update();">
                                 <?php echo printFollowUnFollow($username, $followedLoggedinUser); ?>
