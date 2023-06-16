@@ -122,6 +122,14 @@ specifico per ogni personas
 
 ## Istruzioni
 + Copia il folder in xxamp/htdocs/
-+ Copia il contenuto del file ** in DBMS
++ Copia il contenuto del file *createDatabase.sql* che si trova nella cartella db in DBMS
 + Connettiti a localhost/netgamers/login.php
 + Registrati o fai LogIn
+
+
+Alcuni account già disponibili:
+TechWiz  	pw: Alex01!
+GameMaster 	pw: Emma01!
+PixelArtist pw: Luca01! 
+QuestSeeker pw: Sofia01!
+MobileGamer pw: Sara01!
