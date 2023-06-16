@@ -1,4 +1,24 @@
 let srcList = document.querySelector("#resultsList");
+let searchQuery = "";
+let searchType = "";
+document.addEventListener("keypress", handleKeyPress); // to search when enter is pressed
+
+function updateSearchData(){
+    searchQuery = document.getElementById("searchI").value;
+    let searchTypeRadios = document.getElementsByName("searchType");
+    for (let i = 0; i < searchTypeRadios.length; i++) {
+        if (searchTypeRadios[i].checked){
+            searchType = searchTypeRadios[i].value;
+        }
+    }
+    getSearchResult();
+}
+
+function handleKeyPress(event){
+    if(event.keyCode === 13){
+        updateSearchData();
+    }
+}
 
 function createUsersSearchResult(search){
     let result = "";
@@ -10,7 +30,7 @@ function createUsersSearchResult(search){
                 <div class="card border-0 overflow-hidden">
                     <div class="row d-flex align-items-center">
                         <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
-                            <img src="${getUserImagePath(search[i]['path'])}" class="img-fluid" alt="${search[i]['altText']}" />
+                            <img src="${getUserImagePath(search[i]['path'])}" class="img-fluid userImg" alt="${search[i]['altText']}" />
                         </div>
                         <div class="col-8 col-sm-8 ">
                             <div class="card-body">
@@ -22,6 +42,16 @@ function createUsersSearchResult(search){
             </li>`;
             result += str;
         }
+    } else {
+        let str = `
+        <li class="list-group-item">
+            <div class="card border-0 overflow-hidden">
+                <div class="card-body">
+                    <p class="card-text text-center">There are no users with this username '${searchQuery}'.</p>
+                </div>
+            </div>
+        </li>`;
+        result += str;
     }
     return result;
 }
@@ -56,7 +86,7 @@ function createPostSearchResult(searchImg, searchNoImg){
         }
         result += `</ul>
         </p>`;
-    }
+    } 
     if(searchNoImg.length > 0){
         result += `
             <p class="fs-sm">
@@ -85,20 +115,19 @@ function createPostSearchResult(searchImg, searchNoImg){
         result += `</ul>
         </p>`;
     }
+    if (searchNoImg.length == 0 && searchImg.length == 0){
+        let str = `
+        <li class="list-group-item">
+            <div class="card border-0 overflow-hidden">
+                <div class="card-body">
+                    <p class="card-text text-center">There are no posts that match your search criteria.</p>
+                </div>
+            </div>
+        </li>`;
+        result += str;
+    }
     return result;
 }
-
-document.querySelector("#searchBtn").addEventListener("click", function(){
-    let searchQuery = document.getElementById("searchI").value;
-    let searchTypeRadios = document.getElementsByName("searchType"); 
-    let searchType = "";
-    for (let i = 0; i < searchTypeRadios.length; i++) {
-        if (searchTypeRadios[i].checked){
-            searchType = searchTypeRadios[i].value;
-        }
-    }
-    getSearchResult(searchQuery, searchType);
-});
 
 function getTypeResult(){
     axios.get('api/api-get-search-type.php').then(response => {
@@ -115,8 +144,7 @@ function getPostImagePath(filename){
     return "./upload/postImages/" + filename;
 }
 
-function getSearchResult(searchQuery, searchType){
-    
+function getSearchResult(){
         if(searchType == 'username'){
             axios.get('api/api-search.php?searchI='+ searchQuery + '&searchType=' + searchType).then(response => {
                 srcList.innerHTML = createUsersSearchResult(response.data); 

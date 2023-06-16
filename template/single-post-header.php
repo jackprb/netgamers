@@ -4,7 +4,7 @@
                             <img class="img-fluid" src="" alt="" />
                         </div>
                         <div class="col-sm-8 col-md-10 mt-3">
-                            <h4 class="card-title text-center">Title here</h4>
+                            <h4 class="card-title text-center"><?php echo $res[0]['title']?></h4>
                         </div>
                     </div>
                 </div>

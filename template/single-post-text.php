@@ -2,20 +2,7 @@
             $hasImage = FALSE;
             ?>
             
-            <div class="card py-1 p-md-2 p-xl-3 mb-4">
-                <?php require 'single-post-header.php'; ?>
-                <div class="card-body">
-                    <p class="text-center text-muted">Published on 27-5-2023 11.00 by <a href="profile.php?u=">Username</a></p>
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean faucibus placerat sagittis. 
-                        Pellentesque dictum ante nisi, vel lacinia lacus ultricies eget. Sed quis lorem eget turpis imperdiet maximus. 
-                        In ligula lectus, fermentum quis sapien ut, vestibulum posuere ligula. Praesent eu rhoncus tellus, vitae varius
-                        enim. Donec sollicitudin nibh finibus metus volutpat rhoncus. Nunc interdum enim vel arcu fringilla blandit. 
-                        Nulla eu augue sit amet urna mollis gravida at at nibh. Morbi maximus diam vitae nisl varius fermentum.
-                    </p>
-                </div>
-                <?php require 'single-post-footer.php'; ?>
-            </div>
+            
 
             <?php if(isset($_GET['c']) && $_GET['c'] == 1): ?>
             <div class="card py-1 p-md-2 p-xl-3 mb-4">

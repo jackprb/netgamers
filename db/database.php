@@ -80,6 +80,15 @@ class DatabaseHelper{
         return $err;
     }
 
+    public function getPostData($postID){
+        $query = "SELECT * FROM posts WHERE posts.ID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $postID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }  
+
     public function getUserIdFromPost($postID){
         $query = "SELECT userID FROM posts WHERE ID = ?";
         $stmt = $this->db->prepare($query);
@@ -90,7 +99,7 @@ class DatabaseHelper{
     }  
 
     public function getUsernameFromPost($postID){
-        $query = "SELECT users.username FROM users JOIN posts ON posts.usersID = users.ID WHERE posts.ID = ?";
+        $query = "SELECT users.username FROM users JOIN posts ON posts.userID = users.ID WHERE posts.ID = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $postID);
         $stmt->execute();
