@@ -573,5 +573,26 @@ class DatabaseHelper{
         $stmt->execute();
         return $stmt->errno; // 0 -> no errors
     }
+
+    public function getFeedOfUser($userIdFollowing){
+        $query = "SELECT * from posts WHERE userID IN (
+                    SELECT userFollowed as userID FROM follow JOIN users 
+                        ON users.ID = follow.userFollowed WHERE follow.userFollowing = ? AND users.active=1) 
+                  ORDER BY dateTimePublished DESC;";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $userIdFollowing);
+        $stmt->execute();
+        $result = $stmt->get_result();          
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getAllPostOfUser($userID){
+        $query = "SELECT * from posts WHERE userID = ? ORDER BY dateTimePublished DESC";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $userID);
+        $stmt->execute();
+        $result = $stmt->get_result();          
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
 ?>
