@@ -20,6 +20,10 @@
                 $email = $infoUser['email'];
                 $imgPath = $infoUser['img']['path'];
                 $imgAltText = $infoUser['img']['altText'];
+                $bio = $infoUser['bio'];
+                $name = $infoUser['name'];
+                $surname = $infoUser['surname'];
+                $country = $infoUser['country'];
                 
                 $followers = $dbh->getFollowersList($id);
                 $followed = $dbh->getFollowedList($id);
@@ -39,7 +43,16 @@
                     <div class="d-flex align-items-center mt-sm-n1 pb-4 mb-0 mb-lg-1 mb-xl-3"><i class="ai-user text-primary lead pe-1 me-2"></i>
                     <input type="hidden" name="userID" id="userID" value="<?php echo $_GET['u']; ?>" />     
                     <?php if($_SESSION["userID"] == $id): ?>
-                        <h2 class="h4 mb-0">My profile</h2>
+                        <h2 class="h4 mb-0"><?php 
+                                if ($name != NULL && $surname){
+                                    echo $name; 
+                                    echo ' ';
+                                    echo $surname;
+                                }else {
+                                    echo 'My Profile';
+                                }
+                                    
+                            ?></h2>
                         <a class="btn btn-sm btn-primary ms-auto" href="account.php">
                             <i class="ai-edit ms-n1 me-2"></i>Edit info
                         </a>
@@ -65,8 +78,22 @@
                                 <a data-bs-toggle="modal" data-bs-target="#modalFollowed" href="#" class="followedCount"></a>
                             </p>
                             <p class="fs-sm"><i class="ai-mail me-1"></i><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></p>
-                            <i class="ai-map-pin me-1"></i>USA
+                            <p class="fs-sm"><?php 
+                                if ($country != NULL){
+                                    echo '<i class="ai-map-pin me-1"></i>' ;
+                                    echo $country;
+                                }
+                                    
+                            ?>
+                            </p>    
+                            
+                            
                         </div>
+                        <div>
+                    
+                            <p class="fs-sm"><?php echo $bio; ?></p>
+                        </div>
+                        
                     </div>
                     <div class="card mt-5">
                         <div class="card-body">

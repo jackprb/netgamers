@@ -29,7 +29,7 @@ class DatabaseHelper{
     }  
 
     public function getUserDataByID($userID){
-        $query = "SELECT ID, username, email FROM users WHERE active=1 AND ID = ?";
+        $query = "SELECT ID, username, email, bio, surname, `name`, country FROM users WHERE active=1 AND ID = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $userID);
         $stmt->execute();
@@ -47,6 +47,10 @@ class DatabaseHelper{
         $res['username'] = $tmp['username'];
         $res['email'] = $tmp['email'];
         $res['img'] = $this->getUserImgByUserID($userID);
+        $res['bio'] = $tmp['bio'];
+        $res['name'] = $tmp['name'];
+        $res['surname'] = $tmp['surname'];
+        $res['country'] = $tmp['country'];
         return $res;
     }
   
