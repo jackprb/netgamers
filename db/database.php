@@ -56,13 +56,13 @@ class DatabaseHelper{
         $data = date('Y-m-d H:i:s');
         $stmt->bind_param('isssi', $img, $title, $text, $data, $userId);
         $stmt->execute();
-        $err = $stmt->errno;
+        $err = $stmt->errno == 0 ? FALSE : TRUE;
         $type = 'NPOSTFEED';
         $dstUsers = $this->getFollowers($userId);
         for ($i=0; $i < count($dstUsers); $i++) { 
             $err = $err || $this->sendNotification($userId, $dstUsers[$i]['userFollowing'], $type, $title);
         }
-        return $err;
+        return !$err;
     }
 
     public function sendNotification($SrcUserId, $DstUserId, $notifyType, $content=''){
@@ -198,7 +198,7 @@ class DatabaseHelper{
         $type = 'NCOMMENT';
         $DstUserId = $this->getUserIdFromPost($postId);
         $content = $this->getTitleOfPost($postId);
-        return $stmt->errno && $this->sendNotification($SrcUserId, $DstUserId, $type, $content);
+        return $stmt->errno == 0 && !($this->sendNotification($SrcUserId, $DstUserId, $type, $content));
     }
     
     public function modifyComment($userId, $postId, $img, $text){
@@ -225,7 +225,7 @@ class DatabaseHelper{
             $stmt->execute();
             $result = $stmt->get_result();
             $type = 'NFOLLOWER';
-            return $stmt->errno && $this->sendNotification($userIdFollowing, $userIdFollowed, $type);
+            return $stmt->errno == 0 && !($this->sendNotification($userIdFollowing, $userIdFollowed, $type));
         }
         return FALSE;
     }
@@ -236,7 +236,7 @@ class DatabaseHelper{
         $data = date('Y-m-d H:i:s');
         $stmt->bind_param('sssii', $content, $type, $data, $SrcUserId, $DstUserId);
         $stmt->execute();
-        return $stmt->errno;
+        return $stmt->errno != 0;
     }
 
     public function newLikeToPost($SrcUserId, $postID){
@@ -247,7 +247,7 @@ class DatabaseHelper{
         $DstUserId = $this->getUserIdFromPost($postID);
         $type = 'NLIKEPOST';
         $content = $this->getTitleOfPost($postId);
-        return $stmt->errno && $this->sendNotification($SrcUserId, $DstUserId, $type, $content);
+        return $stmt->errno == 0 && !($this->sendNotification($SrcUserId, $DstUserId, $type, $content));
     }
 
     public function newLikeToComment($SrcUserId, $commentID){
@@ -259,7 +259,7 @@ class DatabaseHelper{
         $type = 'NLIKECOMMENT';
         $postID = $this->getPostIDofComment($commentId);
         $content = $this->getTitleOfPost($postID) . ' of the user: ' . $this->getUsernameFromPost($postID);
-        return $stmt->errno && $this->sendNotification($SrcUserId, $DstUserId, $type, $content);
+        return $stmt->errno == 0 && !($this->sendNotification($SrcUserId, $DstUserId, $type, $content));
     }
 
     public function NotificationsToRead($DstUserId){

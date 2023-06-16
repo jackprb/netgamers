@@ -55,9 +55,13 @@ window.addEventListener("load", function () {
 function getFollowed(){
     axios.get('api/api-get-followedList.php?u='+userID).then(response => {
         const res = response.data;
-        console.log(getCount(response.data));
-        followedCountLbl.innerHTML = getCount(response.data);
-        followedList.innerHTML = createList(response.data);
+        if(response.data.length == 0){
+            followedCountLbl.innerHTML = '0';
+            followedList.innerHTML = "";
+        }else{
+            followedCountLbl.innerHTML =  getCount(response.data);
+            followedList.innerHTML = createList(response.data);
+        }
     });
 }
 
@@ -65,7 +69,12 @@ function getFollowers(){
     axios.get('api/api-get-followersList.php?u='+userID).then(response => {
         const res = response.data;
         console.log(getCount(response.data));
-        followerCountLbl.innerHTML = getCount(response.data);
-        followerList.innerHTML = createList(response.data);
+        if(response.data.length == 0){
+            followerCountLbl.innerHTML = '0';
+            followerList.innerHTML = "";
+        }else{
+            followerCountLbl.innerHTML =  getCount(response.data);
+            followerList.innerHTML = createList(response.data);
+        }
     });
 }
