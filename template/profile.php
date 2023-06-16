@@ -6,6 +6,8 @@
                 $idLoggedinUser = $_SESSION['userID'];
                 $followersLoggedInUser = $dbh->getFollowersList($idLoggedinUser);
                 $followedLoggedinUser = $dbh->getFollowedList($idLoggedinUser);
+                $allPosts = $dbh->getAllPostOfUser($_GET['u']);
+                
 
                 if(isset($_GET['u']) && (int) $_GET['u'] > 0){
                     $infoUser = $dbh->getUserDataByID($_GET['u']);
@@ -98,48 +100,33 @@
                             
                             
                         </div>
-                        <div>
-                    
-                            <p class="fs-sm"><?php echo $bio; ?></p>
+                        
+                        <div class="card mt-5" style="display: flex; justify-content: center; align-items: center; white-space: pre-line; ">
+                            <?php echo $bio; ?>
+                            
                         </div>
                         
                     </div>
                     <div class="card mt-5">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
+                            <?php 
+                            
+                                foreach ($allPosts as $key => $value) {
+                                    echo '<div class="card mt-5" style=" margin-top: 20px; margin-bottom: 20px; display: flex; justify-content: center; align-items: center; ">';
+                                    echo '<div>'.$value['title']."<br></br>"; 
+                                        if($value['img']!= NULL){
+                                            $idPostImg = $dbh->getPostImgByPostID($value["ID"]);
+
+                                            echo "<img src=".UPLOAD_POSTIMG_DIR.$idPostImg["path"].">";
+                                        }else{
+                                            echo $value['text'];
+                                        };
+                                        echo "</div>";
+                                    echo "</div>";
+                                }
+                                
+                             ?>
                             </div>
                         </div>
                     </div>
