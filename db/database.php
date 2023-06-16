@@ -135,7 +135,7 @@ class DatabaseHelper{
     }  
 
     public function searchPostWithImgByTitle($title){
-        $query = "SELECT posts.userID, posts.title, post_images.`path`, post_images.`altText` FROM posts JOIN post_images 
+        $query = "SELECT posts.ID, posts.title, post_images.`path`, post_images.`altText` FROM posts JOIN post_images 
         ON posts.img = post_images.ID WHERE title LIKE ?";
         $stmt = $this->db->prepare($query);
         $title = '%'.$title.'%';
@@ -146,7 +146,7 @@ class DatabaseHelper{
     }
 
     public function searchPostWithOutImgByTitle($title){
-        $query = "SELECT userID, title, `text` FROM posts WHERE img is NULL AND title LIKE ?";
+        $query = "SELECT ID, title, `text` FROM posts WHERE img is NULL AND title LIKE ?";
         $stmt = $this->db->prepare($query);
         $title = '%'.$title.'%';
         $stmt->bind_param('s', $title);
@@ -156,7 +156,7 @@ class DatabaseHelper{
     }
 
     public function searchPostWithImgByContent($content){
-        $query = "SELECT posts.userID, posts.title, post_images.`path`, post_images.`altText` FROM posts JOIN post_images 
+        $query = "SELECT posts.ID, posts.title, post_images.`path`, post_images.`altText` FROM posts JOIN post_images 
                     ON posts.img = post_images.ID WHERE posts.`text` LIKE ?;";
         $stmt = $this->db->prepare($query);
         $content = '%'.$content.'%';
@@ -167,7 +167,7 @@ class DatabaseHelper{
     }
 
     public function searchPostWithOutImageByContent($content){
-        $query = "SELECT userID, title, `text` FROM posts WHERE `text` LIKE ? AND img is NULL";
+        $query = "SELECT ID, title, `text` FROM posts WHERE `text` LIKE ? AND img is NULL";
         $stmt = $this->db->prepare($query);
         $content = '%'.$content.'%';
         $stmt->bind_param('s', $content);
