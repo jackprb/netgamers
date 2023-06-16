@@ -30,7 +30,7 @@ function createUsersSearchResult(search){
                 <div class="card border-0 overflow-hidden">
                     <div class="row d-flex align-items-center">
                         <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
-                            <img src="${getUserImagePath(search[i]['path'])}" class="img-fluid userImg" alt="${search[i]['altText']}" />
+                            <a href="profile.php?u=${search[i]['ID']}"><img src="${getUserImagePath(search[i]['path'])}" class="img-fluid userImg" alt="${search[i]['altText']}" /></a>
                         </div>
                         <div class="col-8 col-sm-8 ">
                             <div class="card-body">
@@ -60,10 +60,6 @@ function createPostSearchResult(searchImg, searchNoImg){
     let result = "";
     console.log(searchImg);
     if(searchImg.length > 0){
-        result = `
-        <p class="fs-sm">
-        With Image:
-        <ul>`;
         for(let i=0; i < searchImg.length; i++){
             // struttura della notifica
             let str = `
@@ -71,12 +67,11 @@ function createPostSearchResult(searchImg, searchNoImg){
                     <div class="card border-0 overflow-hidden">
                         <div class="row d-flex align-items-center">
                             <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
-                                <img src="${getPostImagePath(searchImg[i]['path'])}" class="img-fluid" alt="${searchImg[i]['altText']}" />
+                                <a href="post.php?p=${searchImg[i]['ID']}"><img src="${getPostImagePath(searchImg[i]['path'])}" class="img-fluid" alt="${searchImg[i]['altText']}" /></a>
                             </div>
                             <div class="col-8 col-sm-8 ">
                                 <div class="card-body">
-                                    <p class="card-text"><strong>${searchImg[i]['title']}</strong></p>
-                                    <p class="card-text"><a href="profile.php?u=${searchImg[i]['ID']}"></a></p>
+                                <a href="post.php?p=${searchImg[i]['ID']}"><p class="card-text"><strong>${searchImg[i]['title']}</strong></p></a>
                                 </div>
                             </div>
                         </div>
@@ -84,14 +79,8 @@ function createPostSearchResult(searchImg, searchNoImg){
                 </li>`;
             result += str;
         }
-        result += `</ul>
-        </p>`;
     } 
     if(searchNoImg.length > 0){
-        result += `
-            <p class="fs-sm">
-                With-Out Image:
-                <ul>`;
         for(let i=0; i < searchNoImg.length; i++){
             // struttura della notifica
             let str1 = `
@@ -99,12 +88,11 @@ function createPostSearchResult(searchImg, searchNoImg){
                     <div class="card border-0 overflow-hidden">
                         <div class="row d-flex align-items-center">
                             <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
-                                <a>Title: ${searchNoImg[i]['title']}</a>
+                                <a href="post.php?p=${searchNoImg[i]['ID']}">Title: ${searchNoImg[i]['title']}</a>
                             </div>
                             <div class="col-8 col-sm-8 ">
                                 <div class="card-body">
-                                    <p class="card-text"><strong>${searchNoImg[i]['text']}</strong></p>
-                                    <p class="card-text"><a href="profile.php?u=${searchNoImg[i]['ID']}"></a></p>
+                                    <a href="post.php?p=${searchNoImg[i]['ID']}"><p class="card-text"><strong>${searchNoImg[i]['text']}</strong></p></a>
                                 </div>
                             </div>
                         </div>
@@ -112,8 +100,6 @@ function createPostSearchResult(searchImg, searchNoImg){
                 </li>`;
             result += str1;
         }
-        result += `</ul>
-        </p>`;
     }
     if (searchNoImg.length == 0 && searchImg.length == 0){
         let str = `
@@ -124,7 +110,7 @@ function createPostSearchResult(searchImg, searchNoImg){
                 </div>
             </div>
         </li>`;
-        result += str;
+        result = str;
     }
     return result;
 }
