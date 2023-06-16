@@ -72,8 +72,12 @@
                             <a class="d-flex flex-column justify-content-end position-relative overflow-hidden rounded-circle bg-size-cover bg-position-center flex-shrink-0" 
                                 href="#" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100px; height: 100px;">
                                 <img src="<?php echo getUserProfileImgPath(); ?>" class="userImg rounded-circle img-fluid" alt="<?php printUserImgAlt($userImg); ?>" />
-                                <span class="d-block text-light text-center lh-1 pb-1" style="background-color: rgba(0,0,0,.5)">
-                                    <i class="ai-camera"></i>
+                                
+                            </a>
+                            <a class=" justify-content-end position-relative overflow-hidden rounded-circle bg-size-cover bg-position-center flex-shrink-0" 
+                                href="#" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100px; height: 100px;">
+                                <span class="d-block text-center lh-1 pb-1">
+                                    <i class="ai-camera fs-lg"></i>
                                 </span>
                             </a>
                             <div class="dropdown-menu my-1">
