@@ -29,7 +29,7 @@ class DatabaseHelper{
     }  
 
     public function getUserDataByID($userID){
-        $query = "SELECT ID, username, email FROM users WHERE active=1 AND ID = ?";
+        $query = "SELECT ID, username, email, bio, surname, `name`, country FROM users WHERE active=1 AND ID = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $userID);
         $stmt->execute();
@@ -47,6 +47,10 @@ class DatabaseHelper{
         $res['username'] = $tmp['username'];
         $res['email'] = $tmp['email'];
         $res['img'] = $this->getUserImgByUserID($userID);
+        $res['bio'] = $tmp['bio'];
+        $res['name'] = $tmp['name'];
+        $res['surname'] = $tmp['surname'];
+        $res['country'] = $tmp['country'];
         return $res;
     }
   
@@ -583,6 +587,27 @@ class DatabaseHelper{
         $stmt->bind_param('ssssssi', $email, $name, $surname, $country, $language, $bio, $userID);
         $stmt->execute();
         return $stmt->errno; // 0 -> no errors
+    }
+
+    public function getFeedOfUser($userIdFollowing){
+        $query = "SELECT * from posts WHERE userID IN (
+                    SELECT userFollowed as userID FROM follow JOIN users 
+                        ON users.ID = follow.userFollowed WHERE follow.userFollowing = ? AND users.active=1) 
+                  ORDER BY dateTimePublished DESC;";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $userIdFollowing);
+        $stmt->execute();
+        $result = $stmt->get_result();          
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getAllPostOfUser($userID){
+        $query = "SELECT * from posts WHERE userID = ? ORDER BY dateTimePublished DESC";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $userID);
+        $stmt->execute();
+        $result = $stmt->get_result();          
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 }
 ?>

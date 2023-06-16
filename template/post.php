@@ -30,7 +30,7 @@
                     </p>';
         }
         ?>
-
+        
         <section id="post" class="mt-5 mx-sm-1"> 
             <?php if(isset($_GET["r"]) && $_GET["r"] >= 0 && $_GET["r"] <= 4): ?>
             <div class="col-12">

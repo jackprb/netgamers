@@ -6,6 +6,8 @@
                 $idLoggedinUser = $_SESSION['userID'];
                 $followersLoggedInUser = $dbh->getFollowersList($idLoggedinUser);
                 $followedLoggedinUser = $dbh->getFollowedList($idLoggedinUser);
+                $allPosts = $dbh->getAllPostOfUser($_GET['u']);
+                
 
                 if(isset($_GET['u']) && (int) $_GET['u'] > 0){
                     $infoUser = $dbh->getUserDataByID($_GET['u']);
@@ -20,6 +22,10 @@
                 $email = $infoUser['email'];
                 $imgPath = $infoUser['img']['path'];
                 $imgAltText = $infoUser['img']['altText'];
+                $bio = $infoUser['bio'];
+                $name = $infoUser['name'];
+                $surname = $infoUser['surname'];
+                $country = $infoUser['country'];
                 
                 $followers = $dbh->getFollowersList($id);
                 $followed = $dbh->getFollowedList($id);
@@ -39,12 +45,30 @@
                     <div class="d-flex align-items-center mt-sm-n1 pb-4 mb-0 mb-lg-1 mb-xl-3"><i class="ai-user text-primary lead pe-1 me-2"></i>
                     <input type="hidden" name="userID" id="userID" value="<?php echo $_GET['u']; ?>" />     
                     <?php if($_SESSION["userID"] == $id): ?>
-                        <h2 class="h4 mb-0">My profile</h2>
+                        <h2 class="h4 mb-0"><?php 
+                                if ($name != NULL && $surname){
+                                    echo $name; 
+                                    echo ' ';
+                                    echo $surname;
+                                }else {
+                                    echo 'My Profile';
+                                }
+                                    
+                            ?></h2>
                         <a class="btn btn-sm btn-primary ms-auto" href="account.php">
                             <i class="ai-edit ms-n1 me-2"></i>Edit info
                         </a>
                         <?php else: ?>
-                        <h2 class="h4 mb-0">User profile</h2>
+                        <h2 class="h4 mb-0"><?php 
+                                if ($name != NULL && $surname){
+                                    echo $name; 
+                                    echo ' ';
+                                    echo $surname;
+                                }else {
+                                    echo 'User Profile';
+                                }
+                                    
+                            ?></h2>
                         <div class="ms-auto">
                             <button class="btn btn-sm btn-primary" id="followButton" onclick="update();">
                                 <?php echo printFollowUnFollow($username, $followedLoggedinUser); ?>
@@ -65,45 +89,44 @@
                                 <a data-bs-toggle="modal" data-bs-target="#modalFollowed" href="#" class="followedCount"></a>
                             </p>
                             <p class="fs-sm"><i class="ai-mail me-1"></i><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></p>
-                            <i class="ai-map-pin me-1"></i>USA
+                            <p class="fs-sm"><?php 
+                                if ($country != NULL){
+                                    echo '<i class="ai-map-pin me-1"></i>' ;
+                                    echo $country;
+                                }
+                                    
+                            ?>
+                            </p>    
+                            
+                            
                         </div>
+                        
+                        <div class="card mt-5" style="display: flex; justify-content: center; align-items: center; white-space: pre-line; ">
+                            <?php echo $bio; ?>
+                            
+                        </div>
+                        
                     </div>
                     <div class="card mt-5">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                    <img src="upload/logos/NetGamers_Logo.png" class="img-fluid" alt="User image" />
-                                </div>
+                            <?php 
+                            
+                                foreach ($allPosts as $key => $value) {
+                                    echo '<div class="card mt-5" style=" margin-top: 20px; margin-bottom: 20px; display: flex; justify-content: center; align-items: center; ">';
+                                    echo '<div>'.$value['title']."<br></br>"; 
+                                        if($value['img']!= NULL){
+                                            $idPostImg = $dbh->getPostImgByPostID($value["ID"]);
+
+                                            echo "<img src=".UPLOAD_POSTIMG_DIR.$idPostImg["path"].">";
+                                        }else{
+                                            echo $value['text'];
+                                        };
+                                        echo "</div>";
+                                    echo "</div>";
+                                }
+                                
+                             ?>
                             </div>
                         </div>
                     </div>
