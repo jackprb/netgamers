@@ -1,55 +1,79 @@
 function generatePost(posts){
     let result = "";
+    const UPLOAD_USERIMG_DIR = "./upload/userImages/";
+    const UPLOAD_POSTIMG_DIR = "./upload/postImages/";
 
     for(let i=0; i < posts.length; i++){
-        
-        if(posts[0]['img'] != null){ /* post CON IMMAGINE */
-            let post = `
+        let post = "";
+        if(posts[i]['img'] != null){ /* post CON IMMAGINE */
+            post = `
             <div class="card py-1 p-md-2 p-xl-3 mb-4">
-                <?php require 'single-post-header.php'; ?>
-                <div class="card-body">
-                    <?php printDatePublished($res, $username); ?>
+                <div class="card-header">
                     <div class="row align-content-center">
-                        <img class="img-fluid" src="<?php echo UPLOAD_POSTIMG_DIR. $imgPost['path']; ?>" alt="<?php echo $imgPost['altText']; ?>"
-                            data-bs-toggle="modal" data-bs-target="#modalImg" />            
-                    </div>            
+                        <div class="col-3">
+                            <img class="img-fluid userImg" src="${UPLOAD_USERIMG_DIR} + $userImg['path']; ?>" alt="<?php echo $userImg['altText']; ?>" />
+                        </div>
+                        <div class="col-8">
+                            <h4 class="card-title text-center">${posts[i]['title']}</h4>
+                        </div>
+                    </div>
                 </div>
-                <?php require 'single-post-footer.php'; ?>
-            </div>`;
-
-        } else { /*post SENZA IMMAGINE*/
-
-            let post = `
-            <div class="card py-1 p-md-2 p-xl-3 mb-4">
-                <?php require 'single-post-header.php'; ?>
                 <div class="card-body">
-                    <?php printDatePublished($res, $username); ?>
+                    <p class="text-center text-muted">Published on ' . $res[0]['dateTimePublished'] . ' by 
+                        <a href="profile.php?u='. $res[0]['userID'] .'">'. $username[0]['username'] .'</a>
+                    </p>
                     <p class="text-center card-text">
                         <?php echo $res[0]['text']; ?>
                     </p>
                 </div>
-                <?php require 'single-post-footer.php'; ?>
-            </div>`;
-        }
-
-        let articolo = `
-        <article>
-            <header>
-                <div>
-                    <img src="${posts[i][""]}" alt="" />
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="d-flex justify-content-end">
+                            <a href="#" title="View text content" class="nav-item position-relative fs-4 p-2 mx-sm-1" data-bs-toggle="modal" data-bs-target="#modalText" >
+                                <i class="ai-note"></i>
+                            </a>
+                            <a href="#" title="Like" class="nav-item position-relative fs-4 p-2 mx-sm-1">
+                                <i class="ai-heart"></i>
+                            </a>
+                        </div>
+                    </div>   
                 </div>
-                <h2>tit${posts[i]["title"]}</h2>
-                <p>p${posts[i]["nome"]} - ${posts[i]["dateTimePublished"]}</p>
-            </header>
-            <section>
-                <p>p${posts[i]["anteprimaarticolo"]}</p>
-            </section>
-            <footer>
-                <a href="post.php?id=${posts[i]["ID"]}">Leggi tutto</a>
-            </footer>
-        </article>
-        `;
-        result += articolo;
+            </div>
+            `;
+
+        } else { /*post SENZA IMMAGINE*/
+
+            post = `
+            <div class="card py-1 p-md-2 p-xl-3 mb-4">
+                <div class="card-header">
+                    <div class="row align-content-center">
+                        <div class="col-3">
+                            <img class="img-fluid userImg" src="${UPLOAD_USERIMG_DIR} + $userImg['path']; ?>" alt="$userImg['altText']" />
+                        </div>
+                        <div class="col-8">
+                            <h4 class="card-title text-center">${posts[i]['title']}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="text-center text-muted">Published on ${posts[i]['dateTimePublished']} by 
+                        <a href="profile.php?u='. ${posts[i]['userID']}">username</a>
+                    </p>
+                    <p class="text-center card-text">${posts[i]['text']}</p>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="d-flex justify-content-end">
+                            <a href="#" title="Like" class="nav-item position-relative fs-4 p-2 mx-sm-1">
+                                <i class="ai-heart"></i>
+                            </a>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+            `;
+        }
+        result +=  post;
     }
     return result;
 }
@@ -59,7 +83,7 @@ window.addEventListener("load", function(){
 
     setInterval(function() {
         updateFeed();
-    }, 10000);
+    }, 20000);
 });
 
 function  updateFeed(){

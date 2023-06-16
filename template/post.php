@@ -19,7 +19,7 @@
                     </p>';
         }
         ?>
-
+        
         <section id="post" class="mt-5 mx-sm-1"> 
 
             <?php 
