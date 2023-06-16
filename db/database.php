@@ -389,6 +389,21 @@ class DatabaseHelper{
         }
         return $res;
     }   
+
+    public function getPostImgByPostID($postID){
+        $query = "SELECT `path`, `altText` FROM post_images WHERE ID = (SELECT img FROM posts WHERE ID = ?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $postID);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+        $res = array();
+        if(count($result) == 1){
+            $res['path'] = $result[0]['path'];
+            $res['altText'] = $result[0]['altText'];
+        }
+        return $res;
+    }   
     
     public function setDefaultUserImg($username){
         $query = "UPDATE users SET userImg = 1 WHERE username = ?";
@@ -422,6 +437,7 @@ class DatabaseHelper{
         return FALSE;
     }  
 
+    
     public function addPostImg($altText, $longdesc, $imgPath){
         $query = "INSERT INTO post_images (`path`, altText, longdesc) VALUES (?,?,?)";
         $stmt = $this->db->prepare($query);
