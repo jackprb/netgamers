@@ -1,9 +1,5 @@
         <section id="search" class="mt-5 mx-sm-1">
-<<<<<<< HEAD
             <form method="get">
-=======
-            <form method="get" onsubmit="getSearchResult(searchI);">
->>>>>>> d98563aef662cb4372816bc6bb6f53648190c063
                 <div class="row justify-content-center text-center">
                     <div class="col-12 col-sm-12 col-md-6">
                         <label class="form-label fs-lg" for="search">Search</label>
