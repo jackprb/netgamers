@@ -125,3 +125,11 @@ specifico per ogni personas
 + Copia il contenuto del file ** in DBMS
 + Connettiti a localhost/netgamers/login.php
 + Registrati o fai LogIn
+
+
+Alcuni account già disponibili:
+TechWiz  	pw: Alex01!
+GameMaster 	pw: Emma01!
+PixelArtist pw: Luca01! 
+QuestSeeker pw: Sofia01!
+MobileGamer pw: Sara01!
