@@ -1,10 +1,10 @@
                 <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm-3 col-md-1">
-                            <img class="img-fluid" src="" alt="" />
+                    <div class="row align-content-center">
+                        <div class="col-3">
+                            <img class="img-fluid userImg" src="<?php echo UPLOAD_USERIMG_DIR . $userImg['path']; ?>" alt="<?php echo $userImg['altText']; ?>" />
                         </div>
-                        <div class="col-sm-8 col-md-10 mt-3">
-                            <h4 class="card-title text-center">Title here</h4>
+                        <div class="col-8">
+                            <h4 class="card-title text-center"><?php echo $res[0]['title']?></h4>
                         </div>
                     </div>
                 </div>

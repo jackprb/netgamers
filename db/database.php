@@ -80,6 +80,15 @@ class DatabaseHelper{
         return $err;
     }
 
+    public function getPostData($postID){
+        $query = "SELECT * FROM posts WHERE posts.ID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $postID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }  
+
     public function getUserIdFromPost($postID){
         $query = "SELECT userID FROM posts WHERE ID = ?";
         $stmt = $this->db->prepare($query);
@@ -90,7 +99,7 @@ class DatabaseHelper{
     }  
 
     public function getUsernameFromPost($postID){
-        $query = "SELECT users.username FROM users JOIN posts ON posts.usersID = users.ID WHERE posts.ID = ?";
+        $query = "SELECT users.username FROM users JOIN posts ON posts.userID = users.ID WHERE posts.ID = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $postID);
         $stmt->execute();
@@ -126,7 +135,7 @@ class DatabaseHelper{
     }  
 
     public function searchPostWithImgByTitle($title){
-        $query = "SELECT posts.userID, posts.title, post_images.`path`, post_images.`altText` FROM posts JOIN post_images 
+        $query = "SELECT posts.ID, posts.title, post_images.`path`, post_images.`altText` FROM posts JOIN post_images 
         ON posts.img = post_images.ID WHERE title LIKE ?";
         $stmt = $this->db->prepare($query);
         $title = '%'.$title.'%';
@@ -137,7 +146,7 @@ class DatabaseHelper{
     }
 
     public function searchPostWithOutImgByTitle($title){
-        $query = "SELECT userID, title, `text` FROM posts WHERE img is NULL AND title LIKE ?";
+        $query = "SELECT ID, title, `text` FROM posts WHERE img is NULL AND title LIKE ?";
         $stmt = $this->db->prepare($query);
         $title = '%'.$title.'%';
         $stmt->bind_param('s', $title);
@@ -147,7 +156,7 @@ class DatabaseHelper{
     }
 
     public function searchPostWithImgByContent($content){
-        $query = "SELECT posts.userID, posts.title, post_images.`path`, post_images.`altText` FROM posts JOIN post_images 
+        $query = "SELECT posts.ID, posts.title, post_images.`path`, post_images.`altText` FROM posts JOIN post_images 
                     ON posts.img = post_images.ID WHERE posts.`text` LIKE ?;";
         $stmt = $this->db->prepare($query);
         $content = '%'.$content.'%';
@@ -158,7 +167,7 @@ class DatabaseHelper{
     }
 
     public function searchPostWithOutImageByContent($content){
-        $query = "SELECT userID, title, `text` FROM posts WHERE `text` LIKE ? AND img is NULL";
+        $query = "SELECT ID, title, `text` FROM posts WHERE `text` LIKE ? AND img is NULL";
         $stmt = $this->db->prepare($query);
         $content = '%'.$content.'%';
         $stmt->bind_param('s', $content);
@@ -380,6 +389,21 @@ class DatabaseHelper{
         }
         return $res;
     }   
+
+    public function getPostImgByPostID($postID){
+        $query = "SELECT `path`, `altText` FROM post_images WHERE ID = (SELECT img FROM posts WHERE ID = ?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $postID);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+        $res = array();
+        if(count($result) == 1){
+            $res['path'] = $result[0]['path'];
+            $res['altText'] = $result[0]['altText'];
+        }
+        return $res;
+    }   
     
     public function setDefaultUserImg($username){
         $query = "UPDATE users SET userImg = 1 WHERE username = ?";
@@ -413,6 +437,7 @@ class DatabaseHelper{
         return FALSE;
     }  
 
+    
     public function addPostImg($altText, $longdesc, $imgPath){
         $query = "INSERT INTO post_images (`path`, altText, longdesc) VALUES (?,?,?)";
         $stmt = $this->db->prepare($query);
