@@ -265,6 +265,14 @@ class DatabaseHelper{
         return $stmt->errno == 0 && !($this->sendNotification($SrcUserId, $DstUserId, $type, $content));
     }
 
+    public function removeLikeToPost($SrcUserId, $postID){
+        $query = "DELETE FROM `user_like_post` WHERE `postID` = ? AND `userID`= ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii', $postID, $SrcUserId);
+        $stmt->execute();
+        return $stmt->errno;
+    }
+
     public function newLikeToComment($SrcUserId, $commentID){
         $query = "INSERT INTO `user_like_comment`(`commentID`, `userID`) VALUES (?, ?)";
         $stmt = $this->db->prepare($query);
@@ -275,6 +283,14 @@ class DatabaseHelper{
         $postID = $this->getPostIDofComment($commentId);
         $content = $this->getTitleOfPost($postID) . ' of the user: ' . $this->getUsernameFromPost($postID);
         return $stmt->errno == 0 && !($this->sendNotification($SrcUserId, $DstUserId, $type, $content));
+    }
+
+    public function removeLikeToComment($SrcUserId, $commentID){
+        $query = "DELETE FROM `user_like_comment` WHERE `commentID` = ? AND `userID`= ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii', $commentID, $SrcUserId);
+        $stmt->execute();
+        return $stmt->errno;
     }
 
     public function NotificationsToRead($DstUserId){
