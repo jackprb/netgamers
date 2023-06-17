@@ -6,7 +6,8 @@ if(isUserLoggedIn()){
     $templateParams["titolo"] = "NetGamers - Feed";
     $templateParams["nome"] = "feed.php";
     $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js","./api/js/get_notifications.js",
-            "./api/js/read_notification.js", "./api/js/follow-manager.js", "./api/js/get-user-feed.js");
+            "./api/js/read_notification.js", "./api/js/follow-manager.js", "./api/js/get-user-feed.js", 
+            "./api/js/like-manager.js");
     
     if(isset($_GET["formmsg"])){
         $templateParams["formmsg"] = $_GET["formmsg"];

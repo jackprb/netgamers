@@ -259,8 +259,17 @@ class DatabaseHelper{
         $stmt->execute();
         $DstUserId = $this->getUserIdFromPost($postID);
         $type = 'NLIKEPOST';
-        $content = $this->getTitleOfPost($postId);
+        $content = $this->getTitleOfPost($postID);
         return $stmt->errno == 0 && !($this->sendNotification($SrcUserId, $DstUserId, $type, $content));
+    }
+
+    public function hasLikePost($SrcUserId, $postID){
+        $query = "SELECT * FROM `user_like_post` WHERE `postID` = ? AND `userID`= ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii', $postID, $SrcUserId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return  $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public function removeLikeToPost($SrcUserId, $postID){
@@ -281,6 +290,15 @@ class DatabaseHelper{
         $postID = $this->getPostIDofComment($commentId);
         $content = $this->getTitleOfPost($postID) . ' of the user: ' . $this->getUsernameFromPost($postID);
         return $stmt->errno == 0 && !($this->sendNotification($SrcUserId, $DstUserId, $type, $content));
+    }
+
+    public function hasLikeComment($SrcUserId, $commentID){
+        $query = "SELECT * FROM `user_like_comment` WHERE `commentID` = ? AND `userID`= ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('ii', $commentID, $SrcUserId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return  $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public function removeLikeToComment($SrcUserId, $commentID){
