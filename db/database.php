@@ -205,19 +205,17 @@ class DatabaseHelper{
         return $stmt->errno == 0 && !($this->sendNotification($SrcUserId, $DstUserId, $type, $content));
     }
     
-    public function modifyComment($userId, $postId, $img, $text){
-        $query = "UPDATE comments SET img = ?, text = ?, dateTime = ? WHERE userID = ? AND postID = ?";
+    public function modifyComment($commentID, $text){
+        $query = "UPDATE comments SET `text` = ?, `dateTime` = ? WHERE ID = ?";
         $stmt = $this->db->prepare($query);
-        $img = 'helloooo';
         $data = date('Y-m-d H:i:s');
-        $stmt->bind_param('sssii', $img, $text, $data, $userId, $postId);
+        $stmt->bind_param('ssi', $text, $data, $commentID);
         $stmt->execute();
-        return $stmt->errno;
+        return $stmt->errno == 0;
     }
 
     public function getComments($postID){
-        $userId = $this->getUserIdFromPost($postID);
-        $query = "SELECT postID, `text`, `dateTime`, users.username, userID FROM `comments` 
+        $query = "SELECT comments.ID, postID, `text`, `dateTime`, users.username, userID FROM `comments` 
                     JOIN users ON users.ID = userID WHERE comments.`postID` = ? ORDER BY `dateTime` DESC";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i',$postID);

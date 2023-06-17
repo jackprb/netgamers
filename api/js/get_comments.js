@@ -14,7 +14,7 @@ function generateComments(comments, userID){
                 <a href="post.php?p=${comments[i]["postID"]}">Back to the post</a>`;
 
         if(comments[i]["userID"] == userID){
-            articolo += `<a href="#" title="Modify comment" class="nav-item position-relative fs-4 p-2 mx-sm-1">
+            articolo += `<a href="modifycomment.php?c=${comments[i]["ID"]}" title="Modify comment" class="nav-item position-relative fs-4 p-2 mx-sm-1">
                 <i class="ai-edit"></i>
             </a>`;
         }
