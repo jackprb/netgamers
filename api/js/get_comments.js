@@ -4,19 +4,25 @@ function generateComments(comments, userID){
     for(let i=0; i < comments.length; i++){
         let articolo = `
         <li class="list-group-item">
-            <header class="justify-content-start d-flex">
+            <header class="d-flex justify-content-start">
                 <h3 class="fs-md">Commented by ${comments[i]["username"]} on ${comments[i]["dateTime"]}</h3>
             </header>
             <section>
                 <p>${comments[i]["text"]}</p>
             </section>
-            <footer class="justify-content-end d-flex">
-                <a href="post.php?p=${comments[i]["postID"]}">Back to the post</a>`;
+
+            <footer class="d-flex justify-content-end">
+                <div class="fs-lg align-self-center p-2">
+                    <a href="post.php?p=${comments[i]["postID"]}">Back to the post</a>
+                </div>`;
 
         if(comments[i]["userID"] == userID){
-            articolo += `<a href="modifycomment.php?c=${comments[i]["ID"]}" title="Modify comment" class="nav-item position-relative fs-4 p-2 mx-sm-1">
-                <i class="ai-edit"></i>
-            </a>`;
+            articolo += `
+                <div class="fs-4 p-2">
+                    <a class="d-block" href="modifycomment.php?c=${comments[i]["ID"]}" title="Modify comment">
+                        <i class="ai-edit"></i>
+                    </a>
+                </div>`;
         }
         articolo +=`</footer>
         </li>
