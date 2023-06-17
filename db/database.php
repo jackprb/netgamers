@@ -217,10 +217,10 @@ class DatabaseHelper{
 
     public function getComments($postID){
         $userId = $this->getUserIdFromPost($postID);
-        $query = "SELECT postID, `text`, `dateTime`, users.username FROM `comments` 
-                    JOIN users ON users.ID = ? WHERE comments.`postID` = ? ORDER BY `dateTime` DESC";
+        $query = "SELECT postID, `text`, `dateTime`, users.username, userID FROM `comments` 
+                    JOIN users ON users.ID = userID WHERE comments.`postID` = ? ORDER BY `dateTime` DESC";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ii', $userId,$postID);
+        $stmt->bind_param('i',$postID);
         $stmt->execute();
         $result = $stmt->get_result();
         return  $result->fetch_all(MYSQLI_ASSOC);

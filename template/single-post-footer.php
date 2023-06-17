@@ -6,6 +6,9 @@
                                 <i class="ai-note"></i>
                             </a>
                             <?php endif; ?>
+                            <a href="#commentTop" title="View comments" class="nav-item position-relative fs-4 p-2 mx-sm-1">
+                                <i class="ai-messages"></i>
+                            </a>
                             <a href="#" title="Like" class="nav-item position-relative fs-4 p-2 mx-sm-1">
                                 <i class="ai-heart"></i>
                             </a>
