@@ -590,10 +590,16 @@ class DatabaseHelper{
     }
 
     public function getFeedOfUser($userIdFollowing){
-        $query = "SELECT * from posts WHERE userID IN (
-                    SELECT userFollowed as userID FROM follow JOIN users 
-                        ON users.ID = follow.userFollowed WHERE follow.userFollowing = ? AND users.active=1) 
-                  ORDER BY dateTimePublished DESC;";
+        $query =   "SELECT posts.ID as postID, posts.title as postTitle, posts.`text` as postText, posts.dateTimePublished as dateTimePost, posts.userID as userID, 
+                        profile_images.`path` as userImgPath, profile_images.altText as userImgAltText, profile_images.longdesc as userImgLongDesc,
+                        users.username as username, post_images.`path` as postImgPath, posts.img as postImgID, post_images.altText as postImgAltText, post_images.longdesc as postImgLongDesc 
+                    FROM posts LEFT JOIN post_images ON post_images.ID = posts.img
+                                JOIN users ON users.ID = posts.userID 
+                                JOIN profile_images on profile_images.ID = users.userImg
+                    WHERE userID IN (
+                        SELECT userFollowed as userID FROM follow JOIN users 
+                            ON users.ID = follow.userFollowed WHERE follow.userFollowing = ? AND users.active=1) 
+                    ORDER BY dateTimePublished DESC;";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $userIdFollowing);
         $stmt->execute();

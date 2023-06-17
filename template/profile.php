@@ -7,7 +7,6 @@
                 $followersLoggedInUser = $dbh->getFollowersList($idLoggedinUser);
                 $followedLoggedinUser = $dbh->getFollowedList($idLoggedinUser);
                 $allPosts = $dbh->getAllPostOfUser($_GET['u']);
-                
 
                 if(isset($_GET['u']) && (int) $_GET['u'] > 0){
                     $infoUser = $dbh->getUserDataByID($_GET['u']);
@@ -45,30 +44,28 @@
                     <div class="d-flex align-items-center mt-sm-n1 pb-4 mb-0 mb-lg-1 mb-xl-3"><i class="ai-user text-primary lead pe-1 me-2"></i>
                     <input type="hidden" name="userID" id="userID" value="<?php echo $_GET['u']; ?>" />     
                     <?php if($_SESSION["userID"] == $id): ?>
-                        <h2 class="h4 mb-0"><?php 
-                                if ($name != NULL && $surname){
-                                    echo $name; 
-                                    echo ' ';
-                                    echo $surname;
+                        <h2 class="h4 mb-0">
+                            <?php 
+                                if ($name != NULL && $surname != NULL){
+                                    echo $name . ' ' . $surname;
                                 }else {
                                     echo 'My Profile';
-                                }
-                                    
-                            ?></h2>
+                                }      
+                            ?>
+                        </h2>
                         <a class="btn btn-sm btn-primary ms-auto" href="account.php">
                             <i class="ai-edit ms-n1 me-2"></i>Edit info
                         </a>
-                        <?php else: ?>
-                        <h2 class="h4 mb-0"><?php 
-                                if ($name != NULL && $surname){
-                                    echo $name; 
-                                    echo ' ';
-                                    echo $surname;
+                    <?php else: ?>
+                        <h2 class="h4 mb-0">
+                            <?php 
+                                if ($name != NULL && $surname != NULL){
+                                    echo $name . ' ' . $surname;
                                 }else {
                                     echo 'User Profile';
-                                }
-                                    
-                            ?></h2>
+                                } 
+                            ?>
+                        </h2>
                         <div class="ms-auto">
                             <button class="btn btn-sm btn-primary" id="followButton" onclick="update();">
                                 <?php echo printFollowUnFollow($username, $followedLoggedinUser); ?>
@@ -89,29 +86,60 @@
                                 <a data-bs-toggle="modal" data-bs-target="#modalFollowed" href="#" class="followedCount"></a>
                             </p>
                             <p class="fs-sm"><i class="ai-mail me-1"></i><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></p>
-                            <p class="fs-sm"><?php 
+                            <?php 
                                 if ($country != NULL){
-                                    echo '<i class="ai-map-pin me-1"></i>' ;
-                                    echo $country;
+                                    echo '<p class="fs-sm"><i class="ai-map-pin me-1"></i>' . $country . "</p>";
                                 }
-                                    
-                            ?>
-                            </p>    
-                            
-                            
+                            ?>                           
                         </div>
                         
-                        <div class="card mt-5" style="display: flex; justify-content: center; align-items: center; white-space: pre-line; ">
-                            <?php echo $bio; ?>
-                            
+                        <?php if($bio != NULL): ?>
+                        <div class="col-12 card mt-3">
+                            <div class="card-body">
+                                <h4 class="card-title d-inline fs-5">BIO:&nbsp;</h4><span class="card-text"><?php echo $bio; ?></span>
+                            </div>
                         </div>
-                        
+                        <?php endif; ?>
+
+                        <!--<div class="col-12 card mt-3" style="display: flex; justify-content: center; align-items: left; white-space: pre-line; ">
+                            <?php /*echo $bio."</br>"; */ ?>
+                            <div style="position: absolute; top: -12px; left: 40px; z-index: 1; color: #4999e9;">BIO</div>
+                        </div>-->
                     </div>
+
                     <div class="card mt-5">
                         <div class="card-body">
+                            <h4 class="card-title fs-5">POST</h4>
+                            <div class="row mt-4">
+                                <?php 
+                                    if (count($allPosts) == 0) : ?>
+                                    <div class="col-12 mb-4">
+                                        <p class="text-center card-text"><?php echo $username; ?> has not published anything yet. 
+                                            <br /> Come by again later...
+                                        </p>
+                                    </div>
+                                <?php else: 
+                                        foreach ($allPosts as $key => $value): ?>
+                                            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+                                                <a href="post.php?p=<?php echo $value["ID"]; ?>"><p class="fs-md"><?php echo $value['title']; ?></p></a>
+                                                <?php if($value['img']!= NULL){
+                                                    $idPostImg = $dbh->getPostImgByPostID($value["ID"]);
+                                                    echo '<img class="img-fluid" src="'.UPLOAD_POSTIMG_DIR . $idPostImg["path"] .'" alt="'. $idPostImg["altText"] .'">';
+                                                }else{
+                                                    echo '<p class="fs-sm">'. $value['text'] .'</p>';
+                                                };
+                                                ?>
+                                            </div>
+                                        <?php endforeach; 
+                                    endif; ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div class="card mt-5">
+                        <div class="card-body">
                             <div class="row">
-                            <?php 
-                            
+                            <?php /*
                                 foreach ($allPosts as $key => $value) {
                                     echo '<div class="card mt-5" style=" margin-top: 20px; margin-bottom: 20px; display: flex; justify-content: center; align-items: center; ">';
                                     echo '<div>'.$value['title']."<br></br>"; 
@@ -122,14 +150,18 @@
                                         }else{
                                             echo $value['text'];
                                         };
+                                        
                                         echo "</div>";
                                     echo "</div>";
                                 }
-                                
+                                */
                              ?>
                             </div>
+                            <div style="position: absolute; top: -12px; left: 40px; z-index: 1; color: #4999e9;">POST</div>
+
                         </div>
-                    </div>
+                    </div>-->
+
                 </div>
             </div>
         </section>
