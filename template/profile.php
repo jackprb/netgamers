@@ -82,9 +82,10 @@
                             <p class="fs-sm">
                                 Followers: 
                                 <a data-bs-toggle="modal" data-bs-target="#modalFollowers" href="#" class="followerCount"></a>
-                                Followed: 
+                                &nbsp;Followed: 
                                 <a data-bs-toggle="modal" data-bs-target="#modalFollowed" href="#" class="followedCount"></a>
                             </p>
+                            <p class="fs-sm">Published posts: <?php echo count($allPosts);?></p>
                             <p class="fs-sm"><i class="ai-mail me-1"></i><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></p>
                             <?php 
                                 if ($country != NULL){
@@ -109,7 +110,7 @@
 
                     <div class="card mt-5">
                         <div class="card-body">
-                            <h4 class="card-title fs-5">POST</h4>
+                            <h4 class="card-title d-inline fs-5">POST</h4>
                             <div class="row mt-4">
                                 <?php 
                                     if (count($allPosts) == 0) : ?>

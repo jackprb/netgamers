@@ -78,11 +78,9 @@
             </div>
             <div class="password-toggle mb-4">
                 <input class="form-control form-control-lg" type="password" placeholder="Password" required name="psw" id="psw">
-                
             </div>
             <div class="password-toggle mb-4">
                 <input class="form-control form-control-lg" type="password" placeholder="Confirm password" required name="confPsw" id="confPsw">
-                
             </div>
             <div class="alert alert-info d-flex my-3 my-sm-4">
                 <i class="ai-circle-info fs-xl me-2"></i>
