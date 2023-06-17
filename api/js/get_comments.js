@@ -3,9 +3,9 @@ function generateComments(comments){
 //`text`, `dateTime`, users.username
     for(let i=0; i < comments.length; i++){
         let articolo = `
-        <article>
-            <header>
-                <h2>${comments[i]["username"]} - ${comments[i]["dateTime"]}</h2>
+        <li class="list-group-item">
+            <header class="justify-content-start d-flex">
+                <h4>Commented by ${comments[i]["username"]} on ${comments[i]["dateTime"]}</h4>
                 
             </header>
             <section>
@@ -14,7 +14,7 @@ function generateComments(comments){
             <footer>
                 <a href="post.php?p=${comments[i]["postID"]}">Back to the post</a>
             </footer>
-        </article>
+        </li>
         `;
         result += articolo;
     }
@@ -26,11 +26,13 @@ function getPostImagePath($filename){
 }
 
 window.addEventListener("load", function(){
-    getComments();
+    getAllComment();
 });
 
-function getComments(){
-    axios.get('api/api-get-postComments.php').then(response => {
+function getAllComment(){
+    let p = document.querySelector("#pId").value;
+    axios.get('api/api-get-postComments.php?p='+p).then(response => {
+        console.log(response.data);
         const container = document.querySelector("#commentsList");
         const containerCount = document.querySelector("#commentsCount");
         containerCount.innerHTML = "This post has " + response.data.length + " comments";

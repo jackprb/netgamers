@@ -31,7 +31,8 @@
         }
         ?>
         
-        <section id="post" class="mt-5 mx-sm-1"> 
+        <section id="post" class="mt-5 mx-sm-1">
+            <input type="hidden" id="pId" value = "<?php echo $_GET["p"];?>" />
             <?php if(isset($_GET["r"]) && $_GET["r"] >= 0 && $_GET["r"] <= 4): ?>
             <div class="col-12">
                 <div class="alert <?php echo publishCommentMsg($_GET["r"])[0]; ?> alert-dismissible fade show" role="alert">
@@ -91,11 +92,9 @@
         <section id="getComments">
             <div class="card border-0 pt-2 p-md-2 p-xl-3 p-xxl-4 mt-n3 mt-md-0">
                 <div class="card-body">
-                    <h2 class="pb-2 pb-lg-3 pb-xl-4" id="commentsCount"></h2>
-                    <section class="row justify-content-center text-center">
+                    <h2 class="pb-2 pb-lg-3 pb-xl-4 justify-content-start d-flex" id="commentsCount"></h2>
                         <ul class="list-group list-group-flush" id="commentsList">
                         </ul>
-                    </section>
                 </div>
             </div>
         </section>

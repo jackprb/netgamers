@@ -6,6 +6,10 @@
     max-height: 100px;
 }
 
+.userImgPostHeader{
+    max-height: 60px;
+}
+
 .logoNavBar{
     margin-left: 1%;
 }
