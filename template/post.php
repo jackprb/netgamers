@@ -3,7 +3,8 @@
             $msg[0] = "Comment published successfully.";
             $msg[1] = "Comment not published: fill the required fields.";
             $msg[2] = "An error occurred. Comment not published. Retry later.";
-            if($code == 0){
+            $msg[3] = "Comment modified successfully.";
+            if($code == 0 || $code == 3){
                 $type = "alert-success";
             } else {
                 $type = "alert-danger";

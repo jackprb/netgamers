@@ -71,15 +71,17 @@ class DatabaseHelper{
 
     public function sendNotification($SrcUserId, $DstUserId, $notifyType, $content=''){
         $err = FALSE;
-        $res = $this->getNotificationSettings($DstUserId);
-        if($res !== FALSE){
-            for ($j=0; $j < count($res); $j++) { 
-                if($res[$j]['type'] == $notifyType && $res[$j]['value'] == TRUE){
-                    $err = $err || $this->newNotification($SrcUserId, $DstUserId, $notifyType, $content);
+        if($SrcUserId != $DstUserId){
+            $res = $this->getNotificationSettings($DstUserId);
+            if($res !== FALSE){
+                for ($j=0; $j < count($res); $j++) { 
+                    if($res[$j]['type'] == $notifyType && $res[$j]['value'] == TRUE){
+                        $err = $err || $this->newNotification($SrcUserId, $DstUserId, $notifyType, $content);
+                    }
                 }
+            }else{
+                $err = TRUE;
             }
-        }else{
-            $err = TRUE;
         }
         return $err;
     }

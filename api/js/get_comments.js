@@ -13,13 +13,13 @@ function generateComments(comments, userID){
 
             <footer class="d-flex justify-content-end">
                 <div class="fs-lg align-self-center p-2">
-                    <a href="post.php?p=${comments[i]["postID"]}">Back to the post</a>
+                    <a href="#top">Back to the post</a>
                 </div>`;
 
         if(comments[i]["userID"] == userID){
             articolo += `
                 <div class="fs-4 p-2">
-                    <a class="d-block" href="modifycomment.php?c=${comments[i]["ID"]}" title="Modify comment">
+                    <a class="d-block" href="modifycomment.php?c=${comments[i]["ID"]}&p=${comments[i]["postID"]}" title="Modify comment">
                         <i class="ai-edit"></i>
                     </a>
                 </div>`;
@@ -38,6 +38,9 @@ function getPostImagePath($filename){
 
 window.addEventListener("load", function(){
     getAllComment();
+    setInterval(function(){ 
+        getAllComment(); 
+    }, 10000); // fetch new notifications every 10 seconds. 
 });
 
 function getAllComment(){
