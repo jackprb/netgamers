@@ -294,10 +294,11 @@ class DatabaseHelper{
         return $stmt->errno == 0 && !($this->sendNotification($SrcUserId, $DstUserId, $type, $content));
     }
 
-    public function hasLikeComment($SrcUserId, $commentID){
-        $query = "SELECT * FROM `user_like_comment` WHERE `commentID` = ? AND `userID`= ?";
+    public function getLikeComment($SrcUserId, $postID){
+        $query = "SELECT commentID FROM `user_like_comment` JOIN comments ON commentID = comments.ID WHERE 
+                user_like_comment.`userID`= ? AND comments.postID = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('ii', $commentID, $SrcUserId);
+        $stmt->bind_param('ii', $SrcUserId, $postID);
         $stmt->execute();
         $result = $stmt->get_result();
         return  $result->fetch_all(MYSQLI_ASSOC);

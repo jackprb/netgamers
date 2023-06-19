@@ -1,4 +1,6 @@
-function generateComments(comments, userID){
+let cArr = [];
+
+function generateComments(comments, userID, commLike){
     let result = "";
 //`text`, `dateTime`, users.username
     for(let i=0; i < comments.length; i++){
@@ -26,29 +28,24 @@ function generateComments(comments, userID){
         }
         articolo +=`<div class="fs-4 p-2">
                     <a title="Like" class="nav-item text-danger position-relative"
-                    onclick="likeButtonCommChanger(${comments[i]["ID"]}, ${comments[i]["userID"]});">
-                        <i class="ai-heart" id="${comments[i]["ID"]}"></i>
-                    </a>
+                    onclick="likeButtonCommChanger(${comments[i]["ID"]}, ${userID});">`;
+        let r = false;
+        for(let j=0; j < commLike.length; j++){
+            if(commLike[j]["commentID"] == comments[i]["ID"]){
+                articolo +=`<i class="ai-heart-filled" id="${comments[i]["ID"]}"></i>`;
+                r = true;
+            }
+        }
+        if(!r){
+            articolo +=`<i class="ai-heart" id="${comments[i]["ID"]}"></i>`;
+        }
+        articolo +=`</a>
                     </div>
                 </footer>
             </li>`;
         result += articolo;
     }
     return result;
-}
-
-function CommentHasLike(IDcomment, IDuser){
-    
-    return (axios.get('api/api-get-comlike-set.php?c=' + IDcomment + '&u=' + IDuser).then(response=>{
-        console.log(IDcomment + " hasLikeLenght: "+ response.data.length)
-        if(response.data.length != 0 ){
-            console.log("ok");
-            return true;
-        }else {
-            console.log("No ok");
-            return false;
-        }
-    }));
 }
 
 function likeButtonCommChanger(IDcomment, IDuser){
@@ -78,9 +75,13 @@ function getAllComment(){
     let p = document.querySelector("#pId").value;
     let userID = document.querySelector("#uId").value;
     axios.get('api/api-get-postComments.php?p='+p).then(response => {
+        const comm = response.data;
         const container = document.querySelector("#commentsList");
         const containerCount = document.querySelector("#commentsCount");
-        containerCount.innerHTML = "This post has " + response.data.length + " comments";
-        container.innerHTML = generateComments(response.data, userID);
+        containerCount.innerHTML = "This post has " + comm.length + " comments";
+        axios.get('api/api-get-comlike-set.php?p='+ p+ '&u=' + userID).then(response1 => {
+            container.innerHTML = generateComments(comm, userID, response1.data);
+        });
+        
     });
 }
