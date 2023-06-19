@@ -2,10 +2,9 @@ let cArr = [];
 
 function generateComments(comments, userID, commLike){
     let result = "";
-//`text`, `dateTime`, users.username
     for(let i=0; i < comments.length; i++){
         let articolo = `
-        <li class="list-group-item">
+        <li class="list-group-item" id="c${comments[i]["ID"]}">
             <header class="d-flex justify-content-start">
                 <h5 class="fs-md">Commented by ${comments[i]["username"]} on ${comments[i]["dateTime"]}</h5>
             </header>

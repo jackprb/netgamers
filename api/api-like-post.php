@@ -6,9 +6,10 @@ if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "GET"){ // se utente è log
     if(isset($_GET['p']) && $_GET['p'] > 0 && $_GET['u'] && $_GET['u'] > 0){ // se specificato id di post a cui mettere like
         $postToLike = $dbh->newLikeToPost($_GET['u'], $_GET['p']);
 
+        if($commentToLike === FALSE){
             header('Content-Type: application/json');
             echo json_encode($postToLike);
-        
+        }
     }
 }
 ?>

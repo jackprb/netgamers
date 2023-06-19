@@ -2,14 +2,11 @@ let btnLike = document.querySelector(".likeBtn");
 let postID = document.querySelector("#pId");
 
 function unlike(IDpost, IDuser){
-    axios.get('api/api-unlike-post.php?p=' + IDpost + '&u=' + IDuser).then(response=>{
-    });
+    axios.get('api/api-unlike-post.php?p=' + IDpost + '&u=' + IDuser).then(response=>{});
 }
 
 function like(IDpost, IDuser){
-    axios.get('api/api-like-post.php?p=' +IDpost + '&u=' + IDuser).then(response=>{
-        console.log(response);
-    });
+    axios.get('api/api-like-post.php?p=' +IDpost + '&u=' + IDuser).then(response=>{});
 }
 
 function likeButtonChanger(IDpost, IDuser){

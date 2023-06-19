@@ -214,7 +214,7 @@
                     <div class="nav align-items-center order-sm-2">
                         <?php if(isset($_SESSION["userID"])): ?>
                         <div class="dropdown nav d-block">
-                            <a class="nav-link position-relative p-2" href="#" aria-expanded="false" onclick="getNotifications();">
+                            <a class="nav-link position-relative p-2" aria-expanded="false" onclick="getNotifications();">
                                 <div class="dropdown-toggle">
                                     <i class="ai-bell fs-lg"></i><span id="totalNotification" class="badge bg-primary ms-2"></span>
                                 </div>

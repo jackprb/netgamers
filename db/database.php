@@ -203,7 +203,9 @@ class DatabaseHelper{
         $stmt->execute();
         $type = 'NCOMMENT';
         $DstUserId = $this->getUserIdFromPost($postId);
+        $DstUserId = $DstUserId[0]['userID'];
         $content = $this->getTitleOfPost($postId);
+        $content = $content[0]['title'];
         return $stmt->errno == 0 && !($this->sendNotification($SrcUserId, $DstUserId, $type, $content));
     }
     
@@ -262,8 +264,10 @@ class DatabaseHelper{
         $DstUserId = $this->getUserIdFromPost($postID);
         $DstUserId = $DstUserId[0]['userID'];
         $type = 'NLIKEPOST';
-        $content = $this->getTitleOfPost($postID);
-        $content = $content[0]['title'];
+        $title = $this->getTitleOfPost($postID);
+        $title = $title[0]['title'];
+        $content = '<a href="post.php?p=' . $postID . '"> ' . $title . '</a>' ;
+        
         $err = $this->sendNotification($SrcUserId, $DstUserId, $type, $content);
         return $err;
     }
@@ -295,9 +299,7 @@ class DatabaseHelper{
         $type = 'NLIKECOMMENT';
         $postID = $this->getPostIDofComment($commentID);
         $postID = $postID[0]['postID'];
-        $title = $this->getTitleOfPost($postID);
-        $username = $this->getUsernameFromPost($postID);
-        $content = `<strong>`.$title[0]['title'].'</strong> of the user <strong>'.$username[0]['username'].'</strong' ;
+        $content = '<a href="post.php?p=' . $postID .'#c' . $commentID . '"> comment</a>' ;
         return $stmt->errno == 0 && !($this->sendNotification($SrcUserId, $DstUserId, $type, $content));
     }
 
