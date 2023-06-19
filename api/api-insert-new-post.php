@@ -17,7 +17,7 @@ if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "POST"){  // se utente è l
                     $residPostImg = $idPostImg[0]['ID']; //ottiene id di img caricata
 
                     $currentUserPost= $dbh->insertNewPost($residPostImg, $_SESSION["userID"], $_POST["title"], $_POST["content"]);
-                    if($currentUserPost == 0){ // tutto ok
+                    if($currentUserPost !== FALSE){ // tutto ok
                         header("location: ../newpost.php?r=0");
                     } else {
                         header("location: ../newpost.php?r=2"); //errore inserimento post in db
@@ -35,7 +35,7 @@ if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "POST"){  // se utente è l
     } else { //post senza immagine
         if(areFieldsSetPostNOimage()){
             $currentUserPost = $dbh->insertNewPost(NULL, $_SESSION["userID"], $_POST["title"], $_POST["content"]);
-            if($currentUserPost == 0){ // tutto ok 
+            if($currentUserPost !== FALSE){ // tutto ok 
                 header("location: ../newpost.php?r=0");
             } else {
                 header("location: ../newpost.php?r=2");
