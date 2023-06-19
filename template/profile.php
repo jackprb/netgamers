@@ -97,7 +97,7 @@
                         <?php if($bio != NULL): ?>
                         <div class="col-12 card mt-3">
                             <div class="card-body">
-                                <h4 class="card-title d-inline fs-5">BIO:&nbsp;</h4><span class="card-text"><?php echo $bio; ?></span>
+                                <h4 class="card-title d-inline fs-5">BIO</h4><span class="card-text"><div class="mt-4" style="white-space: pre-wrap;"><?php echo $bio; ?></div></span>
                             </div>
                         </div>
                         <?php endif; ?>

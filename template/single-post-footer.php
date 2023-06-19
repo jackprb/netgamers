@@ -9,7 +9,7 @@
                             <a href="#commentTop" title="View comments" class="nav-item position-relative fs-4 p-2 mx-sm-1">
                                 <i class="ai-messages"></i>
                             </a>
-                            <a href="#" title="Like" class="nav-item text-danger position-relative fs-4 p-2 mx-sm-1 likeBtn"
+                            <a href="#." title="Like" class="nav-item text-danger position-relative fs-4 p-2 mx-sm-1 likeBtn"
                                 onclick="likeButtonChanger(<?php echo $_GET['p']; ?>, <?php echo intval($_SESSION['userID']); ?>);">
                                 <?php hasLike($dbh); ?>
                             </a>
