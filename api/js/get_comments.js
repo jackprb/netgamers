@@ -7,7 +7,7 @@ function generateComments(comments, userID, commLike){
         let articolo = `
         <li class="list-group-item">
             <header class="d-flex justify-content-start">
-                <h3 class="fs-md">Commented by ${comments[i]["username"]} on ${comments[i]["dateTime"]}</h3>
+                <h5 class="fs-md">Commented by ${comments[i]["username"]} on ${comments[i]["dateTime"]}</h5>
             </header>
             <section>
                 <p>${comments[i]["text"]}</p>
