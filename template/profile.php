@@ -101,11 +101,6 @@
                             </div>
                         </div>
                         <?php endif; ?>
-
-                        <!--<div class="col-12 card mt-3" style="display: flex; justify-content: center; align-items: left; white-space: pre-line; ">
-                            <?php /*echo $bio."</br>"; */ ?>
-                            <div style="position: absolute; top: -12px; left: 40px; z-index: 1; color: #4999e9;">BIO</div>
-                        </div>-->
                     </div>
 
                     <div class="card mt-5">
@@ -122,47 +117,20 @@
                                 <?php else: 
                                         foreach ($allPosts as $key => $value): ?>
                                             <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-                                                <a href="post.php?p=<?php echo $value["ID"]; ?>"><p class="fs-md"><?php echo $value['title']; ?></p></a>
+                                                <a class="fs-md" href="post.php?p=<?php echo $value["ID"]; ?>"><?php echo $value['title']; ?></a>
                                                 <?php if($value['img']!= NULL){
                                                     $idPostImg = $dbh->getPostImgByPostID($value["ID"]);
-                                                    echo '<img class="img-fluid" src="'.UPLOAD_POSTIMG_DIR . $idPostImg["path"] .'" alt="'. $idPostImg["altText"] .'">';
+                                                    echo '<a class="fs-md" href="post.php?p='. $value["ID"] .'"><img class="img-fluid" src="'.UPLOAD_POSTIMG_DIR . $idPostImg["path"] .'" alt="'. $idPostImg["altText"] .'"></a>';
                                                 }else{
-                                                    echo '<p class="fs-sm">'. $value['text'] .'</p>';
+                                                    echo '<a class="fs-sm text-decoration-none" href="post.php?p='. $value["ID"] .'"><p class="fs-sm">'. $value['text'] .'</p></a>';
                                                 };
                                                 ?>
                                             </div>
-                                        <?php endforeach; 
+                                <?php   endforeach; 
                                     endif; ?>
                             </div>
                         </div>
                     </div>
-
-                    <!--<div class="card mt-5">
-                        <div class="card-body">
-                            <div class="row">
-                            <?php /*
-                                foreach ($allPosts as $key => $value) {
-                                    echo '<div class="card mt-5" style=" margin-top: 20px; margin-bottom: 20px; display: flex; justify-content: center; align-items: center; ">';
-                                    echo '<div>'.$value['title']."<br></br>"; 
-                                        if($value['img']!= NULL){
-                                            $idPostImg = $dbh->getPostImgByPostID($value["ID"]);
-
-                                            echo "<img src=".UPLOAD_POSTIMG_DIR.$idPostImg["path"].">";
-                                        }else{
-                                            echo $value['text'];
-                                        };
-                                        
-                                        echo "</div>";
-                                    echo "</div>";
-                                }
-                                */
-                             ?>
-                            </div>
-                            <div style="position: absolute; top: -12px; left: 40px; z-index: 1; color: #4999e9;">POST</div>
-
-                        </div>
-                    </div>-->
-
                 </div>
             </div>
         </section>
