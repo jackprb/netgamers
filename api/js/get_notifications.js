@@ -24,6 +24,9 @@ function createNotification(notifications){
             </div>`;
             result += str;
         }
+    } else {
+        result = `
+        <p class="text-center fs-md">Nothing to show</p>`;
     }
     return result;
 }
