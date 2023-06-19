@@ -16,32 +16,32 @@ if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "POST"){  // se utente è l
                 if($idPostImg !== FALSE){ //img inserita in db con successo
                     $residPostImg = $idPostImg[0]['ID']; //ottiene id di img caricata
 
-                    $currentUserPost= $dbh->insertNewPost($residPostImg, $_SESSION["userID"], $_POST["title"], $_POST["content"]);
-                    if($currentUserPost !== FALSE){ // tutto ok
-                        header("location: ../newpost.php?r=0");
+                    $currentUserPost = $dbh->updatePost($_POST['postID'], $residPostImg, $_POST["title"], $_POST["content"]);
+                    if($currentUserPost == 0){ // tutto ok
+                        header("location: ../modifyPost.php?r=0&p=" . $_POST['postID']);
                     } else {
-                        header("location: ../newpost.php?r=2"); //errore inserimento post in db
+                        header("location: ../modifyPost.php?r=2&p=" . $_POST['postID']); //errore inserimento post in db
                     }
                 } else {
-                    header("location: ../newpost.php?r=2"); //errore inserimento img in db
+                    header("location: ../modifyPost.php?r=2&p=" . $_POST['postID']); //errore inserimento img in db
                 }
             } else {
-                header("location: ../newpost.php?r=2"); //img non caricata , errore server
+                header("location: ../modifyPost.php?r=2&p=" . $_POST['postID']); //img non caricata , errore server
             }
         } else {
-            header("location: ../newpost.php?r=3"); // mancano alcuni field necessari
+            header("location: ../modifyPost.php?r=3&p=" . $_POST['postID']); // mancano alcuni field necessari
         }
 
     } else { //post senza immagine
         if(areFieldsSetPostNOimage()){
-            $currentUserPost = $dbh->insertNewPost(NULL, $_SESSION["userID"], $_POST["title"], $_POST["content"]);
-            if($currentUserPost !== FALSE){ // tutto ok 
-                header("location: ../newpost.php?r=0");
+            $currentUserPost = $dbh->updatePost($_POST['postID'], NULL, $_POST["title"], $_POST["content"]);
+            if($currentUserPost == 0){ // tutto ok 
+                header("location: ../modifyPost.php?r=0&p=" . $_POST['postID']);
             } else {
-                header("location: ../newpost.php?r=2");
+                header("location: ../modifyPost.php?r=2&p=" . $_POST['postID']);
             }
         } else {
-            header("location: ../newpost.php?r=4"); // mancano alcuni field necessari
+            header("location: ../modifyPost.php?r=4&p=" . $_POST['postID']); // mancano alcuni field necessari
         }
     }
 } 

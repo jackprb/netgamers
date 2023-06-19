@@ -405,14 +405,13 @@ class DatabaseHelper{
         return  $res;
     }
     
-    public function updatePost($postId, $userId, $img, $title, $text){
+    public function updatePost($postID, $img, $title, $text){
         $query = "UPDATE posts SET img = ?, title = ?, `text` = ?, dateTimePublished = ? WHERE ID = ?";
-        $stmt = $this->db->prepare($query);
-        $img = 'helloooo';
         $data = date('Y-m-d H:i:s');
-        $stmt->bind_param('ssssi', $img, $title, $text, $data, $postId);
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('isssi', $img, $title, $text, $data, $postID);
         $stmt->execute();
-        return $stmt->errno;
+        $err = $stmt->errno;
     } 
     
     public function standbyAccount($username){
@@ -448,7 +447,7 @@ class DatabaseHelper{
     }   
 
     public function getPostImgByPostID($postID){
-        $query = "SELECT `path`, `altText` FROM post_images WHERE ID = (SELECT img FROM posts WHERE ID = ?)";
+        $query = "SELECT `path`, `altText`, `longdesc` FROM post_images WHERE ID = (SELECT img FROM posts WHERE ID = ?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $postID);
         $stmt->execute();
@@ -458,6 +457,7 @@ class DatabaseHelper{
         if(count($result) == 1){
             $res['path'] = $result[0]['path'];
             $res['altText'] = $result[0]['altText'];
+            $res['longdesc'] = $result[0]['longdesc'];
         }
         return $res;
     }   
