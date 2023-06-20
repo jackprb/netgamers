@@ -125,7 +125,7 @@ class DatabaseHelper{
     public function getTitleOfPost($postId){
         $query = "SELECT title FROM posts WHERE ID = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('i', $postID);
+        $stmt->bind_param('i', $postId);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
@@ -203,7 +203,9 @@ class DatabaseHelper{
         $stmt->execute();
         $type = 'NCOMMENT';
         $DstUserId = $this->getUserIdFromPost($postId);
+        $DstUserId = $DstUserId[0]['userID'];
         $content = $this->getTitleOfPost($postId);
+        $content = $content[0]['title'];
         return $stmt->errno == 0 && !($this->sendNotification($SrcUserId, $DstUserId, $type, $content));
     }
     
@@ -260,9 +262,14 @@ class DatabaseHelper{
         $stmt->bind_param('ii', $postID, $SrcUserId);
         $stmt->execute();
         $DstUserId = $this->getUserIdFromPost($postID);
+        $DstUserId = $DstUserId[0]['userID'];
         $type = 'NLIKEPOST';
-        $content = $this->getTitleOfPost($postID);
-        return $stmt->errno == 0 && !($this->sendNotification($SrcUserId, $DstUserId, $type, $content));
+        $title = $this->getTitleOfPost($postID);
+        $title = $title[0]['title'];
+        $content = '<a href="post.php?p=' . $postID . '"> ' . $title . '</a>' ;
+        
+        $err = $this->sendNotification($SrcUserId, $DstUserId, $type, $content);
+        return $err;
     }
 
     public function hasLikePost($SrcUserId, $postID){
@@ -288,9 +295,11 @@ class DatabaseHelper{
         $stmt->bind_param('ii', $commentID, $SrcUserId);
         $stmt->execute();
         $DstUserId = $this->getUserIdFromComment($commentID);
+        $DstUserId = $DstUserId[0]['userID'];
         $type = 'NLIKECOMMENT';
-        $postID = $this->getPostIDofComment($commentId);
-        $content = $this->getTitleOfPost($postID) . ' of the user: ' . $this->getUsernameFromPost($postID);
+        $postID = $this->getPostIDofComment($commentID);
+        $postID = $postID[0]['postID'];
+        $content = '<a href="post.php?p=' . $postID .'#c' . $commentID . '"> comment</a>' ;
         return $stmt->errno == 0 && !($this->sendNotification($SrcUserId, $DstUserId, $type, $content));
     }
 

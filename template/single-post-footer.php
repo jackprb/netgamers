@@ -9,7 +9,7 @@
                             <a href="#commentTop" title="View comments" class="nav-item position-relative fs-4 p-2 mx-sm-1">
                                 <i class="ai-messages"></i>
                             </a>
-                            <a href="#." title="Like" class="nav-item text-danger position-relative fs-4 p-2 mx-sm-1 likeBtn"
+                            <a href="#." title="Like" class="nav-item text-danger position-relative fs-4 p-2 mx-sm-1"
                                 onclick="likeButtonChanger(<?php echo $_GET['p']; ?>, <?php echo intval($_SESSION['userID']); ?>);">
                                 <?php hasLike($dbh); ?>
                             </a>
@@ -23,9 +23,9 @@
                     $userID = intval($_SESSION['userID']);
                     $res = $dbh->hasLikePost($userID, $postID);
                     if(count($res) == 0){ //no like
-                        echo '<i class="ai-heart"></i>';
+                        echo '<i class="ai-heart" id="pLikeID"></i>';
                     } else { // c'è like
-                        echo '<i class="ai-heart-filled"></i>';
+                        echo '<i class="ai-heart-filled" id="pLikeID"></i>';
                     }
                 }
                 ?>

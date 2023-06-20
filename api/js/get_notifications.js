@@ -2,10 +2,10 @@ function createNotification(notifications){
     let result = "";
     if(notifications.length > 0){
         let modalArray = 
-            {"NCOMMENT" : ["bg-success text-white", "New comment!", " commented your post: "],
+            {"NCOMMENT" : ["bg-success text-white", "New comment!", " commented your post "],
             "NFOLLOWER": ["bg-dark text-white", "New follower!", " started following you!"],
-            "NLIKECOMMENT": ['text-white" style="background-color: #e23152;', "New like!", " liked your comment in the post: "],
-            "NLIKEPOST": ['text-white" style="background-color: #e23152;', "New like!", " liked your post: "],
+            "NLIKECOMMENT": ['text-white" style="background-color: #e23152;', "New like!", ` liked your `],
+            "NLIKEPOST": ['text-white" style="background-color: #e23152;', "New like!", " liked your post "],
             "NPOSTFEED": ["bg-primary text-white", "New post!", " posted something new! Post title: "]};
         for(let i=0; i < notifications.length; i++){
             // struttura della notifica
@@ -34,9 +34,9 @@ function createNotification(notifications){
 window.addEventListener("load", function () {
     getNotifications(); // fetch notification when the page loads
 
-    setInterval(function(){ 
+    /*setInterval(function(){ 
         getNotifications(); 
-    }, 10000); // fetch new notifications every 10 seconds.  
+    }, 10000); // fetch new notifications every 10 seconds. */ 
 });
 
 
