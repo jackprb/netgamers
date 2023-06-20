@@ -16,8 +16,10 @@
             <section class="card border-0 py-1 p-md-2 p-xl-3 mb-4">
                 <div class="card-body">
                     <div class="d-flex align-items-center mt-sm-n1 pb-4 mb-0 mb-lg-1 mb-xl-3">
-                        <i class="ai-square-plus text-primary lead pe-1 me-2"></i>
-                        <h2 class="h4 mb-0">Create new post</h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-plus-square text-dark me-3 svg-lg" viewBox="0 0 16 16" aria-hidden="true">
+                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg><h2 class="h4 mb-0">Create new post</h2>
                     </div>
                     <form action="<?php echo getApiPath('api-insert-new-post.php'); ?>" method="post" enctype="multipart/form-data">
                         <div class="row g-3 g-sm-4 mt-0 mt-lg-2">

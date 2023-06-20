@@ -38,17 +38,12 @@
 
             <form action="./login_process.php" method="POST">
                 <div class="pb-3 mb-3">
-                    <div class="position-relative"><i class="ai-user fs-lg position-absolute top-50 start-0 translate-middle-y text-light opacity-80 ms-3"></i>
-                        <input class="form-control form-control-lg ps-5" type="text" name="username" id="username" placeholder="Username" required>
-                    </div>
+                    <label class="form-label d-none" for="username">Username</label>
+                    <input class="form-control form-control-lg" type="text" name="username" id="username" placeholder="Username" required>
                 </div>
-                <div class="mb-4">
-                    <div class="position-relative"><i class="ai-lock-closed fs-lg position-absolute top-50 start-0 translate-middle-y text-light opacity-80 ms-3"></i>
-                        <div class="password-toggle">
-                            <input class="form-control form-control-lg ps-5" type="password" placeholder="Password" id="password" name="password" required>
-                            
-                        </div>
-                    </div>
+                <div class="password-toggle mb-4">
+                    <label class="form-label d-none" for="password">Password</label>
+                    <input class="form-control form-control-lg" type="password" placeholder="Password" id="password" name="password" required>
                 </div>
                 <button class="btn btn-lg btn-light w-100 mb-4" type="submit" name="login">Log in</button>
             </form>
@@ -70,20 +65,27 @@
         <form action="./register_process.php" method="POST">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 row-cols-lg-2">
                 <div class="col mb-4">
+                    <label class="form-label d-none" for="usernameReg">Username</label>
                     <input class="form-control form-control-lg" type="text" placeholder="Username" required name="usernameReg" id="usernameReg">
                 </div>
                 <div class="col mb-4">
+                    <label class="form-label d-none" for="email">Email address</label>
                     <input class="form-control form-control-lg" type="email" placeholder="Email address" required name="email" id="email">
                 </div>
             </div>
             <div class="password-toggle mb-4">
+                <label class="form-label d-none" for="psw">Password</label>
                 <input class="form-control form-control-lg" type="password" placeholder="Password" required name="psw" id="psw">
             </div>
             <div class="password-toggle mb-4">
+                <label class="form-label d-none" for="confPsw">Confirm password</label>
                 <input class="form-control form-control-lg" type="password" placeholder="Confirm password" required name="confPsw" id="confPsw">
             </div>
             <div class="alert alert-info d-flex my-3 my-sm-4">
-                <i class="ai-circle-info fs-xl me-2"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-info-circle text-dark me-2 svg-md align-self-start" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>
                 <p class="mb-0">Password <strong>must</strong> be minimum 10 characters long and <strong>must</strong> contain at least one number, one special char and one capital letter.</p>
             </div>
             <button class="btn btn-lg btn-primary w-100 mb-4" type="submit" name="signup">Sign up</button>

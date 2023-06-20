@@ -123,7 +123,20 @@ function getPostImagePath(filename){
     return "./upload/postImages/" + filename;
 }
 
+function emptySearchResult(){
+    return `
+    <li class="list-group-item">
+        <div class="card border-0 overflow-hidden">
+            <div class="card-body">
+                <p class="card-text text-center">Type something in the search bar...</p>
+            </div>
+        </div>
+    </li>`;
+}
+
 function getSearchResult(){
+    console.log(searchQuery);
+    if(searchQuery.length > 0){
         if(searchType == 'username'){
             axios.get('api/api-search.php?searchI='+ searchQuery + '&searchType=' + searchType).then(response => {
                 srcList.innerHTML = createUsersSearchResult(response.data); 
@@ -139,7 +152,8 @@ function getSearchResult(){
                     srcList.innerHTML = createPostSearchResult(Img, noImg);
                 }); 
             });
-
         }
-   
+    } else {
+        srcList.innerHTML = emptySearchResult();
+    }
 }
