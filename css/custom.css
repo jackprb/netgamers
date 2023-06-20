@@ -22,3 +22,14 @@
     height: 100px;
 }
 
+.svg-md{
+    width: 100%; 
+    max-width: 1rem;
+    height: auto;
+}
+
+.svg-lg{
+    width: 100%; 
+    max-width: 1.7rem;
+    height: auto;
+}

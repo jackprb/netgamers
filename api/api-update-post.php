@@ -18,7 +18,7 @@ if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "POST"){  // se utente è l
 
                     $currentUserPost = $dbh->updatePost($_POST['postID'], $residPostImg, $_POST["title"], $_POST["content"]);
                     if($currentUserPost == 0){ // tutto ok
-                        header("location: ../modifyPost.php?r=0&p=" . $_POST['postID']);
+                        header("location: ../post.php?r=4&p=" . $_POST['postID']);
                     } else {
                         header("location: ../modifyPost.php?r=2&p=" . $_POST['postID']); //errore inserimento post in db
                     }
@@ -36,7 +36,7 @@ if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "POST"){  // se utente è l
         if(areFieldsSetPostNOimage()){
             $currentUserPost = $dbh->updatePost($_POST['postID'], NULL, $_POST["title"], $_POST["content"]);
             if($currentUserPost == 0){ // tutto ok 
-                header("location: ../modifyPost.php?r=0&p=" . $_POST['postID']);
+                header("location: ../post.php?r=4&p=" . $_POST['postID']);
             } else {
                 header("location: ../modifyPost.php?r=2&p=" . $_POST['postID']);
             }
