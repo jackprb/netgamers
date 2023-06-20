@@ -63,8 +63,15 @@ class DatabaseHelper{
         $err = $stmt->errno == 0 ? FALSE : TRUE;
         $type = 'NPOSTFEED';
         $dstUsers = $this->getFollowers($userId);
+        $query1 = "SELECT MAX(ID) as ID FROM posts WHERE userID = ?";
+        $stmt1 = $this->db->prepare($query1);
+        $stmt1->bind_param('i', $userId);
+        $stmt1->execute();
+        $result1 = $stmt1->get_result()->fetch_all(MYSQLI_ASSOC);
+        $postID = $result1[0]['ID'];
+        $content = '<a href="post.php?p=' . $postID . '"> ' . $title . '</a>' ;
         for ($i=0; $i < count($dstUsers); $i++) { 
-            $err = $err || $this->sendNotification($userId, $dstUsers[$i]['userFollowing'], $type, $title);
+            $err = $err || $this->sendNotification($userId, $dstUsers[$i]['userFollowing'], $type, $content);
         }
         return !$err;
     }

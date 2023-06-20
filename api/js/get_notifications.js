@@ -34,9 +34,9 @@ function createNotification(notifications){
 window.addEventListener("load", function () {
     getNotifications(); // fetch notification when the page loads
 
-    /*setInterval(function(){ 
+    setInterval(function(){ 
         getNotifications(); 
-    }, 10000); // fetch new notifications every 10 seconds. */ 
+    }, 10000); // fetch new notifications every 10 seconds.  
 });
 
 
