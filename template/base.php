@@ -235,11 +235,15 @@
                             </div>
                         </div>
                         <?php endif; ?>
-                        <a class="nav-link p-1 me-2" href="#">
-                            <div class="form-check form-switch mode-switch me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
+                        <a class="nav-link p-1" href="#">
+                            <div class="form-check form-switch mode-switch ms-auto" data-bs-toggle="mode">
                                 <input class="form-check-input" type="checkbox" id="theme-mode" onclick="changeTheme()">
-                                <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i></label>
-                                <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i></label>
+                                <label class="form-check-label" for="theme-mode"><i class="ai-sun fs-lg"></i>
+                                    <p class="d-none">Tema chiaro</p>
+                                </label>
+                                <label class="form-check-label" for="theme-mode"><i class="ai-moon fs-lg"></i>
+                                    <p class="d-none">Tema scuro</p>
+                                </label>
                             </div>
                         </a>
                     </div>

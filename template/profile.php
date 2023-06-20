@@ -89,7 +89,7 @@
                             <p class="fs-sm"><i class="ai-mail me-1"></i><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></p>
                             <?php 
                                 if ($country != NULL){
-                                    echo '<p class="fs-sm"><i class="ai-map-pin me-1"></i>' . $country . "</p>";
+                                    echo '<p class="fs-sm"><i class="ai-map-pin me-1"></i><a target="_blank" href="https://google.com/maps/place/' . $country . '">' . $country . '</a></p>';
                                 }
                             ?>                           
                         </div>
