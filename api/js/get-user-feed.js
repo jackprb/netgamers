@@ -43,10 +43,15 @@ function generatePost(posts){
                         <div class="row">
                             <div class="d-flex justify-content-end">
                                 <a href="post.php?p=${posts[i]['postID']}" target="_blank" title="Click to see this post in a new page" class="nav-item position-relative fs-4 p-2 mx-sm-1">
-                                    <i class="ai-external-link"></i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-box-arrow-up-right text-dark me-3 svg-navbar" viewBox="0 0 16 16" role="img" aria-label="View post">
+                                        <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                        <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                                    </svg>
                                 </a>
                                 <a href="#" title="Like this post" class="nav-item position-relative fs-4 p-2 mx-sm-1">
-                                    <i class="ai-heart"></i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-heart text-dark me-2 svg-navbar" viewBox="0 0 16 16" role="img" aria-label="Unlike button">
+                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                    </svg>
                                 </a>
                             </div>
                         </div>   
@@ -80,7 +85,9 @@ function generatePost(posts){
                         <div class="row">
                             <div class="d-flex justify-content-end">
                                 <a href="#" title="Like" class="nav-item position-relative fs-4 p-2 mx-sm-1">
-                                    <i class="ai-heart"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-heart text-dark me-2 svg-navbar" viewBox="0 0 16 16" role="img" aria-label="Unlike button">
+                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                </svg>
                                 </a>
                             </div>
                         </div>   
