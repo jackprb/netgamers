@@ -125,7 +125,7 @@ function getPostImagePath(filename){
 
 function emptySearchResult(){
     return `
-    <li class="list-group-item">
+    <li class="list-group-item text-center">
         <div class="card border-0 overflow-hidden">
             <div class="card-body">
                 <p class="card-text text-center">Type something in the search bar...</p>
