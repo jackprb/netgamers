@@ -9,8 +9,8 @@ if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "POST"){  // se utente è l
             // uploads image in UPLOAD_POSTIMG_DIR
             list($resultUpload, $msg, $finalImgPath) = uploadImagePost("../".UPLOAD_POSTIMG_DIR, $_FILES["postImg"]);
             if($resultUpload == 1){ //upload completato con successo in cartella upload/postImages, ma non in DB
-                $altText = $_SESSION["username"] . "'s post image: " . $_POST['altText'];
-                $longDesc = $_SESSION["username"] . "'s post image. Details: " . $_POST['longDesc'];
+                $altText = $_POST['altText'];
+                $longDesc = $_POST['longDesc'];
                 $idPostImg = $dbh->addPostImg($altText, $longDesc, $finalImgPath); //inserisce nuova img in db
 
                 if($idPostImg !== FALSE){ //img inserita in db con successo

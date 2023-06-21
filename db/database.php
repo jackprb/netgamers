@@ -441,7 +441,7 @@ class DatabaseHelper{
     }   
 
     public function getUserImgByUserID($userID){
-        $query = "SELECT `path`, `altText` FROM profile_images WHERE ID = (SELECT userImg FROM users WHERE active=1 AND ID = ?)";
+        $query = "SELECT ID, `path`, `altText` FROM profile_images WHERE ID = (SELECT userImg FROM users WHERE active=1 AND ID = ?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $userID);
         $stmt->execute();
@@ -449,6 +449,7 @@ class DatabaseHelper{
 
         $res = array();
         if(count($result) == 1){
+            $res['ID'] = $result[0]['ID'];
             $res['path'] = $result[0]['path'];
             $res['altText'] = $result[0]['altText'];
         }
@@ -456,7 +457,7 @@ class DatabaseHelper{
     }   
 
     public function getPostImgByPostID($postID){
-        $query = "SELECT `path`, `altText`, `longdesc` FROM post_images WHERE ID = (SELECT img FROM posts WHERE ID = ?)";
+        $query = "SELECT * FROM post_images WHERE ID = (SELECT img FROM posts WHERE ID = ?)";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $postID);
         $stmt->execute();
@@ -464,6 +465,7 @@ class DatabaseHelper{
 
         $res = array();
         if(count($result) == 1){
+            $res['ID'] = $result[0]['ID'];
             $res['path'] = $result[0]['path'];
             $res['altText'] = $result[0]['altText'];
             $res['longdesc'] = $result[0]['longdesc'];
@@ -471,6 +473,89 @@ class DatabaseHelper{
         return $res;
     }   
     
+    public function deleteUserImg($imageID){
+        $query = "DELETE FROM profile_images WHERE ID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $imageID);
+        $stmt->execute();
+        if($stmt->errno == 0){
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    public function deletePostImg($imageID){
+        $query = "DELETE FROM post_images WHERE ID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $imageID);
+        $stmt->execute();
+        if($stmt->errno == 0){
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    public function deletePost($postID){
+        $deleteLikeToComments = $this->deleteAllLikeToCommentsOfPost($postID);
+        $deleteLikeToPost = $this->deleteAllLikeOfPost($postID);
+        $deleteComments = $this->deleteAllCommentsOfPost($postID);
+        if($deleteComments == TRUE && $deleteLikeToPost == TRUE && $deleteLikeToComments == TRUE){
+            $query = "DELETE FROM posts WHERE ID = ?";
+            $stmt = $this->db->prepare($query);
+            $stmt->bind_param('i', $postID);
+            $stmt->execute();
+            if($stmt->errno == 0){
+                return TRUE;
+            }
+        }
+        return FALSE;
+    }
+
+    public function deleteCommentByID($commentID){
+        $query = "DELETE FROM posts WHERE ID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $commentID);
+        $stmt->execute();
+        if($stmt->errno == 0){
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    private function deleteAllCommentsOfPost($postID){
+        $query = "DELETE FROM comments WHERE postID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $postID);
+        $stmt->execute();
+        if($stmt->errno == 0){
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    private function deleteAllLikeOfPost($postID){
+        $query = "DELETE FROM user_like_post WHERE postID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $postID);
+        $stmt->execute();
+        if($stmt->errno == 0){
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    private function deleteAllLikeToCommentsOfPost($postID){
+        $query = "DELETE FROM user_like_comment WHERE commentID IN
+                    (SELECT DISTINCT commentID FROM user_like_comment JOIN comments ON user_like_comment.userID = comments.userID WHERE postID = ?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $postID);
+        $stmt->execute();
+        if($stmt->errno == 0){
+            return TRUE;
+        }
+        return FALSE;
+    }
+
     public function setDefaultUserImg($username){
         $query = "UPDATE users SET userImg = 1 WHERE username = ?";
         $stmt = $this->db->prepare($query);
@@ -503,7 +588,6 @@ class DatabaseHelper{
         return FALSE;
     }  
 
-    
     public function addPostImg($altText, $longdesc, $imgPath){
         $query = "INSERT INTO post_images (`path`, altText, longdesc) VALUES (?,?,?)";
         $stmt = $this->db->prepare($query);
