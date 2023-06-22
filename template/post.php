@@ -134,3 +134,22 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="modalDeleteComment" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Confirm delete comment</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete your comment?</p>
+                            <p class="text-danger">It can't be undone.</p>
+                        </div>
+                        <div class="modal-footer row">
+                            <form id="deleteComment" method="post" action="<?php echo getApiPath('api-delete-comment.php'); ?>">
+                                <button type="button" class="btn btn-secondary col-sm-12 col-md-4" data-bs-dismiss="modal">Cancel</button>
+                                <input type="submit" class="btn btn-danger col-sm-12 col-md-5 ms-3" value="Delete comment" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
