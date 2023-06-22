@@ -153,3 +153,24 @@
                     </div>
                 </div>
             </div>
+
+        <div class="modal fade" id="modalDeletePost" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Confirm delete post</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this post?</p>
+                        <p class="text-danger">It can't be undone.</p>
+                        <form id="deletePost" method="post" action="<?php echo getApiPath('api-delete-post.php'); ?>">
+                            <input type="hidden" id="pID" name="pID" value="<?php echo $_GET['p']; ?>"/>
+                        </form>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary me-3" data-bs-dismiss="modal">Cancel</button>
+                        <input type="submit" class="btn btn-danger" value="Delete post" form="deletePost"/>
+                    </div>
+                </div>
+            </div>
+        </div>

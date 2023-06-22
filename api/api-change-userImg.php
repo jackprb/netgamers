@@ -7,8 +7,8 @@ if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "POST" && isImageChosen()){
         list($resultUpload, $msg, $finalImgPath) = uploadImage("../".UPLOAD_USERIMG_DIR, $_FILES["userImg"]);
     
         if($resultUpload == 1){ //upload completato con successo in cartella upload/userImages, ma non in DB
-            $altText = $_SESSION["username"] . "'s profile image: " . $_POST['altText'];
-            $longDesc = $_SESSION["username"] . "'s profile image. Details: " . $_POST['longDesc'];
+            $altText = $_POST['altText'];
+            $longDesc = $_POST['longDesc'];
             $idUserImg = $dbh->addImg($altText, $longDesc, $finalImgPath); //inserisce nuova img in db
             $resIdUserImg = $idUserImg[0]['ID']; //ottiene id di img caricata
     

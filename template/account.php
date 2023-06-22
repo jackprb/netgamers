@@ -453,9 +453,9 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="modal-footer row">
-                            <button type="button" class="btn btn-secondary col-sm-12 col-md-4" data-bs-dismiss="modal">Cancel</button>
-                            <input type="submit" class="btn btn-primary col-sm-12 col-md-5 ms-3" value="Upload image" form="uploadPhoto" />
+                        <div class="modal-footer d-flex justify-content-end">
+                            <button type="button" class="btn btn-secondary me-3" data-bs-dismiss="modal">Cancel</button>
+                            <input type="submit" class="btn btn-primary" value="Upload image" form="uploadPhoto" />
                         </div>
                     </div>
                 </div>
@@ -470,12 +470,12 @@
                         <div class="modal-body">
                             <p>Are you sure you want to delete your profile image?</p>
                             <p class="text-danger">It can't be undone.</p>
-                        </div>
-                        <div class="modal-footer row">
                             <form id="deletePhoto" method="post" action="<?php echo getApiPath('api-delete-userImg.php'); ?>">
-                                <button type="button" class="btn btn-secondary col-sm-12 col-md-4" data-bs-dismiss="modal">Cancel</button>
-                                <input type="submit" class="btn btn-danger col-sm-12 col-md-5 ms-3" value="Delete photo" />
                             </form>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-end">
+                            <button type="button" class="btn btn-secondary me-3" data-bs-dismiss="modal">Cancel</button>
+                            <input type="submit" class="btn btn-danger" value="Delete photo" form="deletePhoto"/>
                         </div>
                     </div>
                 </div>
