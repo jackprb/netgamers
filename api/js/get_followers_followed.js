@@ -1,5 +1,5 @@
-let followerCountLbl = document.querySelector(".followerCount");
-let followedCountLbl = document.querySelector(".followedCount");
+let followerCountLbl = document.querySelectorAll(".followerCount");
+let followedCountLbl = document.querySelectorAll(".followedCount");
 let followerList = document.querySelector("#followerList");
 let followedList = document.querySelector("#followedList");
 let userID = document.querySelector("#userID").value;
@@ -56,10 +56,14 @@ function getFollowed(){
     axios.get('api/api-get-followedList.php?u='+userID).then(response => {
         const res = response.data;
         if(response.data.length == 0){
-            followedCountLbl.innerHTML = '0';
+            followedCountLbl.forEach(element => {
+                element.innerHTML = '0';
+            });
             followedList.innerHTML = "";
         }else{
-            followedCountLbl.innerHTML =  getCount(response.data);
+            followedCountLbl.forEach(element => {
+                element.innerHTML =  getCount(response.data);
+            }); 
             followedList.innerHTML = createList(response.data);
         }
     });
@@ -70,10 +74,14 @@ function getFollowers(){
         const res = response.data;
         console.log(getCount(response.data));
         if(response.data.length == 0){
-            followerCountLbl.innerHTML = '0';
+            followerCountLbl.forEach(element => {
+                element.innerHTML = '0';
+            });
             followerList.innerHTML = "";
         }else{
-            followerCountLbl.innerHTML =  getCount(response.data);
+            followerCountLbl.forEach(element => {
+                element.innerHTML =  getCount(response.data);
+            });
             followerList.innerHTML = createList(response.data);
         }
     });
