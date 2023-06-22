@@ -2,13 +2,13 @@
                     <div class="row">
                         <div class="d-flex justify-content-end">
                             <?php if($res[0]['img'] != NULL) : ?>
-                            <a href="#." title="View the text content of this post" class="nav-item position-relative fs-4 p-2 mx-sm-1" data-bs-toggle="modal" data-bs-target="#modalText" >
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list text-dark me-2 svg-lg" viewBox="0 0 16 16" role="img" aria-label="View the text content of this post">
+                            <a href="#" title="View the text content of this post" class="nav-item position-relative fs-4 p-2 mx-sm-1" data-bs-toggle="modal" data-bs-target="#modalText" >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list text-dark me-2 svg-navbar" viewBox="0 0 16 16" role="img" aria-label="View the text content of this post">
                                     <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                                 </svg></a>
                             <?php endif; ?>
                             <a href="#commentTop" title="View comments" class="nav-item position-relative fs-4 p-2 mx-sm-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chat-right-dots text-dark me-2 svg-lg" viewBox="0 0 16 16" role="img" aria-label="View the comments for this post">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chat-right-dots text-dark me-2 svg-navbar" viewBox="0 0 16 16" role="img" aria-label="View the comments for this post">
                                     <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
                                     <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
                                 </svg>
