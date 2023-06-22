@@ -512,7 +512,19 @@ class DatabaseHelper{
     }
 
     public function deleteCommentByID($commentID){
-        $query = "DELETE FROM posts WHERE ID = ?";
+        $this->deleteAllCommentsLikesOfComment($commentID);
+        $query = "DELETE FROM comments WHERE ID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $commentID);
+        $stmt->execute();
+        if($stmt->errno == 0){
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    private function deleteAllCommentsLikesOfComment($commentID){
+        $query = "DELETE FROM `user_like_comment` WHERE commentID = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $commentID);
         $stmt->execute();

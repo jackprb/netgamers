@@ -2,7 +2,7 @@
                     <div class="row">
                         <div class="d-flex justify-content-end">
                             <?php if($res[0]['img'] != NULL) : ?>
-                            <a href="#" title="View the text content of this post" class="nav-item position-relative fs-4 p-2 mx-sm-1" data-bs-toggle="modal" data-bs-target="#modalText" >
+                            <a href="#." title="View the text content of this post" class="nav-item position-relative fs-4 p-2 mx-sm-1" data-bs-toggle="modal" data-bs-target="#modalText" >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list text-dark me-2 svg-lg" viewBox="0 0 16 16" role="img" aria-label="View the text content of this post">
                                     <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                                 </svg></a>

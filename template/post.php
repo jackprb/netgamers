@@ -5,7 +5,8 @@
             $msg[2] = "An error occurred. Comment not published. Retry later.";
             $msg[3] = "Comment modified successfully.";
             $msg[4] = "Post modified successfully.";
-            if($code == 0 || $code == 3 || $code == 4){
+            $msg[5] = "Comment deleted successfully.";
+            if($code == 0 || $code == 3 || $code == 4 || $code == 5){
                 $type = "alert-success";
             } else {
                 $type = "alert-danger";
@@ -36,7 +37,7 @@
         <section id="post" class="mt-5 mx-sm-1">
             <input type="hidden" id="pId" value = "<?php echo $_GET["p"];?>" />
             <input type="hidden" id="uId" value = "<?php echo $_SESSION["userID"];?>" />
-            <?php if(isset($_GET["r"]) && $_GET["r"] >= 0 && $_GET["r"] <= 4): ?>
+            <?php if(isset($_GET["r"]) && $_GET["r"] >= 0 && $_GET["r"] <= 5): ?>
             <div class="col-12">
                 <div class="alert <?php echo publishCommentMsg($_GET["r"])[0]; ?> alert-dismissible fade show" role="alert">
                     <div><?php echo publishCommentMsg($_GET["r"])[1]; ?></div>
@@ -134,25 +135,6 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="modalDeleteComment" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Confirm delete comment</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Are you sure you want to delete your comment?</p>
-                            <p class="text-danger">It can't be undone.</p>
-                        </div>
-                        <div class="modal-footer row">
-                            <form id="deleteComment" method="post" action="<?php echo getApiPath('api-delete-comment.php'); ?>">
-                                <button type="button" class="btn btn-secondary col-sm-12 col-md-4" data-bs-dismiss="modal">Cancel</button>
-                                <input type="submit" class="btn btn-danger col-sm-12 col-md-5 ms-3" value="Delete comment" />
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         <div class="modal fade" id="modalDeletePost" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">

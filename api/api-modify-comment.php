@@ -8,7 +8,7 @@ if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "POST"){  // se utente è l
         if($currentUserComment === TRUE){ // tutto ok
             header("location: ../post.php?p=".$_GET['p']."&r=3");
         } else {
-            header('location: ../modifycomment.php?p=c='.$_GET['c'].'p='.$_GET['p']."&r=1"); //errore aggiornamento in db
+            header('location: ../modifycomment.php?c='.$_GET['c'].'&p='.$_GET['p'].'&r=0'); //errore aggiornamento in db
         }
     }else{
         header("location: ../error.php");
