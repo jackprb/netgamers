@@ -7,9 +7,6 @@ if(isUserLoggedIn()){
     $templateParams["nome"] = "search.php";
     $templateParams["js"] = array("https://unpkg.com/axios/dist/axios.min.js","./api/js/get_notifications.js",
             "./api/js/read_notification.js", "./api/js/search.js");
-    if(isset($_GET["formmsg"])){
-        $templateParams["formmsg"] = $_GET["formmsg"];
-    }
 
 } else {
     header("location:login.php?a=1");
