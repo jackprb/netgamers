@@ -8,7 +8,7 @@ if(isUserLoggedIn()){
             "./api/js/read_notification.js", "./api/js/get_comments.js", "./api/js/like-manager.js");
     
     if(!isset($_GET['p']) || (int) $_GET['p'] <= 0){
-        header("location: error.php?u=3");
+        header("location: error.php?e=3");
     }
 
 } else {

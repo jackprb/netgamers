@@ -2,9 +2,6 @@
                 if(isset($_GET['p']) && $_GET['p'] > 0){
                     $res = $dbh->getPostData($_GET['p']);
                     $img = $dbh->getPostImgByPostID($_GET['p']);
-                } else {
-                    require 'error.php';
-                    exit();
                 }
 
                 function modifyPostMsg($code){

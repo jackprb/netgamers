@@ -11,10 +11,6 @@
                 if(isset($_GET['u']) && (int) $_GET['u'] > 0){
                     $infoUser = $dbh->getUserDataByID($_GET['u']);
                     $id = $_GET['u'];
-                    if (count($infoUser) == 0){
-                        require 'error.php';
-                        exit();
-                    }
                 }
 
                 $username = $infoUser['username'];

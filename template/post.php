@@ -21,9 +21,6 @@
                 if($res[0]['img'] != NULL){ // prende immagine del post
                     $imgPost = $dbh->getPostImgByPostID($_GET['p']);
                 }
-            } else { // post NON esiste
-                require "error.php";
-                exit();
             }
         }
 

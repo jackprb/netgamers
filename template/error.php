@@ -4,19 +4,29 @@
     
     if(isset($_GET['e'])){
         switch ($_GET['e']) {
-            case 1: //errore 404
+            case 1: 
                 $title = "Page not found - 404 Error";
                 $msg = "The page you were looking for does not exist.";
                 break;
             
-            case 2: // errore 400
+            case 2:
                 $title = "Bad request - 400 Error";
                 $msg = "The server cannot fulfill your request. Maybe you followed an incorrect link.";
                 break;
             
-            case 3: //errore 404
+            case 3: 
                 $title = "Post not found - 404 Error";
                 $msg = "The post you were looking for does not exist.";
+                break;
+
+            case 4: 
+                $title = "Comment not found - 404 Error";
+                $msg = "The comment you were looking for does not exist.";
+                break;
+
+            case 5: 
+                $title = "User not found - 404 Error";
+                $msg = "The user you were looking for does not exist.";
                 break;
 
             default:
