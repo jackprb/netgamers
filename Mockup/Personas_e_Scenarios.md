@@ -1,14 +1,14 @@
 # Netgamers
 
 ## Tema
-Vogliamo creare una community di giocatori, dal casual al pro gamers, dove poter condividere le proprie opinioni
-sulle nuove uscite, su i classici o su i propri giochi preferiti. 
+Vogliamo creare una community di giocatori, dal casual al pro gamer, dove poter condividere le proprie opinioni
+sulle nuove uscite, sui classici o sui propri giochi preferiti. 
 Una community in cui potersi connettere con altri giocatori appassionati, scoprire nuovi giochi,
-condividere esperienze e ampliare la propria cerchia di amici videogiocatori.
+condividere esperienze e ampliare la propria cerchia di amici.
 
 ## Personas
 ### Chi sono le personas?
-Le personas sono gli attori/utenti che utilizzano il programma.
+Le personas sono gli attori/utenti che utilizzano il sito web.
 
 ### Alex Johnson: "TechWiz"
 Alex è un appassionato di tecnologia e gaming. È sempre aggiornato sulle ultime novità nel campo dei videogiochi e ama condividere le sue opinioni, recensioni e suggerimenti con la comunità NetGamers. È anche abile nel risolvere problemi tecnici e fornisce supporto agli altri utenti.
@@ -17,13 +17,13 @@ Alex è un appassionato di tecnologia e gaming. È sempre aggiornato sulle ultim
 Emma è una giocatrice esperta e competitiva. È coinvolta in diverse comunità di eSport e partecipa a tornei online. Ha una vasta conoscenza dei giochi più popolari e condivide strategie, trucchi e consigli per aiutare gli altri utenti a migliorare le loro abilità di gioco.
 
 ### Luca Rossi: "PixelArtist"
-Luca è un artista digitale specializzato nella creazione di grafica per videogiochi. Condivide il suo lavoro sulla piattaforma NetGamers, mostrando disegni,  illustrazioni e concept art realizzati per vari giochi. È anche disponibile per collaborazioni con sviluppatori indie o team di videogiochi.
+Luca è un artista digitale specializzato nella creazione di grafica per videogiochi. Condivide il suo lavoro mostrando disegni, illustrazioni e concept art realizzati per vari giochi. È anche disponibile per collaborazioni con sviluppatori indie o team di videogiochi.
 
 ### Sofia Andersson: "QuestSeeker"
 Sofia è una grande appassionata di giochi di ruolo e avventure.  È sempre alla ricerca di nuovi titoli da scoprire e ama condividere le sue esperienze di gioco. Scrive recensioni dettagliate sui giochi di ruolo, compresi i loro aspetti narrativi, la grafica e il gameplay, per aiutare gli utenti a scegliere quali giochi giocare.
 
 ### Sara Costa: "MobileGamer"
-Sara è una giocatrice appassionata di giochi mobili. Si concentra sui giochi per dispositivi mobili, fornendo recensioni,  suggerimenti e consigli su una vasta gamma di titoli per smartphone e tablet.  Condivide anche notizie sulle ultime tendenze nell'ambito dei giochi mobili e  aiuta gli utenti a scoprire le gemme nascoste nella vasta offerta di giochi disponibili.
+Sara è una giocatrice appassionata di giochi mobile, fornisce recensioni, suggerimenti e consigli su una vasta gamma di titoli per smartphone e tablet.  Condivide anche notizie sulle ultime tendenze e aiuta gli utenti a scoprire i giochi migliori ma poco conosciuti nella vasta offerta di titoli disponibili.
 
 ## Scenarios
 ### cosa sono gli scenarios?
@@ -71,7 +71,7 @@ specifico per ogni personas
 	+ Voglia di esprimersi attraverso l'arte digitale e condividere le proprie creazioni con una comunità di appassionati.
 	+ Essere chiamato a partecipare a progetti importanti.
 - Contesto
-	+ Luca cerca una piattaforma per mostrare il suo talento artistico nell ambito della grafica per videogiochi
+	+ Luca cerca una piattaforma per mostrare il suo talento artistico nell'ambito della grafica per videogiochi
 	+ Luca cerca una piattaforma dove sponsorizzarsi come possibile artista per la grafica di giochi indie e non
 
 ### Sofia Andersson: "QuestSeeker"
@@ -88,35 +88,36 @@ specifico per ogni personas
 	
 ### Sara Costa: "MobileGamer"
 - Obiettivi
-	+ Esplorare e scoprire nuovi giochi per dispositivi mobili su NetGamers, condividendo le proprie esperienze e consigli con la comunità.
-	+ Creare recensioni, guide e consigliare i migliori giochi per dispositivi mobili per informare e intrattenere i suoi followers.
-	+ Contribuire a una comunità di giocatori di giochi per dispositivi mobili, offrendo supporto e consigli agli utenti, stimolando l'interazione e la condivisione di esperienze di gioco.
+	+ Esplorare e scoprire nuovi giochi per dispositivi mobile su NetGamers, condividendo le proprie esperienze e consigli con la comunità.
+	+ Creare recensioni, guide e consigliare i migliori giochi per dispositivi mobile per informare e intrattenere i suoi followers.
+	+ Contribuire a una comunità di giocatori mobile, offrendo supporto e consigli agli utenti, stimolando l'interazione e la condivisione di esperienze di gioco.
 - Motivazioni
-	+ Passione per i giochi per dispositivi mobili e la possibilità di giocare in movimento.
-	+ Interesse a rimanere aggiornati sulle ultime novità e tendenze nel settore dei giochi per dispositivi mobili.
-	+ Desiderio di condividere le proprie esperienze e conoscenze sui giochi per dispositivi mobili con altri appassionati.
+	+ Passione per i giochi mobile e la possibilità di giocare in movimento.
+	+ Interesse a rimanere aggiornati sulle ultime novità e tendenze nel settore dei giochi mobile.
+	+ Desiderio di condividere le proprie esperienze e conoscenze sui giochi mobile con altri appassionati.
 - Contesto
 	+ Sara cerca una piattaforma che le permetta di essere sempre a contatto con la commiunity, soprattutto quando non ha un Pc a portata di mano.
 	+ Sara cerca una piattaforma accessibile al sistema mobile, sia per controllare le novità postate che per postare lei stessa direttamente dal suo telefono.
 	
+	
 ## Funzionalità
-+ Registrazione al database dal sito
-+ Riconoscimento tramite login
-+ Passworld criptata nel database
++ Registrazione di nuovi utenti e login
++ Password criptata nel database
 + Notifiche in tempo reale
 + Feed con i post degli utenti seguiti
 + Possibilità di postare solo testo o testo e immagine
-+ Possibilità di essere seguiti e di seguire
-+ Possibilità di personalizzazione account (immagine di profilo e dati personali)
++ Possibilità di essere seguiti e di seguire altri utenti
++ Possibilità di personalizzazione account (immagine del profilo e dati personali)
 + Possibilità di scelta tra tema chiaro e scuro
-+ Impostazioni per le notifiche (scegli il tipo di notifiche che ricevi)
++ Impostazioni per le notifiche (scegliere il tipo di notifiche da ricevere)
 + Ricerca di utenti per username
 + Ricerca di post dal titolo e dal contenuto testuale
 + Possibiltà di cambiare la password (comunque criptata nel database)
 + Possibilità di eliminare l'account
 + Possibilità di visualizzare i contenuti degli altri utenti nalla loro pagina (Post, Followers ecc...)
-+ Possibilità di commentare e mettere like ai post
-+ Sito responsive
++ Possibilità di mettere like ai post
++ Possibilità di commentare e mettere like ai commenti
++ Sito mobile first 
 + Utilizzo di Axios per le richieste Ajax
 
 
@@ -127,8 +128,8 @@ specifico per ogni personas
 + Connettersi a localhost/netgamers/login.php
 + Registrarsi o effettuare il log in con uno dei seguenti account già disponibili:
 
-TechWiz  	pw: Testuser01!
-GameMaster 	pw: Testuser02!
-PixelArtist pw: Testuser03! 
-QuestSeeker pw: Testuser04!
-MobileGamer pw: Testuser05!
+1. TechWiz  	pw: Testuser01!
+2. GameMaster 	pw: Testuser02!
+3. PixelArtist pw: Testuser03! 
+4. QuestSeeker pw: Testuser04!
+5. MobileGamer pw: Testuser05!
