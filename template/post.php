@@ -153,3 +153,11 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            setTimeout(() => {
+                let el = document.getElementById("<?php echo $_GET['s']; ?>");
+                el.scrollIntoView({behavior: "smooth", block: "center", inline: "end"});
+                el.classList.add('selectedComment');
+            }, 1000);
+        </script>

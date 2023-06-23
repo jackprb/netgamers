@@ -39,3 +39,11 @@
     max-width: 1.2rem;
     height: auto;
 }
+
+html{
+    scroll-behavior: smooth;
+}
+
+.selectedComment{
+    background-color: rgba(73, 153, 233, 0.3);
+}

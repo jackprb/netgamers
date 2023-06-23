@@ -207,11 +207,18 @@ class DatabaseHelper{
         $data = date('Y-m-d H:i:s');
         $stmt->bind_param('ssii', $text, $data, $SrcUserId, $postId);
         $stmt->execute();
+
+        $query1 = "SELECT MAX(ID) as ID FROM comments";
+        $stmt1 = $this->db->prepare($query1);
+        $stmt1->execute();
+        $result1 = $stmt1->get_result()->fetch_all(MYSQLI_ASSOC);
+        $result1 = $result1[0]['ID'];
+
         $type = 'NCOMMENT';
         $DstUserId = $this->getUserIdFromPost($postId);
         $DstUserId = $DstUserId[0]['userID'];
         $content = $this->getTitleOfPost($postId);
-        $content = '<a href="post.php?p='. $postId. '">' . $content[0]['title'] . '</a>';
+        $content = '<a href="post.php?p='. $postId. '&s=c'. $result1 .'">' . $content[0]['title'] . '</a>';
         return $stmt->errno == 0 && !($this->sendNotification($SrcUserId, $DstUserId, $type, $content));
     }
     
@@ -314,7 +321,7 @@ class DatabaseHelper{
         $type = 'NLIKECOMMENT';
         $postID = $this->getPostIDofComment($commentID);
         $postID = $postID[0]['postID'];
-        $content = '<a href="post.php?p=' . $postID .'#c' . $commentID . '"> comment</a>' ;
+        $content = '<a href="post.php?p=' . $postID .'&s=c' . $commentID . '"> comment</a>' ;
         return $stmt->errno == 0 && !($this->sendNotification($SrcUserId, $DstUserId, $type, $content));
     }
 
