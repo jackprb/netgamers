@@ -121,13 +121,12 @@ specifico per ogni personas
 
 
 ## Istruzioni
-+ Copia il folder in xxamp/htdocs/
-+ Copia il contenuto del file *createDatabase.sql* che si trova nella cartella db in DBMS
-+ Connettiti a localhost/netgamers/login.php
-+ Registrati o fai LogIn
++ Eseguire `git clone` della repository nella cartella in xampp/htdocs/netgamers
++ Eseguire le query contenute in *db/createDatabase.sql* per creare il DB
++ Eseguire le query contenute in *db/insertData.sql* per inserire dati nel DB
++ Connettersi a localhost/netgamers/login.php
++ Registrarsi o effettuare il log in con uno dei seguenti account già disponibili:
 
-
-Alcuni account già disponibili:
 TechWiz  	pw: Testuser01!
 GameMaster 	pw: Testuser02!
 PixelArtist pw: Testuser03! 

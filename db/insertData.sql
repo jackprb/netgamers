@@ -21,7 +21,6 @@ INSERT INTO `users` (`ID`, `email`, `username`, `psw`, `name`, `surname`, `count
 (11, 'sofia.andersson@email.com', 'QuestSeeker', '$2y$10$sOf5zCRS.LTJ8Z5.Mio15uK7XxJtZJGqQ6g8efNC9y3.9WAec3Qam', NULL, NULL, NULL, NULL, NULL, '2023-06-19', 1, 1);
 
 
-
 INSERT INTO `posts` (`ID`, `img`, `title`, `text`, `dateTimePublished`, `userID`) VALUES
 (1, 1, 'Il nuovo RPG fantasy che farà esplodere la tua immaginazione!', "Ciao a tutti, sono TechWiz e ho una notizia mozzafiato da condividere con voi oggi! Siete pronti a vivere un'avventura epica in un mondo fantastico? Un rinomato studio di sviluppo ha annunciato un nuovo RPG fantasy che promette di far esplodere la nostra immaginazione! Preparatevi a esplorare terre misteriose, combattere creature leggendarie e immergervi in una trama avvincente. Non vedo l'ora di tuffarmi in questo nuovo universo e condividere con voi ogni dettaglio emozionante. Tenetevi pronti per l'avventura più epica di tutti i tempi!", '2023-06-19 11:58:37', 7),
 (2, NULL, "Le ultime scoperte tecnologiche!", "Ciao a tutti! Alex, il vostro TechWiz di fiducia, con le ultime scoperte tecnologiche! Ho trovato uno smartphone super avanzato e un'app di realtà aumentata incredibile. Sono entusiasta di sperimentarli!\n", '2023-06-19 12:04:28', 7),
@@ -30,8 +29,6 @@ INSERT INTO `posts` (`ID`, `img`, `title`, `text`, `dateTimePublished`, `userID`
 (5, NULL, 'Questo sono io', 'Ciao, sono Luca Rossi, noto come \"PixelArtist\". Sono un artista digitale specializzato nella grafica per videogiochi e disponibile per collaborazioni con sviluppatori indie o team di giochi.\n', '2023-06-19 12:08:10', 9),
 (6, NULL, "L'epica avventura di 'Realm of Legends' in un mondo magico", "'Realm of Legends' è un'avventura epica in un mondo magico che ti lascerà senza fiato. Scopri un regno incantato ricco di personaggi straordinari, ambientazioni suggestive e una trama coinvolgente.\nEsplora terre sconosciute, combatti contro nemici temibili e risolvi enigmi avvincenti. Personalizza il tuo eroe con abilità uniche e unisciti ad altri giocatori in battaglie multiplayer che ti metteranno alla prova.\n'Realm of Legends' offre un'esperienza visiva sorprendente, con grafica dettagliata che ti farà sentire immerso completamente nel mondo di gioco.\nPreparati a vivere un'avventura indimenticabile in'Realm of Legends', il gioco che ti porterà in mondi fantastici e ti farà sentire un vero eroe.", '2023-06-19 12:09:56', 11),
 (7, NULL, "Le 5 gemme nascoste dei giochi mobili!", '1.\"Forgotten Memories: Alternate Realities\"\n2.\"Monument Valley\"\n3.\"Swordigo\"\n4.\"Mini Metro\"\n5.\"Alto\'s Adventure\"\nQueste sono solo alcune delle gemme nascoste che il vasto mondo dei giochi mobili ha da offrire. Spero che questa lista vi abbia dato qualche idea su quali giochi provare successivamente. Stay tuned per scoprire di cosa trattano questi singoli giochi\n', '2023-06-19 12:11:21', 8);
-
-
 
 
 INSERT INTO `follow` (`userFollowing`, `userFollowed`) VALUES
