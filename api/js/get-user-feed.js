@@ -1,4 +1,4 @@
-function generatePost(posts){
+function generatePost(posts, postsLikes){
     let result = "";
     const UPLOAD_USERIMG_DIR = "./upload/userImages/";
     const UPLOAD_POSTIMG_DIR = "./upload/postImages/";
@@ -48,11 +48,25 @@ function generatePost(posts){
                                         <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
                                     </svg>
                                 </a>
-                                <a href="#" title="Like this post" class="nav-item position-relative fs-4 p-2 mx-sm-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-heart text-dark me-2 svg-navbar" viewBox="0 0 16 16" role="img" aria-label="Unlike button">
-                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                                    </svg>
-                                </a>
+                                <a href="#." title="Like this post" class="nav-item position-relative fs-4 p-2 mx-sm-1" onclick="likeButtonChangerP(${posts[i]["postID"]});">`;
+                                let r = false;
+                                console.log("postLikes: " + postsLikes[0]["postID"] + " post : " + posts[i]["postID"]);
+                                for(let j=0; j < postsLikes.length; j++){
+                                    if(postsLikes[j]["postID"] == posts[i]["postID"]){
+                                        post +=`
+                                        <svg id="${posts[i]['postID']}" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-heart-fill text-dark svg-navbar" viewBox="0 0 16 16" role="img" aria-label="Like button">
+                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                                        </svg>`;
+                                        r = true;
+                                    }
+                                }
+                                if(!r){
+                                    post += `
+                                        <svg id="${posts[i]['postID']}" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-heart text-dark svg-navbar" viewBox="0 0 16 16" role="img" aria-label="Unlike button">
+                                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                        </svg>`;
+                                }
+                              post+=  `</a>
                             </div>
                         </div>   
                     </div>
@@ -84,11 +98,24 @@ function generatePost(posts){
                     <div class="card-footer">
                         <div class="row">
                             <div class="d-flex justify-content-end">
-                                <a href="#" title="Like" class="nav-item position-relative fs-4 p-2 mx-sm-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-heart text-dark me-2 svg-navbar" viewBox="0 0 16 16" role="img" aria-label="Unlike button">
-                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                                </svg>
-                                </a>
+                                <a href="#." title="Like" class="nav-item position-relative fs-4 p-2 mx-sm-1" onclick="likeButtonChangerP(${posts[i]["postID"]});">`;
+                                let r = false;
+                                for(let j=0; j < postsLikes.length; j++){
+                                    if(postsLikes[j]["postID"] == posts[i]["postID"]){
+                                        post +=`
+                                        <svg id="${posts[i]['postID']}" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-heart-fill text-dark svg-navbar" viewBox="0 0 16 16" role="img" aria-label="Like button">
+                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                                        </svg>`;
+                                        r = true;
+                                    }
+                                }
+                                if(!r){
+                                    post += `
+                                        <svg id="${posts[i]['postID']}" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-heart text-dark svg-navbar" viewBox="0 0 16 16" role="img" aria-label="Unlike button">
+                                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                        </svg>`;
+                                }
+                                post+=  `</a>
                             </div>
                         </div>   
                     </div>
@@ -101,6 +128,22 @@ function generatePost(posts){
     return result;
 }
 
+function likeButtonChangerP(postID){
+    console.log("likeButtonChangerFeed: post:" + postID );
+    let el = document.getElementById(postID);
+    if (el.classList.contains("bi-heart")){
+        axios.get('api/api-like-post.php?p='+ postID).then(response=>{
+            console.log(response.data);
+        });
+        el.classList.replace("bi-heart", "bi-heart-fill");
+        el.innerHTML = '<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>';
+    } else {
+        axios.get('api/api-unlike-post.php?p='+ postID).then(response=>{});
+        el.classList.replace("bi-heart-fill", "bi-heart");
+        el.innerHTML = '<path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>';
+    }
+}
+
 window.addEventListener("load", function(){
     updateFeed();
 
@@ -111,9 +154,10 @@ window.addEventListener("load", function(){
 
 function  updateFeed(){
     axios.get('api/api-get-feed.php').then(response => {
-        console.log(response);
-        let posts = generatePost(response.data);
         const container = document.getElementById("feed");
-        container.innerHTML = posts;
+        axios.get('api/api-get-like-set.php').then(response1 => {
+            console.log(response1.data);
+            container.innerHTML = generatePost(response.data, response1.data);
+        });
     });
 }

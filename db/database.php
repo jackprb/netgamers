@@ -276,13 +276,22 @@ class DatabaseHelper{
         $content = '<a href="post.php?p=' . $postID . '"> ' . $title . '</a>' ;
         
         $err = $this->sendNotification($SrcUserId, $DstUserId, $type, $content);
-        return $err;
+        return $stmt->errno == 0 && !$err;
     }
 
     public function hasLikePost($SrcUserId, $postID){
         $query = "SELECT * FROM `user_like_post` WHERE `postID` = ? AND `userID`= ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('ii', $postID, $SrcUserId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return  $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getLikePost($SrcUserId){
+        $query = "SELECT postID FROM `user_like_post` WHERE `userID`= ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i', $SrcUserId);
         $stmt->execute();
         $result = $stmt->get_result();
         return  $result->fetch_all(MYSQLI_ASSOC);
