@@ -346,7 +346,7 @@ class DatabaseHelper{
     public function NotificationsToRead($DstUserId){
         $query = "SELECT notifications.*, users.username, profile_images.`path`, profile_images.altText, profile_images.longdesc 
             FROM notifications JOIN users ON notifications.userSrc = users.ID JOIN profile_images ON users.userImg = profile_images.ID 
-            WHERE notifications.userDest = ? AND notifications.viewed = FALSE";
+            WHERE notifications.userDest = ? AND notifications.viewed = FALSE ORDER BY dateTimeCreated DESC";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param('i', $DstUserId);
         $stmt->execute();
