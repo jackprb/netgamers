@@ -130,6 +130,7 @@
         <link rel="stylesheet" media="screen" href="css/theme.min.css">
         <link rel="stylesheet" media="screen" href="css/custom.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <link rel="stylesheet" media="screen" href="js/smooth-scroll/aos.css" />
     </head>
     <body>
         <div class="page-loading active">
@@ -333,6 +334,8 @@
         </footer>
         <!-- Vendor scripts: js libraries and plugins-->
         <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/smooth-scroll/aos.js"></script>
+        <script src="js/smooth-scroll/smooth-scroll.polyfills.min.js"></script>
         <!-- Main theme script-->
         <script src="js/theme.min.js"></script>
         <!-- theme changer script -->
