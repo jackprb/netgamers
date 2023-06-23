@@ -128,8 +128,8 @@ specifico per ogni personas
 
 
 Alcuni account già disponibili:
-TechWiz  	pw: Alex01!
-GameMaster 	pw: Emma01!
-PixelArtist pw: Luca01! 
-QuestSeeker pw: Sofia01!
-MobileGamer pw: Sara01!
+TechWiz  	pw: Testuser01!
+GameMaster 	pw: Testuser02!
+PixelArtist pw: Testuser03! 
+QuestSeeker pw: Testuser04!
+MobileGamer pw: Testuser05!
