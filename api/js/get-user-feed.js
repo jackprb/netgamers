@@ -50,7 +50,6 @@ function generatePost(posts, postsLikes){
                                 </a>
                                 <a href="#." title="Like this post" class="nav-item position-relative fs-4 p-2 mx-sm-1" onclick="likeButtonChangerP(${posts[i]["postID"]});">`;
                                 let r = false;
-                                console.log("postLikes: " + postsLikes[0]["postID"] + " post : " + posts[i]["postID"]);
                                 for(let j=0; j < postsLikes.length; j++){
                                     if(postsLikes[j]["postID"] == posts[i]["postID"]){
                                         post +=`

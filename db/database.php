@@ -204,7 +204,6 @@ class DatabaseHelper{
     public function newComment($SrcUserId, $postId, $text){
         $query = "INSERT INTO comments(`text`, `dateTime`, `userID`, `postID`) VALUES (?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
-        $img = 'helloooo';
         $data = date('Y-m-d H:i:s');
         $stmt->bind_param('ssii', $text, $data, $SrcUserId, $postId);
         $stmt->execute();
@@ -212,7 +211,7 @@ class DatabaseHelper{
         $DstUserId = $this->getUserIdFromPost($postId);
         $DstUserId = $DstUserId[0]['userID'];
         $content = $this->getTitleOfPost($postId);
-        $content = $content[0]['title'];
+        $content = '<a href="post.php?p='. $postId. '">' . $content[0]['title'] . '</a>';
         return $stmt->errno == 0 && !($this->sendNotification($SrcUserId, $DstUserId, $type, $content));
     }
     

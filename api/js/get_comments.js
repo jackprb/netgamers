@@ -4,7 +4,7 @@ function generateComments(comments, userID, commLike){
     let result = "";
     for(let i=0; i < comments.length; i++){
         let articolo = `
-        <li class="list-group-item" id="c${comments[i]["ID"]}">
+        <li class="list-group-item d-block" id="c${comments[i]["ID"]}">
             <header class="d-flex justify-content-start">
                 <h5 class="fs-md">Commented by ${comments[i]["username"]} on ${comments[i]["dateTime"]}</h5>
             </header>
@@ -14,7 +14,11 @@ function generateComments(comments, userID, commLike){
 
             <footer class="d-flex justify-content-end">
                 <div class="fs-lg align-self-center p-2">
-                    <a href="#top">Back to the post</a>
+                    <a href="#top" title="Back to the post">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-arrow-up text-dark svg-navbar" viewBox="0 0 16 16" role="img" aria-label="Back to the post">
+                        <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+                    </svg>
+                    </a>
                 </div>`;
 
         if(comments[i]["userID"] == userID){
