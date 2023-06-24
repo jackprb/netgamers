@@ -27,7 +27,7 @@
                         </svg>
                         <h2 class="h4 mb-0">Modify post</h2>
                     </div>
-                    <form action="<?php echo getApiPath('api-update-post.php'); ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo getApiPath('api-update-post.php'); ?>" method="post" enctype="multipart/form-data" autocomplete="off">
                         <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
                             <?php if(isset($_GET["r"]) && $_GET["r"] >= 0 && $_GET["r"] <= 4): ?>
                             <div class="col-sm-12 col-lg-10">

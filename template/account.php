@@ -120,7 +120,7 @@
                             </div>
                         </div>
                     <?php endif; ?>
-                    <form method="post" action="<?php echo getApiPath('api-update-userdata.php'); ?>">
+                    <form method="post" action="<?php echo getApiPath('api-update-userdata.php'); ?>" autocomplete="off">
                         <?php if(isset($_GET["u"]) && $_GET["u"] >= 0 && $_GET["u"] <= 1): ?>
                         <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
                             <div class="col-sm-12 col-md-6">
@@ -209,7 +209,7 @@
             <!-- Password-->
             <section class="card border-0 py-1 p-md-2 p-xl-3  mb-4">
                 <div class="card-body">
-                    <form action="<?php echo getApiPath('api-change-psw.php'); ?>" method="post">
+                    <form action="<?php echo getApiPath('api-change-psw.php'); ?>" method="post" autocomplete="off">
                         <div class="d-flex align-items-center pb-4 mt-sm-n1 mb-0 mb-lg-1 mb-xl-3">
                             <h2 class="h4 mb-0">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-lock text-dark me-2 svg-lg" viewBox="0 0 16 16" aria-hidden="true">
@@ -289,7 +289,7 @@
                         </svg>
                         <h2 class="h4 mb-0">Notifications</h2>
                     </div>
-                    <form action="<?php echo getApiPath('api-notification-preferences.php'); ?>" method="post">
+                    <form action="<?php echo getApiPath('api-notification-preferences.php'); ?>" method="post" autocomplete="off">
                         <?php if(isset($_GET["n"]) && $_GET["n"] == 0): ?>
                             <div class="alert alert-success alert-dismissible fade show col-sm-12 col-md-6" role="alert">
                                 <div>
@@ -397,7 +397,7 @@
                         </div>
                     <?php endif; ?>
 
-                    <form action="<?php echo getApiPath('api-delete-account.php'); ?>" method="post" id="deleteAccount">
+                    <form action="<?php echo getApiPath('api-delete-account.php'); ?>" method="post" id="deleteAccount" autocomplete="off">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="confirmDelete" id="confirmDelete" required>
                             <label class="form-check-label text-dark fw-medium" for="confirmDelete">Yes, I want to delete my account</label>
@@ -438,7 +438,7 @@
                             <p>Choose the image to upload as your profile image. <br>
                                 Upload only PNG, JPG of GIF images, max 500KB.
                             </p>
-                            <form action="<?php echo getApiPath('api-change-userImg.php'); ?>" method="post" id="uploadPhoto" enctype="multipart/form-data">
+                            <form action="<?php echo getApiPath('api-change-userImg.php'); ?>" method="post" id="uploadPhoto" enctype="multipart/form-data" autocomplete="off">
                                 <div class="col-12">
                                     <label class="form-label" for="userImg">Choose your new profile image</label>
                                     <input class="form-control" required type="file" name="userImg" id="userImg" accept=".png,.gif,.jpg,.jpeg" />
@@ -470,7 +470,7 @@
                         <div class="modal-body">
                             <p>Are you sure you want to delete your profile image?</p>
                             <p class="text-danger">It can't be undone.</p>
-                            <form id="deletePhoto" method="post" action="<?php echo getApiPath('api-delete-userImg.php'); ?>">
+                            <form id="deletePhoto" method="post" action="<?php echo getApiPath('api-delete-userImg.php'); ?>" autocomplete="off">
                             </form>
                         </div>
                         <div class="modal-footer d-flex justify-content-end">

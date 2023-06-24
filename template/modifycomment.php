@@ -14,7 +14,7 @@
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                         </svg><h2 class="h4 mb-0">Modify comment</h2>
                     </div>
-                    <form action="<?php echo getApiPath('api-modify-comment.php?c='.$_GET['c'].'&p='.$_GET['p']); ?>" method="post" >
+                    <form action="<?php echo getApiPath('api-modify-comment.php?c='.$_GET['c'].'&p='.$_GET['p']); ?>" method="post" autocomplete="off">
                         <div class="row g-3 g-sm-4 mt-1 mt-lg-2">
                             <?php if(isset($_GET["r"]) && $_GET["r"] >= 0 && $_GET["r"] <= 4): ?>
                             <div class="col-sm-12 col-lg-10">
@@ -53,7 +53,7 @@
                             <p class="text-danger">It can't be undone.</p>
                         </div>
                         <div class="modal-footer row">
-                            <form id="deleteComment" method="post" action="<?php echo getApiPath('api-delete-comment.php?c='.$_GET['c'].'&p='.$_GET['p']); ?>">
+                            <form id="deleteComment" method="post" action="<?php echo getApiPath('api-delete-comment.php?c='.$_GET['c'].'&p='.$_GET['p']); ?>" autocomplete="off">
                                 <button type="button" class="btn btn-secondary col-sm-12 col-md-4" data-bs-dismiss="modal">Cancel</button>
                                 <input type="submit" class="btn btn-danger col-sm-12 col-md-5 ms-3" value="Delete comment" />
                             </form>

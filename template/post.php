@@ -76,7 +76,7 @@
             <div class="card border-0 pt-2 p-md-2 p-xl-3 p-xxl-4 mt-n3 mt-md-0">
                 <div class="card-body">
                     <h2 class="pb-2 pb-lg-3 pb-xl-4">Leave a comment:</h2>
-                    <form class="g-4" method="POST" action="<?php echo getApiPath('api-insert-new-comment.php'); ?>">
+                    <form class="g-4" method="POST" action="<?php echo getApiPath('api-insert-new-comment.php'); ?>" autocomplete="off">
                         <div class="row">
                             <div class="col-12">
                                 <input type = "hidden" value="<?php echo $_GET['p']; ?>" id="postId" name = "postId"/>

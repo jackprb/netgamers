@@ -36,7 +36,7 @@
                 <p class="fw-semibold"><?php echo getLoginMsg(); ?></p>
             <?php endif; ?>
 
-            <form action="./login_process.php" method="POST">
+            <form action="./login_process.php" method="POST" autocomplete="off">
                 <div class="pb-3 mb-3">
                     <label class="form-label d-none" for="username">Username</label>
                     <input class="form-control form-control-lg" type="text" name="username" id="username" placeholder="Username" required>
@@ -62,7 +62,7 @@
             <p class="fw-semibold"><?php echo getRegisterMSg($_GET["er"]); ?></p>
         <?php endif; ?>
 
-        <form action="./register_process.php" method="POST">
+        <form action="./register_process.php" method="POST" autocomplete="off">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-1 row-cols-lg-2">
                 <div class="col mb-4">
                     <label class="form-label d-none" for="usernameReg">Username</label>
