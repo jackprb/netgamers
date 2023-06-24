@@ -22,7 +22,7 @@ function createList(usersList){
                 <div class="card border-0 overflow-hidden">
                     <div class="row d-flex align-items-center">
                         <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
-                            <img src="${getUserImagePath(usersList[element]['path'])}" class="img-fluid" alt="${usersList[element]['altText']}" />
+                            <img src="${getUserImagePath(usersList[element]['path'])}" class="img-fluid rounded-circle" alt="${usersList[element]['altText']}" />
                         </div>
                         <div class="col-8 col-sm-8 ">
                             <div class="card-body">

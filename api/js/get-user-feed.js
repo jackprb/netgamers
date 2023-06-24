@@ -22,7 +22,7 @@ function generatePost(posts, postsLikes){
                     <div class="card-header">
                         <div class="row">
                             <div class="col-2 justify-content-start">
-                                <img class="img-fluid userImgPostHeader" src="${UPLOAD_USERIMG_DIR + posts[i]['userImgPath']}" alt="${posts[i]['userImgAltText']}" />
+                                <img class="img-fluid userImgPostHeader rounded-circle" src="${UPLOAD_USERIMG_DIR + posts[i]['userImgPath']}" alt="${posts[i]['userImgAltText']}" />
                             </div>
                             <div class="col-7 text-center justify-content-center">
                                 <a class="card-title align-self-center" href="post.php?p=${posts[i]['postID']}"><h4>${posts[i]['postTitle']}</h4></a>
@@ -79,7 +79,7 @@ function generatePost(posts, postsLikes){
                     <div class="card-header">
                         <div class="row">
                             <div class="col-2 justify-content-start">
-                                <img class="img-fluid userImgPostHeader" src="${UPLOAD_USERIMG_DIR + posts[i]['userImgPath']}" alt="${posts[i]['userImgAltText']}" />
+                                <img class="img-fluid userImgPostHeader rounded-circle" src="${UPLOAD_USERIMG_DIR + posts[i]['userImgPath']}" alt="${posts[i]['userImgAltText']}" />
                             </div>
                             <div class="col-7 text-center justify-content-center">
                                 <a class="card-title align-self-center" href="post.php?p=${posts[i]['postID']}"><h4>${posts[i]['postTitle']}</h4></a>
