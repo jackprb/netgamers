@@ -76,7 +76,7 @@
                                 
                             </a>
                             <a class="justify-content-end position-relative overflow-hidden rounded-circle bg-size-cover bg-position-center flex-shrink-0" 
-                                href="#" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100px; height: 100px;">
+                                href="#" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100px; height: 100px;" title="Pick Photo">
                                 <span class="d-block text-center lh-1 pb-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-camera text-dark svg-md" viewBox="0 0 16 16" role="img" aria-label="Choose user profile image">
                                         <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
@@ -362,7 +362,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-trash text-dark me-2 svg-lg" viewBox="0 0 16 16" aria-hidden="true">
                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
                             <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
-                        </svg><h2 class="h4 mb-0">Delete account</h2>
+                        </svg><h3 class="h4 mb-0">Delete account</h3>
                     </div>
                     <div class="alert alert-danger d-flex mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-exclamation-triangle text-dark me-2 svg-md" viewBox="0 0 16 16" aria-hidden="true">
