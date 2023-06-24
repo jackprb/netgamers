@@ -101,9 +101,9 @@
                             <h3 class="h5 mb-2"><?php echo $username; ?></h3>
                             <p class="fs-sm">
                                 Followers: 
-                                <a data-bs-toggle="modal" data-bs-target="#modalFollowers" href="#" class="followerCount"></a>
+                                <a data-bs-toggle="modal" data-bs-target="#modalFollowers" href="#" class="followerCount" title="Follower"></a>
                                 &nbsp;Followed: 
-                                <a data-bs-toggle="modal" data-bs-target="#modalFollowed" href="#" class="followedCount"></a>
+                                <a data-bs-toggle="modal" data-bs-target="#modalFollowed" href="#" class="followedCount" title="Followed"></a>
                             </p>
                             <p class="fs-sm">Published posts: <?php echo count($allPosts);?></p>
                             <p class="fs-sm">
