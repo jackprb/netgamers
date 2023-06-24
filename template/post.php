@@ -80,6 +80,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <input type = "hidden" value="<?php echo $_GET['p']; ?>" id="postId" name = "postId"/>
+                                <label class="form-label" for="CommentText">Type here</label>
                                 <textarea class="form-control" rows="4" placeholder="Type your comment here..." required id="CommentText" name="CommentText"></textarea>
                             </div>
                             <div class="col-12 justify-content-end d-flex">
@@ -95,7 +96,7 @@
         <section id="getComments">
             <div class="card border-0 pt-2 p-md-2 p-xl-3 p-xxl-4 mt-n3 mt-md-0">
                 <div class="card-body">
-                    <h2 class="pb-2 pb-lg-3 pb-xl-4 justify-content-start d-flex" id="commentsCount"></h2>
+                    <h3 class="pb-2 pb-lg-3 pb-xl-4 justify-content-start d-flex" id="commentsCount"></h3>
                     <ul class="list-group list-group-flush" id="commentsList">
                     </ul>
                 </div>
@@ -143,7 +144,7 @@
                         <p>Are you sure you want to delete this post?</p>
                         <p class="text-danger">It can't be undone.</p>
                         <form id="deletePost" method="post" action="<?php echo getApiPath('api-delete-post.php'); ?>">
-                            <input type="hidden" id="pID" name="pID" value="<?php echo $_GET['p']; ?>"/>
+                            <input type="hidden" id="postID1" name="postID1" value="<?php echo $_GET['p']; ?>"/>
                         </form>
                     </div>
                     <div class="modal-footer d-flex justify-content-end">
