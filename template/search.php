@@ -6,7 +6,7 @@
             </div>
             <div class="row justify-content-center text-center">
                 <div class="col-sm-12 col-md-8">
-                    <label class="form-label fs-lg d-none" for="search">Search</label>
+                    <label class="form-label fs-lg d-none" for="searchI">Search</label>
                     <input class="form-control form-control-lg" type="text" autofocus name="searchI" id="searchI" placeholder="Type here to search users and posts">
                 </div>
                 <div class="d-flex justify-content-center mt-4">

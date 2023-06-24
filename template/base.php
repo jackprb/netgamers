@@ -187,7 +187,7 @@
                         <img class="userImg d-block rounded-circle mb-2 img-fluid" src="<?php echo getUserProfileImgPath(); ?>" width="80" alt="User image">
                     </div>
                     <div class="text-center">
-                        <h3 class="h5 mb-1"><?php printUserName(); ?></h3>
+                        <p class="h5 mb-1"><?php printUserName(); ?></p>
                         <p class="fs-sm text-muted mb-0"><a href="<?php printEmail($dbh); ?>"><?php printEmail($dbh); ?></a></p>
                     </div>
                     <ul class="navbar-nav p-0">
