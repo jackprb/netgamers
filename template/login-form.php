@@ -32,10 +32,9 @@
             <div class="card-body">
                 <h1 class="py-2 pb-lg-3">Log in</h1>
 
-                <?php if(isset($_GET)): ?>
-                    <p class="fw-semibold"><?php echo getLoginMsg(); ?></p>
+                <?php if(isset($_GET['a']) || isset($_GET['d']) || isset($_GET['el']) || isset($_GET['r']) || isset($_GET['er'])): ?>
+                <p class="fw-semibold"><?php echo getLoginMsg(); ?></p>
                 <?php endif; ?>
-
                 <form action="./login_process.php" method="POST" autocomplete="off">
                     <div class="pb-3 mb-3">
                         <label class="form-label d-none" for="username">Username</label>
