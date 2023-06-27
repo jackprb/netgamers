@@ -141,7 +141,7 @@
                                     if (count($allPosts) == 0) : ?>
                                     <div class="col-12 mb-4">
                                         <p class="text-center card-text"><?php echo $username; ?> has not published anything yet. 
-                                            <br /> Come by again later...
+                                            <br/> Come by again later...
                                         </p>
                                     </div>
                                 <?php else: 
@@ -162,8 +162,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
         
         <div class="modal fade" id="modalFollowers" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-dialog-scrollable" role="document">

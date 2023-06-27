@@ -221,9 +221,11 @@
             <header class="navbar navbar-expand-sm fixed-top">
                 <div class="container">
                     <div class="navbar-brand logoNavBar">
+                        <?php if(isset($_SESSION["userID"])): ?>
                         <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-expanded="false" aria-controls="menu" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
+                        <?php endif; ?>
                         <a href="index.php">
                             <img class="logoImg img-fluid" src="upload/logos/NetGamers_Icon.png" alt="Netgamers Icon" />
                         </a>
