@@ -231,9 +231,9 @@
                     <div class="nav align-items-center order-sm-2">
                         <?php if(isset($_SESSION["userID"])): ?>
                         <div class="dropdown nav d-block">
-                            <a class="nav-link position-relative p-2" aria-expanded="false" onclick="getNotifications();">
+                            <a href="#." class="nav-link position-relative p-2" aria-expanded="false" onclick="getNotifications();">
                                 <div class="dropdown-toggle">
-                                    <svg href="#." xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-bell text-dark svg-navbar" viewBox="0 0 16 16" role="img" aria-label="Click to open the notifications popup">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-bell text-dark svg-navbar" viewBox="0 0 16 16" role="img" aria-label="Click to open the notifications popup">
                                         <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
                                     </svg>
                                     <span id="totalNotification" class="badge bg-primary ms-2"></span>
@@ -255,22 +255,20 @@
                             </div>
                         </div>
                         <?php endif; ?>
-                        <a class="nav-link p-1" href="#">
-                            <div class="form-check form-switch mode-switch" data-bs-toggle="mode">
-                                <label class="d-none" for="theme-mode">Switch theme mode</label>
-                                <input class="form-check-input" type="checkbox" id="theme-mode" onclick="changeTheme()">
-                                <label class="form-check-label">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-sun text-dark me-2 svg-navbar" viewBox="0 0 16 16" role="img" aria-label="Light theme">
-                                        <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
-                                    </svg>
-                                </label>
-                                <label class="form-check-label">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-moon text-dark svg-navbar" viewBox="0 0 16 16" role="img" aria-label="Dark theme">
-                                        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z"/>
-                                    </svg>
-                                </label>
-                            </div>
-                        </a>
+                        <div class="nav-link p-1 form-check form-switch mode-switch" data-bs-toggle="mode">
+                            <label class="d-none" for="theme-mode">Switch theme mode</label>
+                            <input class="form-check-input" type="checkbox" id="theme-mode" onclick="changeTheme()">
+                            <label class="form-check-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-sun text-dark me-2 svg-navbar" viewBox="0 0 16 16" role="img" aria-label="Light theme">
+                                    <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+                                </svg>
+                            </label>
+                            <label class="form-check-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-moon text-dark svg-navbar" viewBox="0 0 16 16" role="img" aria-label="Dark theme">
+                                    <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z"/>
+                                </svg>
+                            </label>
+                        </div>
                     </div>
                     <?php if(isset($_SESSION["userID"])): ?>
                     <nav class="navbar-collapse collapse" id="menu">
