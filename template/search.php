@@ -26,11 +26,11 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center mt-4">
-                    <input type="button" onclick="updateSearchData();" class="btn btn-primary ms-3" id="searchBtn" href="#" value="Search"/>
+                    <input type="button" onclick="updateSearchData();" class="btn btn-primary ms-3" id="searchBtn" value="Search"/>
                 </div>
             </div>
         </section>
-        <section class="col-12 mt-4 text-center">
+        <div class="col-12 mt-4 text-center">
             <ul class="list-group list-group-flush" id="resultsList">
             </ul>
-        </section>
+        </div>
