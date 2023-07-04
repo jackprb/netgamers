@@ -30,7 +30,7 @@
                 </div>
             </div>
         </section>
-        <section class="d-flex justify-content-center text-center">
+        <section class="col-12 mt-4 text-center">
             <ul class="list-group list-group-flush" id="resultsList">
             </ul>
         </section>

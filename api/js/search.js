@@ -30,7 +30,7 @@ function createUsersSearchResult(search){
                 <div class="card border-0 overflow-hidden">
                     <div class="row d-flex align-items-center">
                         <div class="col-2 col-sm-2 ms-4 bg-repeat-0">
-                            <a href="profile.php?u=${search[i]['ID']}"><img src="${getUserImagePath(search[i]['path'])}" class="img-fluid userImg" alt="${search[i]['altText']}" /></a>
+                            <a href="profile.php?u=${search[i]['ID']}"><img src="${getUserImagePath(search[i]['path'])}" class="img-fluid userImg rounded-circle" alt="${search[i]['altText']}" /></a>
                         </div>
                         <div class="col-8 col-sm-8 ">
                             <div class="card-body">
