@@ -8,9 +8,9 @@ function generateComments(comments, userID, commLike){
             <header class="d-flex justify-content-start">
                 <h5 class="fs-md">Commented by ${comments[i]["username"]} on ${comments[i]["dateTime"]}</h5>
             </header>
-            <section>
+            <div>
                 <p>${comments[i]["text"]}</p>
-            </section>
+            </div>
 
             <footer class="d-flex justify-content-end">
                 <div class="fs-lg align-self-center p-2">
