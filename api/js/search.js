@@ -71,7 +71,7 @@ function createPostSearchResult(searchImg, searchNoImg){
                             </div>
                             <div class="col-8 col-sm-8 ">
                                 <div class="card-body">
-                                <a href="post.php?p=${searchImg[i]['ID']}"><p class="card-text"><strong>${searchImg[i]['title']}</strong></p></a>
+                                <a href="post.php?p=${searchImg[i]['ID']}"><p class="card-text fw.bold">${searchImg[i]['title']}</p></a>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@ function createPostSearchResult(searchImg, searchNoImg){
                             </div>
                             <div class="col-8 col-sm-8 ">
                                 <div class="card-body">
-                                    <a href="post.php?p=${searchNoImg[i]['ID']}"><p class="card-text"><strong>${searchNoImg[i]['text']}</strong></p></a>
+                                    <a href="post.php?p=${searchNoImg[i]['ID']}"><p class="card-text fw-bold">${searchNoImg[i]['text']}</p></a>
                                 </div>
                             </div>
                         </div>
