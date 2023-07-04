@@ -30,7 +30,7 @@ function createNotification(notifications){
                     <button type="button" onclick="readNotification(${notifications[i]['ID']});" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
                 <div class="row">
-                    <div class="mt-2 ms-2 col-sm-3 col-md-3"><img class="userImg d-block rounded-circle mb-2 img-fluid" src = "./upload/userImages/${notifications[i][`path`]}" alt="${notifications[i][`altText`]}" longdesc="${notifications[i][`longdesc`]}" />
+                    <div class="mt-2 ms-2 col-sm-3 col-md-3"><img class="userImg d-block rounded-circle mb-2 img-fluid" src = "./upload/userImages/${notifications[i][`path`]}" alt="${notifications[i][`altText`]}" />
                     </div>
                     <div class="toast-body col-sm-7 col-md-8"><a href="profile.php?u=${notifications[i]['userSrc']}"><strong>${notifications[i]['username']}</strong></a>${modalArray[notifications[i][`type`]][2]}<strong>${notifications[i]['content']}</strong></div>
                 </div>
