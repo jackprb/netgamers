@@ -72,7 +72,6 @@ function getFollowed(){
 function getFollowers(){
     axios.get('api/api-get-followersList.php?u='+userID).then(response => {
         const res = response.data;
-        console.log(getCount(response.data));
         if(response.data.length == 0){
             followerCountLbl.forEach(element => {
                 element.innerHTML = '0';

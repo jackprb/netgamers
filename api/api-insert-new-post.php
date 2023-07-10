@@ -10,8 +10,7 @@ if(isUserLoggedIn() && $_SERVER["REQUEST_METHOD"] == "POST"){  // se utente è l
             list($resultUpload, $msg, $finalImgPath) = uploadImagePost("../".UPLOAD_POSTIMG_DIR, $_FILES["postImg"]);
             if($resultUpload == 1){ //upload completato con successo in cartella upload/postImages, ma non in DB
                 $altText = $_POST['altText'];
-                $longDesc = $_POST['longDesc'];
-                $idPostImg = $dbh->addPostImg($altText, $longDesc, $finalImgPath); //inserisce nuova img in db
+                $idPostImg = $dbh->addPostImg($altText, $finalImgPath); //inserisce nuova img in db
 
                 if($idPostImg !== FALSE){ //img inserita in db con successo
                     $residPostImg = $idPostImg[0]['ID']; //ottiene id di img caricata
@@ -51,8 +50,8 @@ function isImageChosen(){
 }
 
 function areFieldsSetPostImage(){
-    return isset($_POST["title"], $_POST["content"], $_POST["altText"], $_POST["longDesc"]) && strlen($_POST["title"]) > 0
-        && strlen($_POST["content"]) > 0 && strlen($_POST["altText"]) > 10 && strlen($_POST["longDesc"]) > 20;
+    return isset($_POST["title"], $_POST["content"], $_POST["altText"]) && strlen($_POST["title"]) > 0
+        && strlen($_POST["content"]) > 0 && strlen($_POST["altText"]) > 10;
 }
 
 function areFieldsSetPostNOimage(){

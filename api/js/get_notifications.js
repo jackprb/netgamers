@@ -57,7 +57,6 @@ function getNotifications(){
     let totCount;
 
     axios.get('api/api-get-notification.php').then(response => {
-        //console.log(response);
         let notificationNewComment = [];
         let notificationNewFollower = [];
         let notificationNewLike = [];

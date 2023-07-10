@@ -61,7 +61,6 @@ function generateComments(comments, userID, commLike){
 }
 
 function likeButtonCommChanger(IDcomment, IDuser){
-    console.log("likeButtonCommChanger: post:" + IDcomment + "user: " + IDuser);
     let el = document.getElementById('cl' + IDcomment);
     if (el.classList.contains("bi-heart")){
         axios.get('api/api-like-comment.php?c=' + IDcomment + '&u=' + IDuser).then(response=>{});

@@ -58,7 +58,6 @@ function createUsersSearchResult(search){
 
 function createPostSearchResult(searchImg, searchNoImg){
     let result = "";
-    console.log(searchImg);
     if(searchImg.length > 0){
         for(let i=0; i < searchImg.length; i++){
             // struttura della notifica
@@ -135,7 +134,6 @@ function emptySearchResult(){
 }
 
 function getSearchResult(){
-    console.log(searchQuery);
     if(searchQuery.length > 0){
         if(searchType == 'username'){
             axios.get('api/api-search.php?searchI='+ searchQuery + '&searchType=' + searchType).then(response => {
@@ -148,7 +146,6 @@ function getSearchResult(){
                 noImg=response.data;
                 axios.get('api/api-search.php?searchI='+ searchQuery + '&searchType=' + searchType).then(response => {
                     Img=response.data; 
-                    console.log(Img);
                     srcList.innerHTML = createPostSearchResult(Img, noImg);
                 }); 
             });

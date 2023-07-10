@@ -10,7 +10,6 @@ function like(IDpost, IDuser){
 }
 
 function likeButtonChanger(IDpost, IDuser){
-    console.log("likeButtonChanger: post:" + IDpost + "user: " + IDuser);
     let el = document.getElementById('pLikeID');
     if (el.classList.contains("bi-heart")){
         like(IDpost, IDuser);

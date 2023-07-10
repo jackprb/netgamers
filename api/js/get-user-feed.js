@@ -128,11 +128,9 @@ function generatePost(posts, postsLikes){
 }
 
 function likeButtonChangerP(postID){
-    console.log("likeButtonChangerFeed: post:" + postID );
     let el = document.getElementById('pl' + postID);
     if (el.classList.contains("bi-heart")){
         axios.get('api/api-like-post.php?p='+ postID).then(response=>{
-            console.log(response.data);
         });
         el.classList.replace("bi-heart", "bi-heart-fill");
         el.innerHTML = '<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>';
@@ -155,7 +153,6 @@ function  updateFeed(){
     axios.get('api/api-get-feed.php').then(response => {
         const container = document.getElementById("feed");
         axios.get('api/api-get-like-set.php').then(response1 => {
-            console.log(response1.data);
             container.innerHTML = generatePost(response.data, response1.data);
         });
     });
