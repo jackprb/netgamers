@@ -68,7 +68,15 @@ return true;
 
 function isActive($pagename){
     if(basename($_SERVER['PHP_SELF'])==$pagename){
-        echo " class='active' ";
+        echo " activeNavbar ";
+    }
+}
+
+function setSvgColor($pagename, $pagename2 = ""){
+    if(basename($_SERVER['PHP_SELF'])==$pagename || basename($_SERVER['PHP_SELF'])==$pagename2){
+        echo "#4999e9";
+    }else{
+        echo "currentColor";
     }
 }
 

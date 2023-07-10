@@ -47,3 +47,7 @@ html{
 .selectedComment{
     background-color: rgba(73, 153, 233, 0.3);
 }
+
+.activeNavbar{
+    color: #4999e9;
+}

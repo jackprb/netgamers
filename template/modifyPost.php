@@ -46,17 +46,46 @@
                                 <label class="form-label" for="content">Post content</label>
                                 <textarea class="form-control" rows="5" placeholder="Post content" id="content" name="content" minlength="1" required><?php echo $res[0]['text']; ?></textarea>
                             </div>
+                            <?php if(isset($img['path'])): ?>
                             <div class="col-sm-12 col-lg-10">
-                                <label class="form-label" for="postImg">Choose post image</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="keepImg" name="keepImg">
+                                    <label class="form-check-label" for="keepImg">Check to keep the previous image</label>
+                                </div>
+                            </div>
+                            <input type="hidden" id="prevImg" name="prevImg" value="<?php echo $img['ID']; ?>" />
+                            <div class="col-sm-12 col-lg-10" id="previousImg">
+                                <img class="img-fluid" alt="<?php echo $img['altText']; ?>" src="<?php echo UPLOAD_POSTIMG_DIR . $img['path']; ?>" />
+                            </div>
+                            <?php endif; ?>
+                            <div class="col-sm-12 col-lg-10" id="img">
+                                <label class="form-label" for="postImg">Choose the new post image</label>
                                 <input class="form-control" type="file" name="postImg" id="postImg" accept=".png,.gif,.jpg,.jpeg" />
                             </div>
-                            <div class="col-sm-12 col-lg-10">
+                            <div class="col-sm-12 col-lg-10" id="altTextImg">
                                 <label class="form-label" for="altText">Image alternative text</label>
                                 <input class="form-control" type="text" placeholder="Short description of post image" id="altText" name="altText" minlength="10" value="<?php if(count($img) > 0) echo $img['altText']; ?>" />
                             </div>
                             <div class="col-sm-6 col-lg-5">
                                 <input type="submit" class="btn btn-primary ms-auto" value="Update post"/>
                             </div>
+                            <script>
+                                let checkBox = document.getElementById("keepImg");
+                                window.addEventListener("load", function(){
+                                    document.getElementById("previousImg").style.display = "none";
+                                });
+                                checkBox.addEventListener("click", function(){
+                                    if(checkBox.checked){
+                                        document.getElementById("img").style.display = "none";
+                                        document.getElementById("altTextImg").style.display = "none";
+                                        document.getElementById("previousImg").style.display = "block";
+                                    } else {
+                                        document.getElementById("img").style.display = "block";
+                                        document.getElementById("altTextImg").style.display = "block";
+                                        document.getElementById("previousImg").style.display = "none";
+                                    }
+                                });
+                            </script>
                         </div>
                     </form>
                 </div>
