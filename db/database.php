@@ -240,6 +240,15 @@ class DatabaseHelper{
         $result = $stmt->get_result();
         return  $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function getSingleComment($commentID){
+        $query = "SELECT `text` FROM `comments` WHERE ID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param('i',$commentID);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $result[0]['text'];
+    }
     
     public function newFollow($userIdFollowing, $userIdFollowed){
         $query = "SELECT * FROM follow WHERE userFollowing = ? and userFollowed = ?";

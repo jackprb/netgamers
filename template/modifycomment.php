@@ -5,6 +5,7 @@
                     $type = "alert-success";
                     return array($type, $msg[$code]);
                 }
+                $comment = $dbh->getSingleComment($_GET['c']);
             ?>
             <section class="card border-0 py-1 p-md-2 p-xl-3 mb-4">
                 <div class="card-body">
@@ -26,7 +27,7 @@
                             <?php endif; ?>
                             <div class="col-sm-12 col-lg-10">
                                 <label class="form-label" for="CommentTxt" >Type your comment</label>
-                                <textarea class="form-control" rows="5" placeholder="Comment text" id="CommentTxt" name="CommentTxt" minlength="1" required></textarea>
+                                <textarea class="form-control" rows="5" placeholder="Type your comment here..." id="CommentTxt" name="CommentTxt" minlength="1" required><?php echo $comment; ?></textarea>
                             </div>
                         </div>
                         <div class="mt-4 d-flex justify-content-start">
