@@ -21,14 +21,12 @@ create table PROFILE_IMAGES (
      ID INT not null auto_increment,
      `path` varchar(500) not null,
      altText varchar(500) not null,
-     longdesc varchar(1000) not null,
      constraint IDIMAGE_ID primary key (ID));
 
 create table POST_IMAGES (
      ID INT not null auto_increment,
      `path` varchar(500) not null,
      altText varchar(500) not null,
-     longdesc varchar(1000) not null,
      constraint IDIMAGE_ID primary key (ID));
 
 create table NOTIFICATIONS (

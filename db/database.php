@@ -344,7 +344,7 @@ class DatabaseHelper{
     }
 
     public function NotificationsToRead($DstUserId){
-        $query = "SELECT notifications.*, users.username, profile_images.`path`, profile_images.altText, profile_images.longdesc 
+        $query = "SELECT notifications.*, users.username, profile_images.`path`, profile_images.altText 
             FROM notifications JOIN users ON notifications.userSrc = users.ID JOIN profile_images ON users.userImg = profile_images.ID 
             WHERE notifications.userDest = ? AND notifications.viewed = FALSE ORDER BY dateTimeCreated DESC";
         $stmt = $this->db->prepare($query);
@@ -483,7 +483,6 @@ class DatabaseHelper{
             $res['ID'] = $result[0]['ID'];
             $res['path'] = $result[0]['path'];
             $res['altText'] = $result[0]['altText'];
-            $res['longdesc'] = $result[0]['longdesc'];
         }
         return $res;
     }   
@@ -599,10 +598,10 @@ class DatabaseHelper{
         return $stmt->errno;
     }   
 
-    public function addImg($altText, $longdesc, $imgPath){
-        $query = "INSERT INTO profile_images (`path`, altText, longdesc) VALUES (?,?,?)";
+    public function addImg($altText, $imgPath){
+        $query = "INSERT INTO profile_images (`path`, altText) VALUES (?,?)";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('sss', $imgPath, $altText, $longdesc);
+        $stmt->bind_param('ss', $imgPath, $altText);
         $stmt->execute();
         if($stmt->errno == 0){
             $query = "SELECT MAX(ID) as ID FROM profile_images";
@@ -615,10 +614,10 @@ class DatabaseHelper{
         return FALSE;
     }  
 
-    public function addPostImg($altText, $longdesc, $imgPath){
-        $query = "INSERT INTO post_images (`path`, altText, longdesc) VALUES (?,?,?)";
+    public function addPostImg($altText, $imgPath){
+        $query = "INSERT INTO post_images (`path`, altText) VALUES (?,?)";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param('sss', $imgPath, $altText, $longdesc);
+        $stmt->bind_param('ss', $imgPath, $altText);
         $stmt->execute();
         if($stmt->errno == 0){
             $query = "SELECT MAX(ID) as ID FROM post_images";
@@ -753,8 +752,8 @@ class DatabaseHelper{
 
     public function getFeedOfUser($userIdFollowing){
         $query =   "SELECT posts.ID as postID, posts.title as postTitle, posts.`text` as postText, posts.dateTimePublished as dateTimePost, posts.userID as userID, 
-                        profile_images.`path` as userImgPath, profile_images.altText as userImgAltText, profile_images.longdesc as userImgLongDesc,
-                        users.username as username, post_images.`path` as postImgPath, posts.img as postImgID, post_images.altText as postImgAltText, post_images.longdesc as postImgLongDesc 
+                        profile_images.`path` as userImgPath, profile_images.altText as userImgAltText,
+                        users.username as username, post_images.`path` as postImgPath, posts.img as postImgID, post_images.altText as postImgAltText
                     FROM posts LEFT JOIN post_images ON post_images.ID = posts.img
                                 JOIN users ON users.ID = posts.userID 
                                 JOIN profile_images on profile_images.ID = users.userImg

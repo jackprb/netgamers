@@ -1,20 +1,20 @@
-INSERT INTO `profile_images` (`ID`, `path`, `altText`, `longdesc`) VALUES
-(1, 'default.png', 'Default user profile image.', 'Default user profile image. A blue user silhouette with transparent background.'),
-(2, 'techWiz.png', 'Little robot', 'Image of a robot with the name of techWiz'),
-(3, 'GameMaster.png', 'Fantasy girl Tama', 'Beautiful fantasy girl of name Tama'),
-(4, 'Frog.png', 'My favorite character ', 'An umanized frog drinking wine.'),
-(5, 'QuestSeeker.jpeg', 'A girl in a green mist', 'A girl with a black dress in a green mist '),
-(6, 'MobileGamer.jpg', 'A girl playing with her smartphone', 'A girl playing games with her smartphone');
+INSERT INTO `profile_images` (`ID`, `path`, `altText`) VALUES
+(1, 'default.png', 'Default user profile image.'),
+(2, 'techWiz.png', 'Little robot'),
+(3, 'GameMaster.png', 'Fantasy girl Tama'),
+(4, 'Frog.png', 'My favorite character '),
+(5, 'QuestSeeker.jpeg', 'A girl in a green mist'),
+(6, 'MobileGamer.jpg', 'A girl playing with her smartphone');
 
 
-INSERT INTO `post_images` (`ID`, `path`, `altText`, `longdesc`) VALUES
-(1, 'post1.png', 'Fantasy Landscape', 'Fantasy Ladscape del nuovo fantastico gioco rpg Fantasy'),
-(2, 'post4.png', 'eSport Cup image', 'La coppa eSport che ho vinto oggi'),
-(3, 'GamingPC.jpg', 'Image of Acer Gaming PC', 'Image of Acer Gaming PC with RGB lights'),
-(4, 'Building.png', 'A fantasy building ', 'A fantasy building in the desert with beautiful background'),
-(5, 'MonsterHunter.jpg', 'A girl with a wolf in a videogame', 'A girl with a wolf in a videogame are friends'),
-(6, 'MonsterHunter_2.jpg', 'QuestSeeker\'s post image: A girl with a wolf', 'QuestSeeker\'s post image. Details: A girl is friend with a wolf'),
-(7, 'MobileGames.jpg', 'Some mobile games', 'A lot of mobile games picture ');
+INSERT INTO `post_images` (`ID`, `path`, `altText`) VALUES
+(1, 'post1.png', 'Fantasy Landscape'),
+(2, 'post4.png', 'eSport Cup image'),
+(3, 'GamingPC.jpg', 'Image of Acer Gaming PC'),
+(4, 'Building.png', 'A fantasy building '),
+(5, 'MonsterHunter.jpg', 'A girl with a wolf in a videogame'),
+(6, 'MonsterHunter_2.jpg', 'QuestSeeker\'s post image: A girl with a wolf'),
+(7, 'MobileGames.jpg', 'Some mobile games');
 
 
 INSERT INTO `users` (`ID`, `email`, `username`, `psw`, `name`, `surname`, `country`, `language`, `bio`, `registrationDate`, `userImg`, `active`) VALUES
