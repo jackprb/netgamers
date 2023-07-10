@@ -247,7 +247,11 @@ class DatabaseHelper{
         $stmt->bind_param('i',$commentID);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-        return $result[0]['text'];
+        if(count($result) > 0){
+            return $result[0]['text'];
+        } else {
+            return FALSE;
+        }
     }
     
     public function newFollow($userIdFollowing, $userIdFollowed){

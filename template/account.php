@@ -419,9 +419,9 @@
                             <p>Are you sure you want to delete your account?</p>
                             <p class="text-danger">There is NO WAY BACK!</p>
                         </div>
-                        <div class="modal-footer row">
-                            <button type="button" class="btn btn-secondary col-sm-12 col-md-4" data-bs-dismiss="modal">Cancel</button>
-                            <input type="submit" class="btn btn-danger col-sm-12 col-md-5 ms-3" value="Delete account" form="deleteAccount" />
+                        <div class="modal-footer d-flex justify-content-end">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <input type="submit" class="btn btn-danger ms-3" value="Delete account" form="deleteAccount" />
                         </div>
                     </div>
                 </div>

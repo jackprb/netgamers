@@ -110,7 +110,7 @@ function getAction($action){
 }
 
 function uploadImagePost($path, $image){
-    $imageName = basename($image["name"]);
+    $imageName = str_replace(' ', '', basename($image["name"]));
     $fullPath = $path.$imageName;
 
     $maxKB = 2000;
@@ -139,7 +139,7 @@ function uploadImagePost($path, $image){
         $i = 1;
         do{
             $i++;
-            $imageName = pathinfo(basename($image["name"]), PATHINFO_FILENAME)."_$i.".$imageFileType;
+            $imageName = pathinfo($imageName, PATHINFO_FILENAME)."_$i.".$imageFileType;
         }
         while(file_exists($path.$imageName));
         $fullPath = $path.$imageName;
@@ -160,7 +160,7 @@ function uploadImagePost($path, $image){
 }
 
 function uploadImage($path, $image){
-    $imageName = basename($image["name"]);
+    $imageName = str_replace(' ', '', basename($image["name"]));
     $fullPath = $path.$imageName;
 
     $maxKB = 500;
@@ -194,7 +194,7 @@ function uploadImage($path, $image){
         $i = 1;
         do{
             $i++;
-            $imageName = pathinfo(basename($image["name"]), PATHINFO_FILENAME)."_$i.".$imageFileType;
+            $imageName = pathinfo($imageName, PATHINFO_FILENAME)."_$i.".$imageFileType;
         }
         while(file_exists($path.$imageName));
         $fullPath = $path.$imageName;

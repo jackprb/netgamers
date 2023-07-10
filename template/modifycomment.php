@@ -54,10 +54,10 @@
                             <p>Are you sure you want to delete your comment?</p>
                             <p class="text-danger">It can't be undone.</p>
                         </div>
-                        <div class="modal-footer row">
+                        <div class="modal-footer d-flex justify-content-end">
                             <form id="deleteComment" method="post" action="<?php echo getApiPath('api-delete-comment.php?c='.$_GET['c'].'&p='.$_GET['p']); ?>" autocomplete="off">
-                                <button type="button" class="btn btn-secondary col-sm-12 col-md-4" data-bs-dismiss="modal">Cancel</button>
-                                <input type="submit" class="btn btn-danger col-sm-12 col-md-5 ms-3" value="Delete comment" />
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <input type="submit" class="btn btn-danger ms-3" value="Delete comment" />
                             </form>
                         </div>
                     </div>
