@@ -120,6 +120,8 @@
             </div>
         </div>
 
+        <?php 
+        if($res[0]['img'] != NULL) : /* post CON IMMAGINE */ ?> 
         <div class="modal fade" id="modalImg" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-fullscreen" role="document">
                 <div class="modal-content">
@@ -133,7 +135,9 @@
                 </div>
             </div>
         </div>
+        <?php endif; ?>
 
+        <?php if($_SESSION['userID'] == $res[0]['userID']): ?>
         <div class="modal fade" id="modalDeletePost" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -154,7 +158,8 @@
                 </div>
             </div>
         </div>
-
+        <?php endif; ?>
+        
         <script>
             setTimeout(() => {
                 let el = document.getElementById("<?php echo $_GET['s']; ?>");
