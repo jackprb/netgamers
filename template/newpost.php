@@ -3,7 +3,7 @@
                     $msg[0] = "Post published successfully.";
                     $msg[1] = "Post not published: fill the required fields.";
                     $msg[2] = "An error occurred. Post not published. Retry later.";
-                    $msg[3] = "Post not published: the fields 'title', 'content', 'short description' and 'long description' are mandatory for post that include an image.";
+                    $msg[3] = "Post not published: the fields 'title', 'content' and 'short description' are mandatory for post that include an image.";
                     $msg[4] = "Post not published: the fields 'title' and 'content' are mandatory for post that do not include an image.";
                     if($code == 0){
                         $type = "alert-success";
@@ -45,10 +45,6 @@
                             <div class="col-sm-12 col-lg-10">
                                 <label class="form-label" for="altText">Image alternative text</label>
                                 <input class="form-control" type="text" placeholder="Short description of post image" id="altText" name="altText" minlength="10">
-                            </div>
-                            <div class="col-sm-12 col-lg-10">
-                                <label class="form-label" for="longDesc">Image long description</label>
-                                <input class="form-control" type="text" placeholder="Long description of post image" id="longDesc" name="longDesc" minlength="20">
                             </div>
                             <div class="col-sm-6 col-lg-5">
                                 <input type="submit" class="btn btn-primary ms-auto" value="Publish"/>

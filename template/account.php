@@ -38,7 +38,7 @@
                     $msg[2] = "Cannot change profile image: an error occurred while uploading the image.";
                     $msg[3] = "Profile image deleted successfully.";
                     $msg[4] = "Cannot delete your profile image. Retry later.";
-                    $msg[5] = "The fields Alternative text and Long description must contain a description of your user profile image, at least 10 and 20 characters long, respectively.";
+                    $msg[5] = "The field Alternative text must contain a description of your user profile image, at least 10 characters long.";
                     if($code == 0 || $code == 3){
                         $type = "alert-success";
                     } else {
@@ -446,10 +446,6 @@
                                 <div class="col-12 mt-3">
                                     <label class="form-label" for="altText">Profile image alternative text</label>
                                     <textarea class="form-control" required placeholder="Short description of your user profile image - required for screen readers (minimum 10 chars)" name="altText" id="altText"></textarea>
-                                </div>
-                                <div class="col-12 mt-3">
-                                    <label class="form-label" for="longDesc">Profile image long description text</label>
-                                    <textarea class="form-control" required placeholder="Long description of your user profile image - required for screen readers (minimum 20 chars)" name="longDesc" id="longDesc"></textarea>
                                 </div>
                             </form>
                         </div>
