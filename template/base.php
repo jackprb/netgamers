@@ -282,14 +282,14 @@
                                 <a class="nav-link" href="index.php" title="Home">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="<?php echo setSvgColor("index.php"); ?>" class="bi bi-house text-dark svg-navbar" viewBox="0 0 16 16" role="img" aria-label="Home">
                                         <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
-                                    </svg><span class="nav-link d-sm-none ms-2 active">Home</span>
+                                    </svg><span class="nav-link d-sm-none ms-2">Home</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="search.php" class="nav-link" title="Search">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="<?php echo setSvgColor("search.php"); ?>" class="bi bi-search text-dark svg-navbar" viewBox="0 0 16 16" role="img" aria-label="Search">
                                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                                    </svg><span class="nav-link d-sm-none ms-2 active">Search</span>
+                                    </svg><span class="nav-link d-sm-none ms-2">Search</span>
                                 </a>
                             </li>
                             <li class="nav-item">
