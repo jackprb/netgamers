@@ -49,5 +49,5 @@ html{
 }
 
 .activeNavbar{
-    color: #4999e9;
+    color: #4999e9 !important;
 }
